@@ -12,4 +12,11 @@ let mix = require('laravel-mix');
  */
 
 mix.react('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+   .sass('resources/assets/sass/app.scss', 'public/css')
+
+if (!mix.inProduction()) {
+    mix.sourceMaps()
+    mix.browserSync({
+        proxy: 'http://192.168.10.228:8000'
+    })
+}
