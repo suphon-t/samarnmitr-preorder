@@ -17,7 +17,7 @@ function web(p) {
 }
 
 export default {
-    title: 'Samarnmitr',
+    title: process.env.MIX_APP_NAME,
     dev: DEV,
     appBaseUrl: baseUrl,
     webUrl: webUrl,
