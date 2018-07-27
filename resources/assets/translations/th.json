@@ -1,0 +1,10 @@
+{
+    "auth": {
+        "login": "เข้าสู่ระบบ",
+        "logout": "ออกจากระบบ",
+        "email": "อีเมลล์",
+        "password": "รหัสผ่าน",
+        "submitLogin": "ส่ง",
+        "invalid_credentials": "รหัสผ่านผิด"
+    }
+}

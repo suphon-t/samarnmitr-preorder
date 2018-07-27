@@ -15,7 +15,8 @@ import './bootstrap'
 
 import React from "react"
 import ReactDOM from "react-dom"
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux'
+import { LocalizeProvider } from 'react-localize-redux'
 
 import Routes from './routes'
 import store from './store'
@@ -23,6 +24,10 @@ import { authCheck } from "./modules/Auth/store/actions";
 
 store.dispatch(authCheck())
 
-ReactDOM.render((<Provider store={store}>
-    <Routes />
-</Provider>), document.getElementById('app'))
+ReactDOM.render((
+    <LocalizeProvider>
+        <Provider store={store}>
+            <Routes />
+        </Provider>
+    </LocalizeProvider>
+), document.getElementById('app'))

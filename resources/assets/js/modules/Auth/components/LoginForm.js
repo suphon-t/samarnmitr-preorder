@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withLocalize } from 'react-localize-redux'
 
 import { login } from '../service'
 import Field from './Field'
@@ -54,17 +55,21 @@ class LoginForm extends Component {
     }
 
     render() {
+        const { translate } = this.props
         const { error } = this.state
+        const errorMsg = error ? translate('auth.' + error) : null
         return (
             <form onSubmit={this.handleSubmit}>
-                <Field title="Email address" placeholder="Enter email" autoFocus type="email"
+                <Field placeholder={translate('auth.email')} autoFocus type="email"
                     value={this.state.email} onChange={this.changeHandler("email")} />
-                <Field title="Password" placeholder="Password" type="password" error={error}
+                <Field placeholder={translate('auth.password')} type="password" error={errorMsg}
                     value={this.state.password} onChange={this.changeHandler("password")} />
-                <button type="submit" className="btn btn-primary" disabled={this.state.loading}>Submit</button>
+                <button type="submit" className="btn btn-primary" disabled={this.state.loading}>
+                    {translate('auth.submitLogin')}
+                </button>
             </form>
         )
     }
 }
 
-export default connect(() => { return {} })(LoginForm)
+export default withLocalize(connect(() => { return {} })(LoginForm))

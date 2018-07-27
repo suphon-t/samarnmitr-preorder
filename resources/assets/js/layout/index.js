@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { withLocalize } from 'react-localize-redux'
 
 // import services actions
 import { fetchUser } from '../modules/Auth/service'
@@ -10,7 +11,21 @@ import { fetchUser } from '../modules/Auth/service'
 import PrivateLayout from './Private'
 import PublicLayout from './Public'
 
+import thaiTranslations from '../../translations/th.json'
+
 class Layout extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.props.initialize({
+            languages: [
+                { name: "ภาษาไทย", code: "th" },
+            ],
+            options: { renderToStaticMarkup: false }
+        });
+        this.props.addTranslationForLanguage(thaiTranslations, "th");
+    }
 
     componentWillMount() {
         const { isAuthenticated, user } = this.props
@@ -37,4 +52,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Layout))
+export default withLocalize(withRouter(connect(mapStateToProps)(Layout)))
