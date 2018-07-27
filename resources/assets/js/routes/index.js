@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
-import App from '../components/App'
+import Layout from '../layout'
 
 import routes from './routes'
 import PrivateRoute from './private'
@@ -25,7 +25,7 @@ export default class Routes extends Component {
     render() {
         return (
             <Router>
-                <App>
+                <Layout>
                     <Switch>
                         { allRoutes.map((route, i) => {
                             if (route.auth) {
@@ -35,7 +35,7 @@ export default class Routes extends Component {
                             }
                         }) }
                     </Switch>
-                </App>
+                </Layout>
             </Router>
         )
     }

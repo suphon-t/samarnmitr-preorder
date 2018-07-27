@@ -17,6 +17,6 @@ mix.react('resources/assets/js/app.js', 'public/js')
 if (!mix.inProduction()) {
     mix.sourceMaps()
     mix.browserSync({
-        proxy: 'http://192.168.10.228:8000'
+        proxy: 'http://samarnmitr-preorder.localhost'
     })
 }

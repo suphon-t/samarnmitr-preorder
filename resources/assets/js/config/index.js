@@ -1,7 +1,7 @@
 const DEV = false
 
-const webUrl = 'https://samarnmitr-preorder.localhost/'
-const apiUrl = webUrl + 'api/'
+const webUrl = 'http://samarnmitr-preorder.localhost/'
+const apiUrl = '/api/'
 const baseUrl = ''
 
 function url(p) {

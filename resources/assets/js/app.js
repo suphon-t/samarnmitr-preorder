@@ -15,7 +15,14 @@ import './bootstrap'
 
 import React from "react"
 import ReactDOM from "react-dom"
+import { Provider } from "react-redux";
 
 import Routes from './routes'
+import store from './store'
+import { authCheck } from "./modules/Auth/store/actions";
 
-ReactDOM.render(<Routes />, document.getElementById('app'))
+store.dispatch(authCheck())
+
+ReactDOM.render((<Provider store={store}>
+    <Routes />
+</Provider>), document.getElementById('app'))

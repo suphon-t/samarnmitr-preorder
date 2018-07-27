@@ -1,19 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-export default class Login extends Component {
-    render() {
-        return (
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">Login</div>
+import LoginForm from '../../components/LoginForm'
+import routes from '../../../../routes/routes'
 
-                        <div className="card-body">
-                            Nothing here yet!
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated,
     }
 }
+
+export default connect(mapStateToProps)(({ isAuthenticated }) => (
+    <div className="col-md-8">
+        <h1>Login</h1>
+        <div className="card">
+            <div className="card-body">
+                { isAuthenticated ? (
+                    <Redirect to={routes.web.home.get()} />
+                ) : (
+                    <LoginForm />
+                )}
+            </div>
+        </div>
+    </div>
+))
