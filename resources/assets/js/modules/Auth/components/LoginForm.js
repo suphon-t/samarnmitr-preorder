@@ -1,91 +1,66 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import ReeValidate from 'ree-validate'
-
 import { login } from '../service'
+import Field from './Field'
 
 class LoginForm extends Component {
 
     constructor(props) {
         super(props)
-        this.validator = new ReeValidate({
-            email: 'required|email',
-            password: 'required|min:6'
-        })
         this.state = {
             credentials: {
                 email: '',
                 password: ''
             },
             loading: false,
-            errors: this.validator.errors
+            error: null
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     changeHandler(name) {
         return async e => {
-            const { errors } = this.validator
-
             this.setState({
                 credentials: {
                     ...this.state.credentials,
                     [name]: e.target.value
-                }
+                },
+                error: null
             })
-
-            await this.validator.validate(name, e.target.value)
-            this.setState({ errors })
         }
     }
 
     async handleSubmit(e) {
         e.preventDefault()
-        const { credentials } = this.state
-        const { errors } = this.validator
 
-        this.setState({ loading: true })
+        this.submit(this.state.credentials)
+    }
 
-        if (await this.validator.validateAll(credentials)) {
-            this.submit(credentials)
-        } else {
-            this.setState({ errors })
-        }
-
-        this.setState({ loading: false })
+    setError(error) {
+        this.setState({ error, loading: false })
     }
 
     submit(credentials) {
+        this.setState({ loading: true, error: null })
         this.props.dispatch(login(credentials))
             .catch(({ error, statusCode }) => {
-                const { errors } = this.validator
-
-                if (statusCode === 422) {
-                    _.forOwn(error, (message, field) => {
-                        errors.add(field, message);
-                    });
-                } else if (statusCode === 401) {
-                    errors.add('password', error);
+                if (statusCode === 401) {
+                    this.setError(error)
+                } else {
+                    this.setError('internal_error')
                 }
-
-                this.setState({ errors })
             })
     }
 
     render() {
+        const { error } = this.state
         return (
             <form onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control" aria-describedby="emailHelp" autoFocus
-                           value={this.state.email} placeholder="Enter email" onChange={this.changeHandler("email")} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control"
-                           value={this.state.password} placeholder="Password" onChange={this.changeHandler("password")} />
-                </div>
+                <Field title="Email address" placeholder="Enter email" autoFocus type="email"
+                    value={this.state.email} onChange={this.changeHandler("email")} />
+                <Field title="Password" placeholder="Password" type="password" error={error}
+                    value={this.state.password} onChange={this.changeHandler("password")} />
                 <button type="submit" className="btn btn-primary" disabled={this.state.loading}>Submit</button>
             </form>
         )

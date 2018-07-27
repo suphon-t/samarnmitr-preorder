@@ -11,12 +11,6 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email|exists:users,email',
-            'password' => 'required|min:6'
-        ], [
-            'email.exists' => 'The user credentials were incorrect.'
-        ]);
         try {
             $http = new Client;
 

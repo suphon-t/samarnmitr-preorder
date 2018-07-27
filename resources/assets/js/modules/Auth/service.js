@@ -51,7 +51,7 @@ export function login(credentials) {
                         };
                         data.error = Transformer.resetValidationFields(resetErrors);
                     } else if (statusCode === 401) {
-                        data.error = err.response.data.message;
+                        data.error = err.response.data.error;
                     }
                     return reject(data);
                 })
