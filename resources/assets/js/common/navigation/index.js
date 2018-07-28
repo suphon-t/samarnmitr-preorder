@@ -3,17 +3,16 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import routes from '../../routes/routes'
-import config from '../../config'
 import UserMenu from './UserMenu'
 
 class Navigation extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-md navbar-light navbar-laravel">
-                <div className="container">
+            <nav className="navbar navbar-expand-md navbar-light navbar-main">
+                <div className="container center">
                     <Link className="navbar-brand" to={routes.web.home.get()}>
-                        { config.title }
+                        SAMARNMITR ’61 OFFICIAL SHOP
                     </Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

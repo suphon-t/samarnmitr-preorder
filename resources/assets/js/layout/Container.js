@@ -1,10 +1,9 @@
 import React from 'react'
 
-export default ({ style, children }) => (
-    <main className="container" style={style}>
+export default ({ children }) => (
+    <main className="container">
         <div className="row justify-content-center">
             { children }
         </div>
     </main>
 )
-

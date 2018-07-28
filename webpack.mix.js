@@ -15,6 +15,7 @@ mix.react('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
 
 if (!mix.inProduction()) {
+    mix.version()
     mix.sourceMaps()
     mix.browserSync({
         proxy: 'http://samarnmitr-preorder.localhost'

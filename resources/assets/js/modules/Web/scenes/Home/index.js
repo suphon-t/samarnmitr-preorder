@@ -1,17 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {Redirect} from 'react-router-dom'
+import routes from '../../../../routes/routes'
 
-export default class Home extends Component {
-    render() {
-        return (
-            <div className="col-md-8">
-                <div className="card">
-                    <div className="card-header">Home</div>
-
-                    <div className="card-body">
-                        Hello world!
-                    </div>
-                </div>
-            </div>
-        )
-    }
-}
+export default () => (<Redirect to={routes.shop.home.get()} />)
