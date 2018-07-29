@@ -20,7 +20,7 @@ import { LocalizeProvider } from 'react-localize-redux'
 
 import Routes from './routes'
 import store from './store'
-import { authCheck } from "./modules/Auth/store/actions";
+import { authCheck } from './modules/Auth/store/actions'
 
 store.dispatch(authCheck())
 

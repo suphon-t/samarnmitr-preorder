@@ -23,12 +23,11 @@ export default class RoutePath {
                 return ''
             }
         })
-        return config.route(this.path.split(argExp).reduce((acc, arg, i) => {
-            if (i < args.length) {
-                acc += args[i]
-                return acc + arg + args[i]
+        return config.route(this.path.split(argExp).reduce((acc, current, i) => {
+            if (i <= args.length) {
+                return acc + current + args[i - 1]
             } else {
-                return acc + arg
+                return acc + current
             }
         }))
     }

@@ -9,7 +9,7 @@ export default {
         component: Home
     }),
     detail: new RoutePath({
-        path: '/shop/detail/',
+        path: '/shop/detail/:productId',
         exact: true,
         component: Detail
     })

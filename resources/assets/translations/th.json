@@ -6,5 +6,8 @@
         "password": "รหัสผ่าน",
         "submitLogin": "ส่ง",
         "invalid_credentials": "รหัสผ่านผิด"
+    },
+    "shop": {
+        "addToCart": "เพิ่มลงตะกร้า"
     }
 }

@@ -48,6 +48,12 @@ main.container {
     margin: 82px  auto;
 }
 
+.sets-products-divider {
+    @extend .section-divider;
+
+    margin: 30px auto 40px;
+}
+
 .pic-placeholder {
     background: rgba(196, 196, 196, 0.33);
 }
@@ -63,7 +69,7 @@ main.container {
     padding: 40px 40px 10px;
 }
 
-.product-card {
+.product-detail-card {
     @include make-row();
     @include make-card(0);
 
@@ -122,19 +128,15 @@ main.container {
 
 .sets-container {
     @include make-row();
-    @include make-col(12);
-    @extend .justify-content-between;
+    @extend .justify-content-center;
 
     .set-card {
-        //@include make-col(12);
-        //@include media-breakpoint-up(md) {
-        //    @include make-col(3);
-        //}
-
         @include make-card(23px);
 
         width: 300px;
         height: 360px;
+
+        margin: 50px 50px;
 
         .set-text {
             font-size: 36px;
@@ -145,6 +147,36 @@ main.container {
         .set-pic {
             width: 220px;
             height: 240px;
+            margin-bottom: 10px;
+
+            @extend .pic-placeholder
+        }
+    }
+}
+
+.products-container {
+    @include make-row();
+    @extend .justify-content-center;
+
+    .product-card {
+        @include make-card(23px);
+
+        width: 250px;
+        height: 300px;
+
+        margin: 40px 34px;
+
+        padding: 30px 30px 10px;
+
+        .product-text {
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .product-pic {
+            width: 190px;
+            height: 190px;
             margin-bottom: 10px;
 
             @extend .pic-placeholder

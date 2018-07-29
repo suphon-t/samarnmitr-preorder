@@ -8,3 +8,10 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 //@import 'colors';
+
+$container-max-widths: (
+    sm: 420px,
+    md: 720px,
+    lg: 960px,
+    xl: 1272px
+);
