@@ -42,7 +42,7 @@ class ProductDetail extends Component {
             id: product.id,
             customizations,
         }
-        addItem(info, amount)
+        this.props.addItem(info, amount)
         history.push(routes.shop.cart.get())
     }
 

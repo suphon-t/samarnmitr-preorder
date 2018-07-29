@@ -183,3 +183,52 @@ main.container {
         }
     }
 }
+
+.cart-card {
+    @include make-card(0);
+    @extend .full-width;
+
+    height: 728px;
+
+    padding: 42px;
+
+    .cart-title {
+        font-size: 64px;
+    }
+
+    .cart-divider {
+        @extend .divider;
+        @extend .full-width;
+
+        margin: 0 0 40px 0;
+    }
+
+    .cart-items-container {
+        @extend .full-width;
+
+        background: rgba(196, 196, 196, 0.2);
+
+        .cart-item {
+            @include make-row();
+            @extend .full-width;
+
+            height: 100px;
+
+            padding: 10px;
+
+            .product-pic {
+                @extend .pic-placeholder;
+
+                width: 80px;
+                height: 80px;
+            }
+
+            .product-name {
+                padding-top: 18px;
+                padding-left: 12px;
+
+                font-size: 36px;
+            }
+        }
+    }
+}
