@@ -25,7 +25,7 @@ export default class RoutePath {
         })
         return config.route(this.path.split(argExp).reduce((acc, current, i) => {
             if (i <= args.length) {
-                return acc + current + args[i - 1]
+                return acc + args[i - 1] + current
             } else {
                 return acc + current
             }

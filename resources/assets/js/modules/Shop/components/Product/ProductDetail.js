@@ -1,53 +1,84 @@
 import React, { Component } from 'react'
 import { withLocalize } from 'react-localize-redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
-import SizeChooser from './SizeChooser'
+import { addItem } from '../../store/actions'
+
+import Customizer from './Customizer'
+import NumericUpDown from './NumericUpDown'
+import routes from '../../../../routes/routes'
 
 class ProductDetail extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { }
-        this.handleSizeChange = this.handleSizeChange.bind(this)
+        this.state = {
+            amount: 1,
+            customizations: {},
+        }
+        this.handleCustomizationChange = this.handleCustomizationChange.bind(this)
+        this.handleAmountChange = this.handleAmountChange.bind(this)
+        this.addToCart = this.addToCart.bind(this)
     }
 
-    handleSizeChange(size) {
-        this.setState({ size })
+    handleCustomizationChange(name, value) {
+        this.setState({
+            customizations: {
+                ...this.state.customizations,
+                [name]: value,
+            },
+        })
+    }
+
+    handleAmountChange(amount) {
+        this.setState({ amount })
+    }
+
+    addToCart() {
+        const { product, history } = this.props
+        const { customizations, amount } = this.state
+        const info = {
+            id: product.id,
+            customizations,
+        }
+        addItem(info, amount)
+        history.push(routes.shop.cart.get())
     }
 
     render() {
         const { product, translate } = this.props
+        const customizationsUnfinished = product.customizations
+            .find(customization => this.state.customizations[customization.name] === undefined)
         return (
             <div className="product-detail-card">
                 <div className="product-left-pane">
                     <div className="product-slide" />
                 </div>
                 <div className="product-right-pane">
-                    <h1 className="product-title">{ product.displayName }</h1>
+                    <h1 className="product-title">{ product.name }</h1>
                     <div className="product-title-divider" />
                     <div className="product-info" />
                     <form>
-                        <SizeChooser value={this.state.size} sizes={product.sizes} onChange={this.handleSizeChange} />
-                        <div className="form-group row">
-                            <label className="col-sm-4 col-form-label product-customization-label">Amount</label>
-                            <div className="col-sm-8">
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <button type="button" className="btn btn-lg btn-outline-secondary">-</button>
-                                    </div>
-                                    <input type="number" className="form-control form-control-lg" value="0" onChange={() => {}} />
-                                    <div className="input-group-append">
-                                        <button type="button" className="btn btn-lg btn-outline-secondary">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        { product.customizations.map((customization, i) => (
+                            <Customizer key={i} name={customization.name} value={this.state.customizations[customization.name]}
+                                        values={customization.values} onChange={this.handleCustomizationChange} />
+                        )) }
+                        <NumericUpDown label={translate('shop.amount')} value={this.state.amount}
+                                       max={3} onChange={this.handleAmountChange} />
                     </form>
-                    <button className="btn btn-lg btn-danger" style={{ marginTop: 'auto' }}>{ translate('shop.addToCart') }</button>
+                    <button className="btn btn-lg btn-danger" disabled={customizationsUnfinished} onClick={this.addToCart}
+                            style={{ marginTop: 'auto' }}>{ translate('shop.addToCart') }</button>
                 </div>
             </div>
         )
     }
 }
 
-export default withLocalize(ProductDetail)
+const mapStateToProps = () => ({})
+
+const mapDispatchToProps = {
+    addItem
+}
+
+export default withLocalize(withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductDetail)))

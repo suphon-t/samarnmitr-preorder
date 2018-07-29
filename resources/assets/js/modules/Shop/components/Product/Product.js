@@ -8,7 +8,7 @@ export default props => {
         <Link className="product-card" to={routes.shop.detail.get({ productId: product.id })}>
             <div className="product-pic" />
             <div className="product-text">
-                { product.displayName }
+                { product.name }
             </div>
         </Link>
     )

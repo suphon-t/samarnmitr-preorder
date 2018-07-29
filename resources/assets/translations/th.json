@@ -8,6 +8,25 @@
         "invalid_credentials": "รหัสผ่านผิด"
     },
     "shop": {
-        "addToCart": "เพิ่มลงตะกร้า"
+        "addToCart": "เพิ่มลงตะกร้า",
+        "amount": "จำนวน",
+        "customizations": {
+            "size": {
+                "title": "ขนาด",
+                "values": {
+                    "s": "S",
+                    "m": "M",
+                    "l": "L",
+                    "xl": "XL"
+                }
+            },
+            "color": {
+                "title": "สี",
+                "values": {
+                    "pink": "ชมพู",
+                    "blue": "ฟ้า"
+                }
+            }
+        }
     }
 }

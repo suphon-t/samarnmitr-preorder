@@ -9,8 +9,13 @@ export default {
         component: Home
     }),
     detail: new RoutePath({
-        path: '/shop/detail/:productId',
+        path: '/shop/detail/:productId/',
         exact: true,
         component: Detail
+    }),
+    cart: new RoutePath({
+        path: '/shop/cart/',
+        exact: true,
+        component: Home
     })
 }

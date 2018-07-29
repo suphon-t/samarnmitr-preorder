@@ -15,3 +15,7 @@ use Illuminate\Http\Request;
 
 Route::prefix('auth')
     ->group(base_path('routes/api/auth.php'));
+
+Route::group(["prefix" => "shop"], function() {
+    Route::get('products', 'ShopController@allProducts')->name('shop.product.index');
+});

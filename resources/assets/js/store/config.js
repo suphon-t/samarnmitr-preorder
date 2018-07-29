@@ -5,6 +5,23 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 // import { createLogger } from 'redux-logger'
 import rootReducer from './reducers'
+import { saveState } from '../modules/Shop/storage'
+
+function observeStore(store, select, onChange) {
+    let currentState;
+
+    function handleChange() {
+        let nextState = select(store.getState());
+        if (nextState !== currentState) {
+            currentState = nextState;
+            onChange(currentState);
+        }
+    }
+
+    let unsubscribe = store.subscribe(handleChange);
+    handleChange();
+    return unsubscribe;
+}
 
 export default function (initialState = {}) {
     // Middleware and store enhancers
@@ -18,6 +35,7 @@ export default function (initialState = {}) {
     }
 
     const store = createStore(rootReducer, initialState, compose(...enhancers))
+    observeStore(store, state => state.shop.cart, cart => saveState('cart', cart))
 
     // For hot reloading reducers
     if (module.hot) {
