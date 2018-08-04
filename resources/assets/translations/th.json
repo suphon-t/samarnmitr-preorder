@@ -10,6 +10,14 @@
     "shop": {
         "addToCart": "เพิ่มลงตะกร้า",
         "amount": "จำนวน",
+        "cart": {
+            "total_amount": "รวมจำนวน",
+            "total_amount_value": "${ amount } ชิ้น",
+            "total_price": "รวมราคา",
+            "total_price_value": "${ price } บาท",
+            "confirm": "ยืนยัน",
+            "remove": "ลบ"
+        },
         "customizations": {
             "size": {
                 "title": "ขนาด",

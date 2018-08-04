@@ -1,7 +1,7 @@
 import React  from 'react'
 import { withLocalize } from 'react-localize-redux'
 
-const normal = 'btn btn-lg btn-outline-secondary'
+const normal = 'product-option-btn'
 const active = normal + ' active'
 
 export default withLocalize(({ translate, name, value, values, onChange }) => {

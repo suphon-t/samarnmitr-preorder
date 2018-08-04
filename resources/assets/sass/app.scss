@@ -23,6 +23,29 @@ body {
         font-family: 'Kelly Slab', sans-serif;
         font-size: 30px;
     }
+
+    .row {
+        margin: 0;
+    }
+
+    a {
+        padding: 8px;
+        margin: 0;
+    }
+
+    .navbar-cart-container {
+        padding: 0;
+
+        text-align: right;
+
+        img {
+            height: 64px;
+            padding: 10px;
+            margin-right: -16px;
+
+            cursor: pointer;
+        }
+    }
 }
 
 main.container {
@@ -62,10 +85,17 @@ main.container {
     width: 100%;
 }
 
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
 @mixin make-card($radius) {
+    @include border-radius($radius);
+
     background: #FFFFFF;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-    border-radius: $radius;
     padding: 40px 40px 10px;
 }
 
@@ -112,6 +142,8 @@ main.container {
     }
 
     .product-customization-label {
+        padding-top: 0;
+
         font-size: 24px;
     }
 
@@ -188,8 +220,6 @@ main.container {
     @include make-card(0);
     @extend .full-width;
 
-    height: 728px;
-
     padding: 42px;
 
     .cart-title {
@@ -206,11 +236,12 @@ main.container {
     .cart-items-container {
         @extend .full-width;
 
-        background: rgba(196, 196, 196, 0.2);
+        background: rgba(255, 0, 0, 0.07);
 
         .cart-item {
             @include make-row();
             @extend .full-width;
+            @extend .align-items-center;
 
             height: 100px;
 
@@ -223,12 +254,103 @@ main.container {
                 height: 80px;
             }
 
-            .product-name {
-                padding-top: 18px;
+            .product-name, .product-customization {
+                margin: 0;
                 padding-left: 12px;
+
+                &.product-name {
+                    font-size: 36px;
+                }
+
+                &.product-customization {
+                    line-height: 1.2em;
+                }
+            }
+
+            //.product-customization {
+            //    margin: 0;
+            //    padding-left: 12px;
+            //}
+
+            .cart-item-label {
+                margin: 0;
 
                 font-size: 36px;
             }
+
+            .cart-delete {
+                @extend .cart-item-label;
+
+                margin-left: 16px;
+
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                outline: none;
+
+                color: #FF0000;
+            }
         }
+    }
+
+    .cart-summary {
+        @extend .row;
+        @extend .justify-content-end;
+
+        margin-top: 18px;
+
+        table {
+            @extend .col-md-4;
+
+            @extend .table;
+            @extend .table-borderless;
+
+            tr {
+                td, th {
+                    font-size: 36px;
+                }
+
+                td {
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+    .cart-footer {
+        @extend .row;
+        @extend .justify-content-center;
+
+        margin: 36px 0;
+
+        button {
+            @extend .btn;
+            @extend .btn-lg;
+            @extend .btn-danger;
+
+            @include border-radius(16px);
+
+            padding: 8px 86px;
+            font-size: 48px;
+        }
+    }
+}
+
+.product-option-btn {
+    @extend .btn;
+
+    padding: 0.1rem 20px;
+
+    background-color: #FFFFFF;
+    border: solid 1px #C4C4C4;
+    color: #000000;
+    font-size: 22px;
+
+    &span {
+        cursor: initial !important;
+    }
+
+    &.active {
+        background-color: #C4C4C4;
     }
 }

@@ -64,8 +64,14 @@ class ProductDetail extends Component {
                             <Customizer key={i} name={customization.name} value={this.state.customizations[customization.name]}
                                         values={customization.values} onChange={this.handleCustomizationChange} />
                         )) }
-                        <NumericUpDown label={translate('shop.amount')} value={this.state.amount}
-                                       max={3} onChange={this.handleAmountChange} />
+                        <div className="form-group row">
+                            <label className="col-sm-4 col-form-label product-customization-label">
+                                { translate('shop.amount') }
+                            </label>
+                            <div className="col-sm-8">
+                                <NumericUpDown value={this.state.amount} max={3} onChange={this.handleAmountChange} />
+                            </div>
+                        </div>
                     </form>
                     <button className="btn btn-lg btn-danger" disabled={customizationsUnfinished} onClick={this.addToCart}
                             style={{ marginTop: 'auto' }}>{ translate('shop.addToCart') }</button>

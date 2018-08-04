@@ -27,5 +27,8 @@ export default {
         client_secret: 'So0jA7FNsiuCuAdZXmhMkue8ri6fBo8jPMpavsZq',
         grant_type: 'password'
     },
+    features: {
+        oldNavLinks: false,
+    },
     route: route
 }
