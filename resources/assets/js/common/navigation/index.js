@@ -8,6 +8,8 @@ import routes from '../../routes/routes'
 import UserMenu from './UserMenu'
 
 import shoppingCart from '../../../img/shopping_cart.svg'
+import loginIcon from '../../../img/login_icon.svg'
+import hexagon from '../../../img/hexagon.svg'
 
 class Navigation extends Component {
 
@@ -16,7 +18,9 @@ class Navigation extends Component {
         return (
             <nav className="navbar navbar-expand-md navbar-light navbar-main">
                 <div className="row justify-content-between" style={{ width: '100%' }}>
-                    <div className="col-1" />
+                    <div className="col-1 navbar-login-container">
+                      <img src={loginIcon} onClick={()=>history.push(routes.auth.login.get())}/>
+                    </div>
                     <div className="col-auto">
                         <Link className="col navbar-brand" to={routes.web.home.get()}>
                             SAMARNMITR ’61 OFFICIAL SHOP

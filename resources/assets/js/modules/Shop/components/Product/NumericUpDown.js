@@ -9,10 +9,12 @@ export default ({ label, value, min = 1, max = 1, onChange = null, onUp = null, 
         }
     }
     const decreaseHandler = () => {
-        if (onDown) {
-            onDown()
-        } else {
-            onChange(Math.max(min, value - 1))
+        if(value > 1 ){
+          if (onDown) {
+              onDown()
+          } else {
+              onChange(Math.max(min, value - 1))
+          }
         }
     }
     const button = 'product-option-btn'

@@ -16,12 +16,14 @@ body {
 .navbar-main {
     height: 64px;
 
-    background-color: #fff;
+    background-color: #243447;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
     .navbar-brand {
         font-family: 'Kelly Slab', sans-serif;
+        color:#EE4B81;
         font-size: 30px;
+        margin-left: 5px;
     }
 
     .row {
@@ -46,6 +48,19 @@ body {
             cursor: pointer;
         }
     }
+    .navbar-login-container {
+        padding: 0;
+
+        text-align: left;
+
+        img {
+            height: 64px;
+            padding: 10px;
+            margin-left: -10px;
+
+            cursor: pointer;
+        }
+    }
 }
 
 main.container {
@@ -55,6 +70,7 @@ main.container {
 
 .divider {
     border: 1px solid #000000;
+    background-color: black;
 }
 
 .product-title-divider {
@@ -353,4 +369,29 @@ main.container {
     &.active {
         background-color: #C4C4C4;
     }
+}
+
+.get-order-card{
+
+  padding-top: 5%;
+  height: 1472px;
+  width: 1268px;
+  background-color: white;
+  text-align: center;
+  font-size: 48px;
+  font-family: 'NATS',sans-serif;
+
+}
+
+.get-order-userdata{
+  background-color: rgba(255, 0, 0, 0.1);
+  margin: 0% 20% 0%;
+}
+
+.get-order-payment{
+  width: 1041px;
+  height: 707px;
+  background-color: rgba(196, 196, 196, 0.33);
+  margin: 103px auto;
+  padding-top: 100px ;
 }
