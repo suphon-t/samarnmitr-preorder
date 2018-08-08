@@ -23,9 +23,13 @@ body {
 
     .navbar-brand {
         font-family: 'Kelly Slab', sans-serif;
-        color:#EE4B81;
+        color: #EE4B81;
         font-size: 30px;
         margin-left: 5px;
+
+        &:hover, &:focus, &active {
+            color: #EE4B81;
+        }
     }
 
     .row {
