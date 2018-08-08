@@ -18,4 +18,5 @@ Route::prefix('auth')
 
 Route::group(["prefix" => "shop"], function() {
     Route::get('products', 'ShopController@allProducts')->name('shop.product.index');
+    Route::put('orders', 'ShopController@makeOrder')->name('shop.order.make');
 });
