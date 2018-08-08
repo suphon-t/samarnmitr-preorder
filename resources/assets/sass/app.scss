@@ -2,15 +2,17 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css?family=Kelly+Slab');
+@import url('https://fonts.googleapis.com/css?family=Prompt');
 
 // Variables
 @import 'variables';
+@import 'colors';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
 body {
-    background: $body-bg;
+    background: #E8F9FF;
 }
 
 .navbar-main {
@@ -394,4 +396,74 @@ main.container {
   background-color: rgba(196, 196, 196, 0.33);
   margin: 103px auto;
   padding-top: 100px ;
+}
+
+.order-status-card{
+  padding-top: 5%;
+
+  width: 1024px;
+  height: 682px;
+  background-color: white;
+  text-align: center;
+  align-items: center;
+  font-size: 48px;
+  font-family: 'Prompt',sans-serif;
+
+  .order-id-container{
+    @extend .container;
+    margin:0 10%;
+    font-size: 40px;
+    font-family: 'NATS',sans-serif;
+
+    .order-id{
+      height: 60px;
+      background-color: #243447;
+      color: #EE4B81;
+      border-radius: 15px ;
+
+      margin-top: 0px;
+      padding-top: 3px;
+      font-size: 32px;
+
+    }
+
+  }
+
+  .status-divider{
+    @extend .divider;
+
+    margin: 22px 82px 83px;
+  }
+
+  .order-not-paid{
+    border-radius: 15px ;
+    height: 80px;
+    background-color: rgba(255, 0, 0, 0.1);
+    color: black;
+    font-size: 40px;
+    border-radius: 15px ;
+    margin:0 10% 25px;
+    padding-top: 5px;
+
+  }
+  .order-checking{
+    @extend .order-not-paid;
+    background-color: rgba(255, 199, 0, 0.25);
+  }
+  .order-paid{
+    @extend .order-not-paid;
+    background-color: rgba(0, 255, 26, 0.15);
+
+  }
+  .order-upload{
+    @extend .btn;
+
+    border-radius: 15px ;
+    height: 80px;
+    background-color: #EE4B81;
+    color: black;
+    font-size: 40px;
+    border-radius: 15px ;
+    
+  }
 }

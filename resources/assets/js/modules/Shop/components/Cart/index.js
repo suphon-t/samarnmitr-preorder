@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { withLocalize } from 'react-localize-redux'
 import { connect } from 'react-redux'
+import { withRouter , Link } from 'react-router-dom'
+
+import routes from '../../../../routes/routes'
 
 import Item from './Item'
 import { addItem, removeItem } from '../../store/actions'
@@ -8,6 +11,7 @@ import { addItem, removeItem } from '../../store/actions'
 class Cart extends Component {
 
     render() {
+        const { history }=this.props;
         const { products, cart, translate } = this.props
         const entries = cart.items.map(item => ({
             item: item,
@@ -51,7 +55,10 @@ class Cart extends Component {
                 ) : null}
 
                 <div className="cart-footer">
-                    <button disabled={totalAmount <= 0}>{ translate('shop.cart.confirm') }</button>
+
+                    <button disabled={totalAmount <= 0} onClick={()=>{ if(confirm("เลือกสินค้าเรียบร้อยแล้วใช่หรือไม่?")) history.push(routes.shop.getOrder.get())} }>
+                      { translate('shop.cart.confirm') }
+                    </button>
                 </div>
             </div>
         )
@@ -68,4 +75,4 @@ const mapDispatchToProps = {
     removeItem,
 }
 
-export default withLocalize(connect(mapStateToProps, mapDispatchToProps)(Cart))
+export default withRouter(withLocalize(connect(mapStateToProps, mapDispatchToProps)(Cart)))

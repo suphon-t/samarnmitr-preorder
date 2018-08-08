@@ -3,6 +3,7 @@ import Home from './scenes/Home'
 import Detail from './scenes/Detail'
 import Cart from './scenes/Cart'
 import GetOrder from './scenes/GetOrder'
+import OrderStatus from './scenes/OrderStatus'
 
 export default {
     home: new RoutePath({
@@ -24,5 +25,10 @@ export default {
         path: '/shop/getOrder/',
         exact: true,
         component: GetOrder
-    })
+    }),
+    orderStatus: new RoutePath({
+      path: '/shop/orderStatus/',
+      exact: true,
+      component: OrderStatus
+    }),
 }
