@@ -19,7 +19,7 @@ class LoginController extends Controller
                     'grant_type' => 'password',
                     'client_id' => env('PASSWORD_CLIENT_ID'),
                     'client_secret' => env('PASSWORD_CLIENT_SECRET'),
-                    'username' => $request->get('email'),
+                    'username' => $request->get('orderId'),
                     'password' => $request->get('password'),
                     'remember' => $request->get('remember'),
                     'scope' => '',

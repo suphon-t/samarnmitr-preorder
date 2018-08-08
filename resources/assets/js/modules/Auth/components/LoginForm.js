@@ -11,7 +11,7 @@ class LoginForm extends Component {
         super(props)
         this.state = {
             credentials: {
-                email: '',
+                orderId: '',
                 password: ''
             },
             loading: false,
@@ -60,8 +60,8 @@ class LoginForm extends Component {
         const errorMsg = error ? translate('auth.' + error) : null
         return (
             <form onSubmit={this.handleSubmit}>
-                <Field placeholder={translate('auth.email')} autoFocus type="email"
-                    value={this.state.email} onChange={this.changeHandler("email")} />
+                <Field placeholder={translate('auth.order_id')} autoFocus type="number"
+                    value={this.state.orderId} onChange={this.changeHandler("orderId")} />
                 <Field placeholder={translate('auth.password')} type="password" error={errorMsg}
                     value={this.state.password} onChange={this.changeHandler("password")} />
                 <button type="submit" className="btn btn-primary" disabled={this.state.loading}>
