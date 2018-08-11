@@ -4,6 +4,8 @@ import {
     FETCH_PRODUCTS_FAILURE,
     ADD_ITEM,
     REMOVE_ITEM,
+    MAKE_ORDER,
+    FETCH_ORDER, FETCH_ORDER_SUCCESS,
 } from './action-types'
 
 import * as api from '../api'
@@ -48,3 +50,32 @@ export const removeItem = (info, amount = 1) => ({
         amount,
     },
 })
+
+export const makeOrder = contents => {
+    return dispatch => {
+        dispatch({ type: MAKE_ORDER })
+    }
+}
+
+export const fetchOrder = (initial = true) => {
+    return dispatch => {
+        dispatch({
+            type: FETCH_ORDER,
+            payload: {
+                initial
+            },
+        })
+        api.fetchOrder()
+            .then(result => {
+                dispatch({
+                    type: FETCH_ORDER_SUCCESS,
+                    payload: {
+                        result
+                    },
+                })
+            })
+            .catch(err => {
+                console.log(err.response)
+            })
+    }
+}

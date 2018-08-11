@@ -5,9 +5,10 @@ const argExp = /:\w+/g
 export default class RoutePath {
 
     constructor({path, exact, component}) {
-        this.path = path
+        this.realPath = path
+        this.path = path.split('?')[0]
         this.exact = exact
-        this.args = this.path.match(argExp)
+        this.args = this.realPath.match(argExp)
         if (this.args == null) {
             this.args = []
         }
@@ -23,7 +24,7 @@ export default class RoutePath {
                 return ''
             }
         })
-        return config.route(this.path.split(argExp).reduce((acc, current, i) => {
+        return config.route(this.realPath.split(argExp).reduce((acc, current, i) => {
             if (i <= args.length) {
                 return acc + args[i - 1] + current
             } else {

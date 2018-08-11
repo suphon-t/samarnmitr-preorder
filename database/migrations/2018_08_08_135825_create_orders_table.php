@@ -15,7 +15,10 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('key');
+            $table->string('charge_id')->nullable();
             $table->string('cart_contents', 1024);
+            $table->integer('total_price');
             $table->smallInteger('status')->default(0);
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

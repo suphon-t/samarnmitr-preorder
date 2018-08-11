@@ -18,11 +18,14 @@ import ReactDOM from "react-dom"
 import { Provider } from 'react-redux'
 import { LocalizeProvider } from 'react-localize-redux'
 
+import config from './config'
 import Routes from './routes'
 import store from './store'
 import { authCheck } from './modules/Auth/store/actions'
 
 store.dispatch(authCheck())
+
+Omise.setPublicKey(config.omisePublicKey)
 
 ReactDOM.render((
     <LocalizeProvider>

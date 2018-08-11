@@ -4,14 +4,47 @@ import { connect } from 'react-redux'
 import { withRouter , Link } from 'react-router-dom'
 
 import routes from '../../../../routes/routes'
+import { makeOrder } from '../../api'
 
 import Item from './Item'
 import { addItem, removeItem } from '../../store/actions'
 
 class Cart extends Component {
 
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            sending: false
+        }
+
+        this.handleOrderClick = this.handleOrderClick.bind(this)
+    }
+
+    handleOrderClick() {
+        if (confirm("เลือกสินค้าเรียบร้อยแล้วใช่หรือไม่?")) {
+            this.makeOrder()
+        }
+    }
+
+    makeOrder() {
+        this.setState({ sending: true })
+        const { history } = this.props
+        const { cart } = this.props
+        makeOrder({ email: 'paphonb@gmail.com', cart })
+            .then(result => {
+                const { user_id, password } = result.data
+                history.push(routes.shop.getOrder.get({ orderId: user_id, key: password }))
+            })
+            .catch(err => {
+                console.log(err.response)
+                this.setState({ sending: false })
+            })
+            .finally(() => {
+            })
+    }
+
     render() {
-        const { history }=this.props;
         const { products, cart, translate } = this.props
         const entries = cart.items.map(item => ({
             item: item,
@@ -24,6 +57,7 @@ class Cart extends Component {
                 totalPrice: acc.totalPrice + item.amount * product.price,
             }
         }, { totalAmount: 0, totalPrice: 0 })
+        const buttonDisabled = totalAmount <= 0 || this.state.sending
         return (
             <div className="cart-card">
                 <h1 className="cart-title">Your Cart</h1>
@@ -56,7 +90,7 @@ class Cart extends Component {
 
                 <div className="cart-footer">
 
-                    <button disabled={totalAmount <= 0} onClick={()=>{ if(confirm("เลือกสินค้าเรียบร้อยแล้วใช่หรือไม่?")) history.push(routes.shop.getOrder.get())} }>
+                    <button disabled={buttonDisabled} onClick={this.handleOrderClick}>
                       { translate('shop.cart.confirm') }
                     </button>
                 </div>

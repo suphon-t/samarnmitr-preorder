@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="https://cdn.omise.co/omise.js"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Fonts -->

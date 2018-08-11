@@ -18,6 +18,7 @@ function web(p) {
 
 export default {
     title: process.env.MIX_APP_NAME,
+    omisePublicKey: process.env.MIX_OMISE_PUBLIC_KEY,
     dev: DEV,
     appBaseUrl: baseUrl,
     webUrl: webUrl,

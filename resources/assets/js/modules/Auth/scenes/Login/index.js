@@ -18,7 +18,7 @@ export default connect(mapStateToProps)(({ isAuthenticated }) => (
         <div className="card">
             <div className="card-body">
                 { isAuthenticated ? (
-                    <Redirect to={routes.web.home.get()} />
+                    <Redirect to={routes.shop.myOrder.get()} />
                 ) : (
                     <LoginForm />
                 )}

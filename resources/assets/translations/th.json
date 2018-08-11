@@ -35,6 +35,17 @@
                     "blue": "ฟ้า"
                 }
             }
+        },
+        "checkout": {
+            "card": {
+                "name": "ชื่อผู้ถือบัตร",
+                "number": "หมายเลขบัตร",
+                "expiration": "หมดอายุ",
+                "exp_month": "เดือน",
+                "exp_year": "ปี",
+                "security_code": "รหัสหลังบัตร"
+            },
+            "pay_with_amount": "ชำระเงิน ฿${ price }"
         }
     }
 }

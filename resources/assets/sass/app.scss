@@ -7,6 +7,7 @@
 // Variables
 @import 'variables';
 @import 'colors';
+@import 'credit-card-form';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -472,4 +473,9 @@ main.container {
     @extend .full-width;
 
     padding: 42px;
+}
+
+.credit-card-form {
+    @extend .row;
+    @extend .justify-content-center;
 }

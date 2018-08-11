@@ -6,7 +6,7 @@ import {
     FETCH_PRODUCTS_SUCCESS,
     FETCH_PRODUCTS_FAILURE,
     ADD_ITEM,
-    REMOVE_ITEM,
+    REMOVE_ITEM, FETCH_ORDER, FETCH_ORDER_SUCCESS,
 } from './action-types'
 
 const initialState = {
@@ -14,6 +14,10 @@ const initialState = {
     cart: loadState('cart', {
         items: [],
     }),
+    order: {
+        isLoading: false,
+
+    },
 }
 
 const replace = (collection, match, newItem) =>
@@ -95,6 +99,29 @@ export default (state = initialState, action) => {
                 return state
             }
         }
+        case FETCH_ORDER:
+            if (action.payload.initial) {
+                return {
+                    ...state,
+                    order: {
+                        ...state.order,
+                        isLoading: true
+                    },
+                }
+            } else {
+                return state
+            }
+        case FETCH_ORDER_SUCCESS:
+            const { id, status, total_price } = action.payload.result.data
+            return {
+                ...state,
+                order: {
+                    isLoading: false,
+                    id,
+                    status,
+                    price: total_price,
+                },
+            }
         default:
             return state
     }

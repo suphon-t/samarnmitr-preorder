@@ -25,6 +25,8 @@
     },
     "dependencies": {
         "moment": "^2.22.2",
+        "npm": "^6.3.0",
+        "query-string": "^6.1.0",
         "react-localize-redux": "^3.3.0",
         "react-redux": "^5.0.7",
         "react-router-config": "^1.0.0-beta.4",

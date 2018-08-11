@@ -3,6 +3,7 @@ import Home from './scenes/Home'
 import Detail from './scenes/Detail'
 import Cart from './scenes/Cart'
 import GetOrder from './scenes/GetOrder'
+import MyOrder from './scenes/MyOrder'
 import OrderStatus from './scenes/OrderStatus'
 
 export default {
@@ -22,9 +23,14 @@ export default {
         component: Cart
     }),
     getOrder: new RoutePath({
-        path: '/shop/getOrder/',
+        path: '/shop/getOrder/?id=:orderId&key=:key',
         exact: true,
         component: GetOrder
+    }),
+    myOrder: new RoutePath({
+        path: '/shop/myOrder/',
+        exact: true,
+        component: MyOrder
     }),
     orderStatus: new RoutePath({
       path: '/shop/orderStatus/',
