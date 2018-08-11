@@ -378,96 +378,98 @@ main.container {
 }
 
 .get-order-card{
-
-  padding-top: 5%;
-  height: 1472px;
-  width: 1268px;
-  background-color: white;
-  text-align: center;
-  font-size: 48px;
-  font-family: 'NATS',sans-serif;
-
+    padding-top: 5%;
+    height: 1472px;
+    width: 1268px;
+    background-color: white;
+    text-align: center;
+    font-size: 48px;
+    font-family: 'NATS',sans-serif;
 }
 
 .get-order-userdata{
-  background-color: rgba(255, 0, 0, 0.1);
-  margin: 0% 20% 0%;
+    background-color: rgba(255, 0, 0, 0.1);
+    margin: 0% 20% 0%;
 }
 
 .get-order-payment{
-  width: 1041px;
-  height: 707px;
-  background-color: rgba(196, 196, 196, 0.33);
-  margin: 103px auto;
-  padding-top: 100px ;
+    width: 1041px;
+    height: 707px;
+    background-color: rgba(196, 196, 196, 0.33);
+    margin: 103px auto;
+    padding-top: 100px ;
 }
 
 .order-status-card{
-  padding-top: 5%;
+    padding-top: 5%;
 
-  width: 1024px;
-  height: 682px;
-  background-color: white;
-  text-align: center;
-  align-items: center;
-  font-size: 48px;
-  font-family: 'Prompt',sans-serif;
+    width: 1024px;
+    height: 682px;
+    background-color: white;
+    text-align: center;
+    align-items: center;
+    font-size: 48px;
+    font-family: 'Prompt', sans-serif;
 
-  .order-id-container{
-    @extend .container;
-    margin:0 10%;
-    font-size: 40px;
-    font-family: 'NATS',sans-serif;
+    .order-id-container{
+        @extend .container;
+        margin:0 10%;
+        font-size: 40px;
+        font-family: 'NATS', sans-serif;
 
-    .order-id{
-      height: 60px;
-      background-color: #243447;
-      color: #EE4B81;
-      border-radius: 15px ;
+        .order-id{
+            height: 60px;
+            background-color: #243447;
+            color: #EE4B81;
+            border-radius: 15px;
 
-      margin-top: 0px;
-      padding-top: 3px;
-      font-size: 32px;
+            margin-top: 0;
+            padding-top: 3px;
+            font-size: 32px;
+        }
+    }
+
+    .status-divider{
+        @extend .divider;
+
+        margin: 22px 82px 83px;
+    }
+
+    .order-not-paid{
+        border-radius: 15px;
+        height: 80px;
+        background-color: rgba(255, 0, 0, 0.1);
+        color: black;
+        font-size: 40px;
+        margin:0 10% 25px;
+        padding-top: 5px;
 
     }
 
-  }
+    .order-checking{
+        @extend .order-not-paid;
+        background-color: rgba(255, 199, 0, 0.25);
+    }
 
-  .status-divider{
-    @extend .divider;
+    .order-paid{
+        @extend .order-not-paid;
+        background-color: rgba(0, 255, 26, 0.15);
+    }
 
-    margin: 22px 82px 83px;
-  }
+    .order-upload{
+        @extend .btn;
 
-  .order-not-paid{
-    border-radius: 15px ;
-    height: 80px;
-    background-color: rgba(255, 0, 0, 0.1);
-    color: black;
-    font-size: 40px;
-    border-radius: 15px ;
-    margin:0 10% 25px;
-    padding-top: 5px;
+        border-radius: 15px;
+        height: 80px;
+        background-color: #EE4B81;
+        color: black;
+        font-size: 40px;
+    }
+}
 
-  }
-  .order-checking{
-    @extend .order-not-paid;
-    background-color: rgba(255, 199, 0, 0.25);
-  }
-  .order-paid{
-    @extend .order-not-paid;
-    background-color: rgba(0, 255, 26, 0.15);
+.order-card {
+    @include make-card(0);
+    @extend .full-width;
 
-  }
-  .order-upload{
-    @extend .btn;
-
-    border-radius: 15px ;
-    height: 80px;
-    background-color: #EE4B81;
-    color: black;
-    font-size: 40px;
-    border-radius: 15px ;
-    
-  }
+    padding: 42px;
 }
