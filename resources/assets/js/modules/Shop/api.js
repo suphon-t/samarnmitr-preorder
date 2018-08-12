@@ -33,3 +33,5 @@ export const fetchProducts = () => mockSets(Http.get('shop/products'))
 export const makeOrder = contents => Http.put('shop/orders', contents)
 
 export const fetchOrder = () => Http.get('shop/myOrder')
+
+export const chargeOrder = token => Http.post('shop/myOrder/charge', { token })

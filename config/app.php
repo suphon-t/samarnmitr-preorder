@@ -1,5 +1,9 @@
 <?php
 
+define('OMISE_PUBLIC_KEY', env('OMISE_PUBLIC_KEY'));
+define('OMISE_SECRET_KEY', env('OMISE_SECRET_KEY'));
+define('OMISE_API_VERSION', '2017-11-02');
+
 return [
 
     /*

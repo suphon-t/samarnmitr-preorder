@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use OmiseCharge;
 
 class ShopController extends Controller
 {
@@ -77,8 +78,45 @@ class ShopController extends Controller
     }
 
     public function myOrder(Request $request) {
-        $user = $request->user();
-        return Order::mine($user->id)->firstOrFail();
+        $order = $this->getMyOrder($request);
+        if ($order->charge_id) {
+            $charge = OmiseCharge::retrieve($order->charge_id);
+            $order->charge = [
+                'status' => $charge['status'],
+                'authorized' => $charge['authorized'],
+                'reversed' => $charge['reversed'],
+                'paid' => $charge['paid'],
+            ];
+        }
+        return $order;
+    }
+
+    public function chargeMyOrder(Request $request) {
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'token' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => 'missing_token'], 400);
+        }
+
+        $order = $this->getMyOrder($request);
+
+        $charge = OmiseCharge::create([
+            'amount' => $order->total_price * 100,
+            'currency' => 'thb',
+            'card' => $data['token'],
+        ]);
+
+        $order->charge_id = $charge['id'];
+        $order->save();
+
+        return ["true"];
+    }
+
+    private function getMyOrder(Request $request) {
+        return Order::mine($request->user()->id)->firstOrFail();
     }
 
     protected function createUser($email, $password)

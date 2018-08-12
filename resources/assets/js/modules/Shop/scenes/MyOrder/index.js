@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchOrder } from '../../store/actions'
+import ChargeStatus from './components/ChargeStatus'
 import CreditCardForm  from './components/CreditCardForm'
 
 class MyOrder extends Component {
@@ -19,15 +20,23 @@ class MyOrder extends Component {
     }
 
     render() {
-        const { isLoading, status } = this.props
+        const { isLoading, charge } = this.props
         if (isLoading) {
             return (<p>Loading...</p>)
         } else {
-            return (
-                <div className="order-card" >
-                    <CreditCardForm price={this.props.price} />
-                </div>
-            )
+            if (charge) {
+                return (
+                    <div className="order-card">
+                        <ChargeStatus charge={charge} />
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="order-card">
+                        <CreditCardForm price={this.props.price} onSuccess={() => this.props.fetchOrder(false)}/>
+                    </div>
+                )
+            }
         }
     }
 
