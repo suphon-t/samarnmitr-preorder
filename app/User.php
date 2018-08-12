@@ -29,6 +29,9 @@ class User extends Authenticatable
     ];
 
     public function findForPassport($identifier) {
-        return $this->where('id', $identifier)->first();
+        return $this->where('id', $identifier)->orWhere([
+            ['name', '=', $identifier],
+            ['admin', '=', '1']
+        ])->first();
     }
 }
