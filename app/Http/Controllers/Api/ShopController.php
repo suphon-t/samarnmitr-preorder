@@ -6,6 +6,7 @@ use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\Product;
+use App\SetContent;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,7 @@ class ShopController extends Controller
 {
     public function allProducts() {
         return [
-            'products' => Product::with('customizations')->with('customizations.values')->get()
+            'products' => Product::buildQuery()->get()
         ];
     }
 
@@ -34,16 +35,28 @@ class ShopController extends Controller
         $totalPrice = 0;
         try {
             foreach ($data['cart']['items'] as $item) {
-                $product = Product::where('id', $item['info']['id'])->with('customizations')->firstOrFail();
-                $customizations = [];
-                foreach ($product->customizations as $customization) {
-                    $value = $customization->values()
-                        ->where('name', $item['info']['customizations'][$customization->name])->firstOrFail();
-                    $customizations[$customization->name] = $value->name;
+                $info = $item['info'];
+                $product = Product::buildQuery()->where('id', $info['id'])->firstOrFail();
+                $allCustomizations = [];
+                foreach ($info['customizations'] as $customizationEntry) {
+                    $customizations = [];
+                    $pivot = SetContent::where('id', $customizationEntry['pivotId'])->with('product')->firstOrFail();
+                    if ($pivot->set_id != $product->id) {
+                        throw new \Exception();
+                    }
+                    foreach ($pivot->product->customizations as $customization) {
+                        $value = $customization->values()
+                            ->where('name', $customizationEntry['values'][$customization->name])->firstOrFail();
+                        $customizations[$customization->name] = $value->name;
+                    }
+                    $allCustomizations[] = [
+                        'pivotId' => $pivot->id,
+                        'values' => $customizations,
+                    ];
                 }
                 $info = [
                     'id' => $item['info']['id'],
-                    'customizations' => $customizations
+                    'customizations' => $allCustomizations
                 ];
                 $cart['items'][] = [
                     'info' => $info,

@@ -38,16 +38,23 @@ class ProductDetail extends Component {
     addToCart() {
         const { product, history } = this.props
         const { customizations, amount } = this.state
+        const pivotId = product.contents[0].pivot.id
         const info = {
             id: product.id,
-            customizations,
+            customizations: [
+                {
+                    pivotId,
+                    values: customizations,
+                },
+            ],
         }
         this.props.addItem(info, amount)
         history.push(routes.shop.cart.get())
     }
 
     render() {
-        const { product, translate } = this.props
+        const { translate } = this.props
+        const product = this.props.product.contents[0]
         const customizationsUnfinished = product.customizations
             .find(customization => this.state.customizations[customization.name] === undefined)
         return (
