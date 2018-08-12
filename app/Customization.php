@@ -9,6 +9,6 @@ class Customization extends Model
     protected $table = "customizations";
 
     public function values() {
-        return $this->hasMany('App\CustomizationValue');
+        return $this->hasMany(CustomizationValue::class);
     }
 }
