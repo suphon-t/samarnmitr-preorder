@@ -30,11 +30,12 @@ export default {
     myOrder: new RoutePath({
         path: '/shop/myOrder/',
         exact: true,
-        component: MyOrder
+        component: MyOrder,
+        auth: true,
     }),
     orderStatus: new RoutePath({
-      path: '/shop/orderStatus/',
-      exact: true,
-      component: OrderStatus
+        path: '/shop/orderStatus/',
+        exact: true,
+        component: OrderStatus
     }),
 }
