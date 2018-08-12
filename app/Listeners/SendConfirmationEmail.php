@@ -28,6 +28,10 @@ class SendConfirmationEmail
      */
     public function handle(OrderCreated $event)
     {
-        Mail::to($event->order->user->email)->send(new NewOrder($event->order));
+        try {
+            Mail::to($event->order->user->email)->send(new NewOrder($event->order));
+        } catch (\Exception $e) {
+            
+        }
     }
 }
