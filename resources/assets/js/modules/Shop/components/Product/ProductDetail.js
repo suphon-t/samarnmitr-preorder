@@ -53,10 +53,12 @@ class ProductDetail extends Component {
     }
 
     render() {
+
         const { translate } = this.props
         const product = this.props.product.contents[0]
         const customizationsUnfinished = product.customizations
             .find(customization => this.state.customizations[customization.name] === undefined)
+        
         return (
             <div className="product-detail-card">
                 <div className="product-left-pane">

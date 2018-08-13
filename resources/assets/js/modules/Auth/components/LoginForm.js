@@ -60,11 +60,14 @@ class LoginForm extends Component {
         const errorMsg = error ? translate('auth.' + error) : null
         return (
             <form onSubmit={this.handleSubmit}>
+                <p className="login-text"> Order ID </p>
                 <Field placeholder={translate('auth.order_id')} autoFocus type="number"
                     value={this.state.orderId} onChange={this.changeHandler("orderId")} />
+                <p className="login-text"> Password </p>
                 <Field placeholder={translate('auth.password')} type="password" error={errorMsg}
                     value={this.state.password} onChange={this.changeHandler("password")} />
-                <button type="submit" className="btn btn-primary" disabled={this.state.loading}>
+
+                <button type="submit"  disabled={this.state.loading}>
                     {translate('auth.submitLogin')}
                 </button>
             </form>

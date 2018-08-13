@@ -13,16 +13,19 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(({ isAuthenticated }) => (
-    <div className="col-md-8">
-        <h1><Translate id="auth.login" /></h1>
-        <div className="card">
-            <div className="card-body">
-                { isAuthenticated ? (
-                    <Redirect to={routes.shop.myOrder.get()} />
-                ) : (
-                    <LoginForm />
-                )}
-            </div>
+
+    <div className="login-card">
+        <div className="login-header">
+            Submit your ID and password
+        </div>
+        <div className="login-divider"/>
+        <div className="login-body">
+            { isAuthenticated ? (
+                <Redirect to={routes.shop.myOrder.get()} />
+            ) : (
+                <LoginForm />
+            )}
         </div>
     </div>
+
 ))

@@ -620,3 +620,49 @@ main.container {
         }
     }
 }
+
+.login-card{
+
+    padding-top: 5%;
+
+    width: 1024px;
+    height: 682px;
+    background-color: white;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+
+    .login-header{
+        color:$skblue;
+        font-size: 48px;
+    }
+    .login-divider{
+        @extend .divider;
+        color:$skblue;
+        margin: 22px 82px 58px;
+    }
+    .login-body{
+        margin: 0 312px;
+        font-size: 30px;
+        color: $skpink;
+        .login-text{
+            text-align: left;
+        }
+    }
+    button{
+      margin-top: 70px;
+      padding-bottom: 10px;
+      color: white;
+      background-color: #EE4B81;
+      width: 311px;
+      height: 73px;
+      border-radius: 10px;
+      font-size: 48px;
+
+
+    }
+    input {
+        font-size: 32px;
+        width: 400px;
+        height: 50px;
+    }
+}
