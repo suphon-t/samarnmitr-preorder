@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css?family=Kelly+Slab');
 @import url('https://fonts.googleapis.com/css?family=Prompt');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
 // Variables
 @import 'variables';
@@ -423,33 +424,29 @@ main.container {
 }
 
 .order-status-card{
-    padding-top: 5%;
+  padding-top: 5%;
 
-    width: 1024px;
-    height: 682px;
-    background-color: white;
-    text-align: center;
-    align-items: center;
-    font-size: 48px;
-    font-family: 'Prompt', sans-serif;
+  width: 1024px;
+  height: 682px;
+  background-color: white;
+  text-align: center;
+  align-items: center;
+  font-size: 48px;
+  font-family: 'Prompt',sans-serif;
 
-    .order-id-container{
-        @extend .container;
-        margin:0 10%;
-        font-size: 40px;
-        font-family: 'NATS', sans-serif;
+  .order-id-container{
+    @extend .container;
+    margin:0 10%;
+    font-size: 36px;
+    font-family: 'Ubuntu', sans-serif;
 
-        .order-id{
-            height: 60px;
-            background-color: #243447;
-            color: #EE4B81;
-            border-radius: 15px;
-
-            margin-top: 0;
-            padding-top: 3px;
-            font-size: 32px;
-        }
+    .order-id{
+      height: 60px;
+      background-color: #243447;
+      color: #EE4B81;
+      border-radius: 15px ;
     }
+}
 
     .status-divider{
         @extend .divider;
@@ -473,32 +470,43 @@ main.container {
         background-color: rgba(255, 199, 0, 0.25);
     }
 
-    .order-paid{
-        @extend .order-not-paid;
-        background-color: rgba(0, 255, 26, 0.15);
+  .order-not-paid{
+    border-radius: 15px ;
+    height: 80px;
+    background-color: rgba(255, 0, 0, 0.1);
+    color: black;
+    font-size: 40px;
+    border-radius: 15px ;
+    margin:0 10% 25px;
+    padding-top: 5px;
+
+  }
+  .order-paid{
+    @extend .order-not-paid;
+    background-color: rgba(0, 255, 26, 0.15);
+
+  }
+  .order-status-footer{
+
+    margin: 107px auto;
+    button{
+      @extend .btn;
+      color: white;
+      width: 377px;
+      height: 67px;
+      border-radius: 10px;
+      font-size: 32px;
+      padding: 0 0 ;
+
+    }
+    .btn-disabled{
+      background-color: #243447;
+    }
+    .btn-enabled{
+      background-color: #EE4B81;
     }
 
-    .order-upload{
-        @extend .btn;
-
-        border-radius: 15px;
-        height: 80px;
-        background-color: #EE4B81;
-        color: black;
-        font-size: 40px;
-    }
-}
-
-.order-card {
-    @include make-card(0);
-    @extend .full-width;
-
-    padding: 42px;
-}
-
-.credit-card-form {
-    @extend .row;
-    @extend .justify-content-center;
+  }
 }
 
 @mixin fluid-aspect($ratio: 1 1, $selector: "> :first-child") {

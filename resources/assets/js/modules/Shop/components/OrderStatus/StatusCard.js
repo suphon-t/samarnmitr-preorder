@@ -4,24 +4,28 @@ import ReactDOM from 'react-dom';
 
 class StatusCard extends Component{
 
+
   render(){
     const orderID = '001';
-    var i=0;
-    var statusPlate=document.getElementById("statusPlate");
+    var i=this.props.value;
+    const statusPlate=document.getElementById("statusPlate");
+    const printBtn=document.getElementById("printBtn");
     const status =[
-      "ยังไม่ได้ส่งหลักฐานการโอนเงิน",
-      "อยู่ระหว่างการตรวจสอบ",
+      "กำลังตรวจสอบการชำระเงิน",
       "สำเร็จ"
     ];
-    var currstatus=status[i];
+    var currstatus=status[this.props.value];
     if(i===0&&statusPlate){
+      statusPlate.classList.remove("order-not-paid","order-paid");
+      printBtn.classList.remove("btn-disabled","btn-enabled");
       statusPlate.classList.add("order-not-paid");
+      printBtn.classList.add("btn-disabled");
     }
     else if(i===1&&statusPlate){
-      statusPlate.classList.add("order-checking");
-    }
-    else if(i===2&&statusPlate){
+      statusPlate.classList.remove("order-not-paid","order-paid");
+      printBtn.classList.remove("btn-disabled","btn-enabled");
       statusPlate.classList.add("order-paid");
+      printBtn.classList.add("btn-enabled");
     }
     return(
       <div className="order-status-card">
@@ -36,20 +40,10 @@ class StatusCard extends Component{
         <div id="statusPlate" >
           {currstatus}
         </div>
-          <button onClick={()=> {/*color change*/
-                statusPlate.classList.remove("order-not-paid","order-checking","order-paid");
-                i=(i+1)%3;
-                currstatus=status[i];
-                if(i===0&&statusPlate){
-                  statusPlate.classList.add("order-not-paid");
-                }
-                else if(i===1&&statusPlate){
-                  statusPlate.classList.add("order-checking");
-                }
-                else if(i===2&&statusPlate){
-                  statusPlate.classList.add("order-paid");
-                }
-              }}/>
+        <div className="order-status-footer">
+          <button id="printBtn" disabled={i==0} > พิมพ์รายการสั่งซื้อ </button>
+        </div>
+
       </div>
 
     );
