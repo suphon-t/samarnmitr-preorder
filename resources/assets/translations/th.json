@@ -10,6 +10,8 @@
     "shop": {
         "addToCart": "เพิ่มลงตะกร้า",
         "amount": "จำนวน",
+        "buy_set_with_name": "ซื้อเซ็ต ${ name }",
+        "customize_bundle": "Customize your bundle",
         "cart": {
             "total_amount": "รวมจำนวน",
             "total_amount_value": "${ amount } ชิ้น",

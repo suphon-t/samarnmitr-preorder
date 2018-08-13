@@ -23,6 +23,7 @@ class Product extends Model
     public static function buildQuery() {
         return static::with('contents')
             ->with('contents.customizations')
+            ->with('contents.customizations.default')
             ->with('contents.customizations.values');
     }
 }

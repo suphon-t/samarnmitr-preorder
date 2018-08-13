@@ -313,6 +313,27 @@ main.container {
 
                 color: #FF0000;
             }
+
+            &.small {
+                height: auto;
+                margin-left: 99px;
+
+                padding: 0 5px 10px;
+
+                .product-name {
+                    display: inline;
+
+                    font-size: 24px;
+                }
+
+                span {
+                    font-size: 0.9rem;
+                }
+
+                &.first {
+                    margin-top: -20px;
+                }
+            }
         }
     }
 
@@ -478,4 +499,116 @@ main.container {
 .credit-card-form {
     @extend .row;
     @extend .justify-content-center;
+}
+
+@mixin fluid-aspect($ratio: 1 1, $selector: "> :first-child") {
+    $selector: unquote($selector);
+
+    padding-bottom: percentage(nth($ratio, 2) / nth($ratio, 1));
+    position: relative;
+
+    #{$selector} {
+        left: 0;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
+.set-detail-card {
+    @include make-card(0);
+
+    padding: 64px 84px 79px;
+
+    h1 {
+        font-size: 48px;
+    }
+
+    .strip {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 50px;
+
+        background: #243447;
+
+        h1 {
+            margin: 0 32px;
+
+            color: #ffffff;
+        }
+    }
+
+    .set-panel {
+        height: 100%;
+
+        display: inline-flex;
+        align-items: center;
+
+        h1, h2 {
+            display: inline-block;
+        }
+    }
+
+    .right-panel {
+        @extend .set-panel;
+
+        height: 100%;
+        float: right;
+        padding: 0 26px;
+
+        display: flex;
+        align-items: center;
+    }
+
+    .set-image-container {
+        @include fluid-aspect(2.4 1);
+
+        width: 100%;
+        margin-bottom: 50px;
+
+        background: rgba(196, 196, 196, 0.33);
+    }
+
+    .customize-title {
+        margin-bottom: 28px;
+    }
+
+    .customizations {
+        @extend .row;
+
+        .product-preview-container {
+            @extend .col-md-3;
+
+            margin-bottom: 40px;
+        }
+
+        .product-preview {
+            @include fluid-aspect(5 6);
+
+            background: rgba(196, 196, 196, 0.15);
+        }
+
+        .product-info-container {
+            display: flex;
+            flex-direction: column;
+            padding: 7.1428% 10% 0;
+        }
+
+        .product-pic {
+            @include fluid-aspect(1 1);
+
+            background: rgba(196, 196, 196, 0.15);
+        }
+
+        .product-name-container {
+            height: 100%;
+        }
+
+        .product-name {
+            margin: 0;
+
+            font-size: 36px;
+        }
+    }
 }

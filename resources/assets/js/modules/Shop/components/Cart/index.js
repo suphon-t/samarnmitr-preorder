@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { withLocalize } from 'react-localize-redux'
 import { connect } from 'react-redux'
-import { withRouter , Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import routes from '../../../../routes/routes'
 import { makeOrder } from '../../api'
 
 import Item from './Item'
 import { addItem, removeItem } from '../../store/actions'
+import { findItem } from '../../shopUtils'
 
 class Cart extends Component {
 
@@ -45,10 +46,10 @@ class Cart extends Component {
     }
 
     render() {
-        const { products, cart, translate } = this.props
+        const { products, sets, cart, translate } = this.props
         const entries = cart.items.map(item => ({
             item: item,
-            product: products.find(it => it.id === item.info.id),
+            product: findItem(item.info.id, products, sets),
         }))
         const { totalAmount, totalPrice } = entries.reduce((acc, entry) => {
             const { item, product } = entry
@@ -101,6 +102,7 @@ class Cart extends Component {
 
 const mapStateToProps = state => ({
     products: state.shop.products,
+    sets: state.shop.sets,
     cart: state.shop.cart,
 })
 

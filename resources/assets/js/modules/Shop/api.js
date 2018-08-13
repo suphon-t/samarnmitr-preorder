@@ -12,23 +12,7 @@ const sets = [
     },
 ]
 
-const mockSets = realCall => {
-    return new Promise((resolve, reject) => {
-        realCall
-            .then(result => {
-                resolve({
-                    ...result,
-                    data: {
-                        ...result.data,
-                        sets
-                    }
-                })
-            })
-            .catch(reject)
-    })
-}
-
-export const fetchProducts = () => mockSets(Http.get('shop/products'))
+export const fetchProducts = () => Http.get('shop/products')
 
 export const makeOrder = contents => Http.put('shop/orders', contents)
 

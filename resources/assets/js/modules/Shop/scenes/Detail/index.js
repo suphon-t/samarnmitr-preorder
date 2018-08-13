@@ -6,8 +6,10 @@ import { fetchProducts } from '../../store/actions'
 
 import Divider from '../../components/Divider'
 import ProductDetail from '../../components/Product/ProductDetail'
+import SetDetail from '../../components/Product/SetDetail'
 import RecommendedList from '../../components/Product/RecommendedList'
 import routes from '../../../../routes/routes'
+import { findItem } from '../../shopUtils'
 
 const redirectHome = () => (<Redirect to={routes.web.home.get()} />)
 
@@ -18,18 +20,19 @@ class Detail extends Component {
     }
 
     render() {
-        const { products } = this.props
+        const { products, sets } = this.props
         if (!products) {
             return null
         }
         // noinspection EqualityComparisonWithCoercionJS
-        const product = products.find(product => product.id == this.props.match.params.productId)
+        const product = findItem(this.props.match.params.productId, products, sets)
         if (!product) {
             return redirectHome()
         }
+        const DetailView = product['is_set'] ? SetDetail : ProductDetail
         return (
             <div className="full-width">
-                <ProductDetail product={product} />
+                <DetailView product={product} />
                 <Divider />
                 <RecommendedList />
             </div>
@@ -40,6 +43,7 @@ class Detail extends Component {
 const mapStateToProps = state => ({
     isLoading: state.shop.isLoading,
     products: state.shop.products,
+    sets: state.shop.sets,
 })
 
 const mapDispatchToProps = {

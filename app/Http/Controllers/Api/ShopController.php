@@ -17,7 +17,8 @@ class ShopController extends Controller
 {
     public function allProducts() {
         return [
-            'products' => Product::buildQuery()->get()
+            'products' => Product::buildQuery()->where('is_set', false)->get(),
+            'sets' => Product::buildQuery()->where('is_set', true)->get(),
         ];
     }
 

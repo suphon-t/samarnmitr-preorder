@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import { loadState } from '../storage'
 
+import { replace } from '../shopUtils'
+
 import {
     FETCH_PRODUCTS,
     FETCH_PRODUCTS_SUCCESS,
@@ -19,9 +21,6 @@ const initialState = {
 
     },
 }
-
-const replace = (collection, match, newItem) =>
-    collection.map(item => item === match ? newItem : item)
 
 export default (state = initialState, action) => {
     switch (action.type) {
