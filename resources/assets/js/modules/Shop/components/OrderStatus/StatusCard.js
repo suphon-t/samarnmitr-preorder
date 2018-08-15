@@ -1,9 +1,37 @@
 import React,{ Component} from 'react';
 import ReactDOM from 'react-dom';
 
+class StatusFooter extends Component{
+
+    render(){
+        const mode=this.props.value;
+
+        if(mode==0){
+            return(
+                <div class="col-auto">
+                    <button id="printBtn" > ออกจากระบบ </button>
+                </div>
+            );
+        }
+        else{
+            return(
+                <div class="row">
+                    <div class="col-1"/>
+                    <div class="col">
+                        <button id="printBtn" > พิมพ์รายการสั่งซื้อ </button>
+                    </div>
+                    <div class="col">
+                        <button id="printBtn" > ออกจากระบบ </button>
+                    </div>
+                    <div class="col-1"/>
+                </div>
+            );
+        }
+    }
+
+}
 
 class StatusCard extends Component{
-
 
   render(){
     const orderID = '001';
@@ -17,31 +45,27 @@ class StatusCard extends Component{
     var currstatus=status[this.props.value];
     if(i===0&&statusPlate){
       statusPlate.classList.remove("order-not-paid","order-paid");
-      printBtn.classList.remove("btn-disabled","btn-enabled");
       statusPlate.classList.add("order-not-paid");
-      printBtn.classList.add("btn-disabled");
     }
     else if(i===1&&statusPlate){
       statusPlate.classList.remove("order-not-paid","order-paid");
-      printBtn.classList.remove("btn-disabled","btn-enabled");
       statusPlate.classList.add("order-paid");
-      printBtn.classList.add("btn-enabled");
     }
     return(
-      <div className="order-status-card">
-        <div className="order-id-container">
-          <div className="row">
-            <div className="col-3">Order ID</div>
-            <div className="col-6 order-id"> {orderID}</div>
-          </div>
+        <div className="order-status-card">
+            <div className="order-id-container">
+                <div className="row">
+                    <div className="col-3">Order ID</div>
+                    <div className="col-6 order-id"> {orderID}</div>
+            </div>
         </div>
         <div className="status-divider"/>
-         สถานะการดำเนินการ
+            สถานะการดำเนินการ
         <div id="statusPlate" >
-          {currstatus}
+            {currstatus}
         </div>
         <div className="order-status-footer">
-          <button id="printBtn" disabled={i==0} > พิมพ์รายการสั่งซื้อ </button>
+            <StatusFooter value={i}/>
         </div>
 
       </div>
