@@ -106,13 +106,19 @@ class SetDetail extends Component {
         const product = this.props.product
         return (
             <div className="set-detail-card">
-                <div className="strip">
+                <div className="strip hide-mobile">
                     <div className="set-panel">
                         <h1>{ product.name }</h1>
                     </div>
                 </div>
                 <div className="set-image-container" />
-                <div className="strip">
+                <div className="strip hide-desktop">
+
+                    <div className="set-panel">
+                        <h1>{ product.name }</h1>
+                    </div>
+                </div>
+                <div className="strip hide-mobile">
                     <div className="set-panel">
                         <h1>{ translate('shop.buy_set_with_name', { name: product.name }) }</h1>
                     </div>
@@ -126,6 +132,16 @@ class SetDetail extends Component {
                     { product.contents.map((content, i) => {
                         return this.renderContent(content, i)
                     }) }
+                </div>
+                <div className="bottom-strip hide-desktop">
+                    <div className="set-price-container">
+                        <h1 className="set-price-title">{ translate('shop.set_price') }</h1>
+                        <h1>{ translate('shop.price_thb', { price: product.price }) }</h1>
+                    </div>
+                    <div className="set-panel justify-content-stretch">
+                        <button className="btn btn-lg btn-danger btn-responsive"
+                                onClick={this.addToCart}>{ translate('shop.addToCart') }</button>
+                    </div>
                 </div>
             </div>
         )

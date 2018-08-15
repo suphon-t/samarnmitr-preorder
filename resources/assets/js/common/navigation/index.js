@@ -18,15 +18,15 @@ class Navigation extends Component {
         return (
             <nav className="navbar navbar-expand-md navbar-light navbar-main">
                 <div className="row justify-content-between" style={{ width: '100%' }}>
-                    <div className="col-1 navbar-login-container">
+                    <div className="navbar-login-container">
                       <img src={loginIcon} onClick={()=>history.push(routes.auth.login.get())}/>
                     </div>
-                    <div className="col-auto">
+                    <div className="col-auto navbar-brand-container">
                         <Link className="col navbar-brand" to={routes.web.home.get()}>
                             SAMARNMITR ’61 OFFICIAL SHOP
                         </Link>
                     </div>
-                    <div className="col-1 navbar-cart-container">
+                    <div className="navbar-cart-container">
                         <img src={shoppingCart} onClick={() => history.push(routes.shop.cart.get())} />
                     </div>
                 </div>
