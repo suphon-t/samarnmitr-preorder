@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import { fetchOrder } from '../../store/actions'
 import StatusCard from '../../components/OrderStatus/StatusCard'
-import CreditCardForm  from './components/CreditCardForm'
 
 class MyOrder extends Component {
 
@@ -24,19 +23,11 @@ class MyOrder extends Component {
         if (isLoading) {
             return (<p>Loading...</p>)
         } else {
-            if (chargeStatus) {
-                return (
-                    <div className="order-card">
-                        <StatusCard id={id} value={1} />
-                    </div>
-                )
-            } else {
-                return (
-                    <div className="order-card">
-                        <CreditCardForm price={this.props.price} onSuccess={() => this.props.fetchOrder(false)}/>
-                    </div>
-                )
-            }
+            return (
+                <div className="order-card">
+                    <StatusCard id={id} value={chargeStatus ? 1 : 0} order={{id, key}} />
+                </div>
+            )
         }
     }
 
