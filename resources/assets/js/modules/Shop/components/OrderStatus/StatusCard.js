@@ -11,6 +11,16 @@ class StatusFooter extends Component {
 
     render(){
         const mode=this.props.value;
+        const { id, key } = this.props.order
+
+        const qrCodeTarget = 'http://192.168.10.228:3000/manage/orderStatus/?id=' + id + '&key=' + key
+        const qrCodeReq = 'https://chart.googleapis.com/chart?cht=qr&chs=512x512&chl=' +
+            encodeURIComponent(qrCodeTarget)
+        const qrCode = (
+            <div className="qr-pic hide-desktop">
+                <img className="fit-parent" src={qrCodeReq} />
+            </div>
+        )
 
         if(mode===0){
             return(
@@ -18,6 +28,7 @@ class StatusFooter extends Component {
                     <div className="small-text">
                         คณะกรรมการนักเรียนกำลังตรวจสอบรายการชำระเงินของท่าน<br/>
                         กรุณาตรวจสอบสถานะการดำเนินการของท่านอีกครั้งในภายหลัง
+                        { qrCode }
                     </div>
                     <div className="col-auto">
                         <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
@@ -32,9 +43,7 @@ class StatusFooter extends Component {
                         โปรดแสดงหน้านี้เพื่อรับสินค้า<br/>
                         ที่ห้องคณะกรรมการนักเรียน<br/>
                         ในวันที่ 20-21 กันยายน พ.ศ. 2561
-                        <div className="qr-pic hide-desktop">
-                            QR Code
-                        </div>
+                        { qrCode }
                     </div>
                     <div className="row">
                         <div className="col-1"/>
@@ -82,7 +91,7 @@ class StatusCard extends Component{
                 {currstatus}
             </div>
             <div className="order-status-footer">
-                <StatusFooter history={this.props.history} value={i}/>
+                <StatusFooter history={this.props.history} value={i} order={this.props.order} />
             </div>
 
         </div>

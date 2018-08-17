@@ -19,7 +19,7 @@ class MyOrder extends Component {
     }
 
     render() {
-        const { isLoading, chargeStatus, id } = this.props.order
+        const { isLoading, chargeStatus, id, key } = this.props.order
         if (isLoading) {
             return (<p>Loading...</p>)
         } else {
