@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLocalChargesTable extends Migration
+class CreateReceptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateLocalChargesTable extends Migration
      */
     public function up()
     {
-        Schema::create('local_charges', function (Blueprint $table) {
+        Schema::create('receptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('status')->default('successful');
-            $table->integer('amount');
-            $table->unsignedInteger('payee_id');
-            $table->foreign('payee_id')->references('id')->on('users');
+            $table->unsignedInteger('sender_id');
+            $table->foreign('sender_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateLocalChargesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('local_charges');
+        Schema::dropIfExists('receptions');
     }
 }

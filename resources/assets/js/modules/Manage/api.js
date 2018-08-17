@@ -4,3 +4,5 @@ export const loadOrderStatus = (id, key) => Http.post('manage/orderStatus', {
     id: id,
     key: key,
 })
+
+export const editOrder = options => Http.post('manage/editOrder', options)

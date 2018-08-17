@@ -43,4 +43,8 @@ class Order extends Model
         }
         return $localCharge;
     }
+
+    public function reception() {
+        return $this->belongsTo(Reception::class);
+    }
 }
