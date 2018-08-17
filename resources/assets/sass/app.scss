@@ -82,7 +82,7 @@ body {
 
         padding: 0;
 
-        text-align: left;
+        text-align: center;
 
         img {
             height: 32px;
@@ -98,9 +98,6 @@ body {
 
     .navbar-cart-container {
         @extend .navbar-button-container;
-        img {
-            margin-right: -16px;
-        }
     }
 
     .navbar-login-container {
