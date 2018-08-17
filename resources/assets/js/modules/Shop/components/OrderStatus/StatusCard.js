@@ -6,24 +6,24 @@ class StatusFooter extends Component{
     render(){
         const mode=this.props.value;
 
-        if(mode==0){
+        if(mode===0){
             return(
-                <div class="col-auto">
+                <div className="col-auto">
                     <button id="printBtn" > ออกจากระบบ </button>
                 </div>
             );
         }
         else{
             return(
-                <div class="row">
-                    <div class="col-1"/>
-                    <div class="col">
+                <div className="row">
+                    <div className="col-1"/>
+                    <div className="col">
                         <button id="printBtn" > พิมพ์รายการสั่งซื้อ </button>
                     </div>
-                    <div class="col">
+                    <div className="col">
                         <button id="printBtn" > ออกจากระบบ </button>
                     </div>
-                    <div class="col-1"/>
+                    <div className="col-1"/>
                 </div>
             );
         }

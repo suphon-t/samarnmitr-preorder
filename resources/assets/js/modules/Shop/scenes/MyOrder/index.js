@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchOrder } from '../../store/actions'
-import ChargeStatus from './components/ChargeStatus'
+import StatusCard from '../../components/OrderStatus/StatusCard'
 import CreditCardForm  from './components/CreditCardForm'
 
 class MyOrder extends Component {
@@ -27,7 +27,7 @@ class MyOrder extends Component {
             if (charge) {
                 return (
                     <div className="order-card">
-                        <ChargeStatus charge={charge} />
+                        <StatusCard value={1} />
                     </div>
                 )
             } else {
