@@ -1,11 +1,19 @@
 import RoutePath from '../../routes/RoutePath'
-import ManageHome from './scenes/Home'
+import Home from './scenes/Home'
+import OrderStatus from './scenes/OrderStatus'
 
 export default {
     home: new RoutePath({
         path: '/manage/',
         exact: true,
-        component: ManageHome,
+        component: Home,
+        auth: true,
+        admin: true,
+    }),
+    orderStatus: new RoutePath({
+        path: '/manage/orderStatus/?id=:orderId&key=:key',
+        exact: true,
+        component: OrderStatus,
         auth: true,
         admin: true,
     }),

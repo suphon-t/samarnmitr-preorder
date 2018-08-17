@@ -891,3 +891,9 @@ img.fit-parent {
     width: 100%;
     height: 100%;
 }
+
+.manage-card {
+    @include make-card(0);
+
+    padding: 20px;
+}

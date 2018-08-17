@@ -20,11 +20,11 @@ class MyOrder extends Component {
     }
 
     render() {
-        const { isLoading, charge, id } = this.props.order
+        const { isLoading, chargeStatus, id } = this.props.order
         if (isLoading) {
             return (<p>Loading...</p>)
         } else {
-            if (charge) {
+            if (chargeStatus) {
                 return (
                     <div className="order-card">
                         <StatusCard id={id} value={1} />

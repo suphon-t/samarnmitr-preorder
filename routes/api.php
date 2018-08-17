@@ -25,3 +25,7 @@ Route::group(["prefix" => "shop"], function() {
         Route::post('myOrder/charge', 'ShopController@chargeMyOrder')->name('shop.order.my.charge');
     });
 });
+
+Route::group(['prefix' => 'manage', 'middleware' => ['auth:api', 'can:manage']], function() {
+    Route::post('orderStatus', 'ManageController@orderStatus')->name('manage.order_status');
+});

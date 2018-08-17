@@ -93,15 +93,7 @@ class ShopController extends Controller
 
     public function myOrder(Request $request) {
         $order = $this->getMyOrder($request);
-        if ($order->charge_id) {
-            $charge = OmiseCharge::retrieve($order->charge_id);
-            $order->charge = [
-                'status' => $charge['status'],
-                'authorized' => $charge['authorized'],
-                'reversed' => $charge['reversed'],
-                'paid' => $charge['paid'],
-            ];
-        }
+        $order->chargeStatus = $order->chargeStatus();
         return $order;
     }
 

@@ -111,7 +111,7 @@ export default (state = initialState, action) => {
                 return state
             }
         case FETCH_ORDER_SUCCESS:
-            const { id, status, total_price, charge } = action.payload.result.data
+            const { id, status, total_price, chargeStatus } = action.payload.result.data
             return {
                 ...state,
                 order: {
@@ -119,7 +119,7 @@ export default (state = initialState, action) => {
                     id,
                     status,
                     price: total_price,
-                    charge,
+                    chargeStatus,
                 },
             }
         default:
