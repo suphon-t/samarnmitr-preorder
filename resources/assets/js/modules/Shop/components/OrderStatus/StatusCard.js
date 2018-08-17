@@ -29,11 +29,16 @@ class StatusFooter extends Component {
             return(
                 <React.Fragment>
                     <div className="qr-detail hide-desktop">
-
+                        โปรดแสดงหน้านี้เพื่อรับสินค้า<br/>
+                        ที่ห้องคณะกรรมการนักเรียน<br/>
+                        ในวันที่ 20-21 กันยายน พ.ศ. 2561
+                        <div className="qr-pic hide-desktop">
+                            QR Code
+                        </div>
                     </div>
                     <div className="row">
                         <div className="col-1"/>
-                        <div className="col">
+                        <div className="col hide-mobile">
                             <button id="printBtn" > พิมพ์รายการสั่งซื้อ </button>
                         </div>
                         <div className="col">
