@@ -1,7 +1,13 @@
 import React,{ Component} from 'react';
-import ReactDOM from 'react-dom';
+import { withRouter } from 'react-router-dom'
 
-class StatusFooter extends Component{
+import routes from '../../../../routes/routes'
+
+class StatusFooter extends Component {
+
+    doLogout() {
+        this.props.history.push(routes.auth.logout.get())
+    }
 
     render(){
         const mode=this.props.value;
@@ -21,7 +27,7 @@ class StatusFooter extends Component{
                         <button id="printBtn" > พิมพ์รายการสั่งซื้อ </button>
                     </div>
                     <div className="col">
-                        <button id="printBtn" > ออกจากระบบ </button>
+                        <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
                     </div>
                     <div className="col-1"/>
                 </div>
@@ -34,7 +40,7 @@ class StatusFooter extends Component{
 class StatusCard extends Component{
 
   render(){
-    const orderID = '001';
+    const orderID = this.props.id;
     var i=this.props.value;
     const statusPlate=["order-not-paid","order-paid"];
     const status =[
@@ -56,7 +62,7 @@ class StatusCard extends Component{
             {currstatus}
         </div>
         <div className="order-status-footer">
-            <StatusFooter value={i}/>
+            <StatusFooter history={this.props.history} value={i}/>
         </div>
 
       </div>
@@ -68,4 +74,4 @@ class StatusCard extends Component{
 }
 
 
-export default StatusCard
+export default withRouter(StatusCard)

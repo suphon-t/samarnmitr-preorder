@@ -4,7 +4,7 @@ const argExp = /:\w+/g
 
 export default class RoutePath {
 
-    constructor({path, exact, component, auth}) {
+    constructor({path, exact, component, auth, admin = false}) {
         this.realPath = path
         this.path = path.split('?')[0]
         this.exact = exact
@@ -14,6 +14,7 @@ export default class RoutePath {
         }
         this.component = component
         this.auth = auth
+        this.requiresAdmin = admin
     }
 
     get(options) {
