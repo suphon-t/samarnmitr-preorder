@@ -505,7 +505,7 @@ main.container {
 }
 .order-status-card{
   padding-top: 5%;
-
+  margin-bottom: 67px;
   width: 1024px;
   height: 682px;
   background-color: white;
@@ -514,61 +514,76 @@ main.container {
   font-size: 48px;
   font-family: 'Prompt',sans-serif;
 
+  @include mobile{
+      width: 270px;
+      height:auto;
+      font-size: 18px;
+      margin: 31px auto;
+  }
+
   .order-id-container{
-    @extend .container;
+
     margin:0 10%;
     font-size: 36px;
     font-family: 'Ubuntu', sans-serif;
 
-    .order-id{
-      height: 60px;
-      background-color: #243447;
-      color: #EE4B81;
-      border-radius: 15px ;
+    @include mobile{
+        font-size:18px;
+        margin: 0 35px;
     }
-}
+
+        .order-id{
+          height: 60px;
+          background-color: #243447;
+          color: #EE4B81;
+          border-radius: 15px ;
+          @include mobile{
+              height: 30px;
+              border-radius: 7px;
+          }
+        }
+    }
 
     .status-divider{
         @extend .divider;
-
         margin: 22px 82px 83px;
+        @include mobile{
+            margin: 17px 23px 23px;
+        }
     }
 
+
     .order-not-paid{
-        border-radius: 15px;
+        border-radius: 15px ;
         height: 80px;
         background-color: rgba(255, 0, 0, 0.1);
         color: black;
         font-size: 40px;
-        margin:0 10% 25px;
+        border-radius: 15px ;
+        margin:0 10% 50px;
         padding-top: 5px;
-
+        @include mobile{
+            height: 40px;
+            font-size:18px;
+            margin:0 20px 28px;
+            border-radius: 7px;
+        }
     }
-
-    .order-checking{
-        @extend .order-not-paid;
-        background-color: rgba(255, 199, 0, 0.25);
-    }
-
-  .order-not-paid{
-    border-radius: 15px ;
-    height: 80px;
-    background-color: rgba(255, 0, 0, 0.1);
-    color: black;
-    font-size: 40px;
-    border-radius: 15px ;
-    margin:0 10% 25px;
-    padding-top: 5px;
-
-  }
   .order-paid{
     @extend .order-not-paid;
     background-color: rgba(0, 255, 26, 0.15);
-
+    margin:0 10% 130px;
   }
   .order-status-footer{
 
-    margin: 107px auto;
+    font-size: 13px;
+
+    .small-text{
+        margin: 0 10% 5%;
+    }
+    .qr-detail{
+        
+    }
     button{
       @extend .btn;
       color: white;
@@ -580,6 +595,12 @@ main.container {
       background-color: #EE4B81;
       text-align: center;
       align-content: center;
+      @include mobile{
+          font-size: 13px;
+          width: 171px;
+          height: 34px;
+          margin-bottom: 20px;
+      }
     }
 
   }

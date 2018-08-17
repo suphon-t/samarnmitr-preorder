@@ -14,23 +14,34 @@ class StatusFooter extends Component {
 
         if(mode===0){
             return(
-                <div className="col-auto">
-                    <button id="printBtn" > ออกจากระบบ </button>
-                </div>
+                <React.Fragment>
+                    <div className="small-text">
+                        คณะกรรมการนักเรียนกำลังตรวจสอบรายการชำระเงินของท่าน<br/>
+                        กรุณาตรวจสอบสถานะการดำเนินการของท่านอีกครั้งในภายหลัง
+                    </div>
+                    <div className="col-auto">
+                        <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
+                    </div>
+                </React.Fragment>
             );
         }
         else{
             return(
-                <div className="row">
-                    <div className="col-1"/>
-                    <div className="col">
-                        <button id="printBtn" > พิมพ์รายการสั่งซื้อ </button>
+                <React.Fragment>
+                    <div className="qr-detail hide-desktop">
+
                     </div>
-                    <div className="col">
-                        <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
+                    <div className="row">
+                        <div className="col-1"/>
+                        <div className="col">
+                            <button id="printBtn" > พิมพ์รายการสั่งซื้อ </button>
+                        </div>
+                        <div className="col">
+                            <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
+                        </div>
+                        <div className="col-1"/>
                     </div>
-                    <div className="col-1"/>
-                </div>
+                </React.Fragment>
             );
         }
     }
@@ -50,22 +61,26 @@ class StatusCard extends Component{
     var currstatus=status[this.props.value];
     return(
         <div className="order-status-card">
-            <div className="order-id-container">
+            <div className="order-id-container container hide-mobile">
                 <div className="row">
                     <div className="col-3">Order ID</div>
                     <div className="col-6 order-id"> {orderID}</div>
+                </div>
             </div>
-        </div>
-        <div className="status-divider"/>
-            สถานะการดำเนินการ
-        <div className={statusPlate[i]} >
-            {currstatus}
-        </div>
-        <div className="order-status-footer">
-            <StatusFooter history={this.props.history} value={i}/>
-        </div>
+            <div className="order-id-container hide-desktop">
+                    Order ID
+                    <div className="order-id"> {orderID}</div>
+            </div>
+            <div className="status-divider"/>
+                สถานะการดำเนินการ
+            <div className={statusPlate[i]} >
+                {currstatus}
+            </div>
+            <div className="order-status-footer">
+                <StatusFooter history={this.props.history} value={i}/>
+            </div>
 
-      </div>
+        </div>
 
     );
   }
