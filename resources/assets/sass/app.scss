@@ -39,7 +39,9 @@ body {
 }
 
 .navbar-main {
+
     height: 44px;
+
     @include desktop {
         height: 64px;
     }
@@ -96,7 +98,6 @@ body {
 
     .navbar-cart-container {
         @extend .navbar-button-container;
-
         img {
             margin-right: -16px;
         }
@@ -467,8 +468,12 @@ main.container {
         }
 
         .get-order-userdata{
+            @include mobile{
+                height: 40px;
+                margin: 5% 20px ;
+            }
             background-color: rgba(255, 0, 0, 0.1);
-            margin: 0% 20% 0%;
+            margin: 5% 226px 5%;
         }
 
         .get-order-payment{
@@ -494,6 +499,7 @@ main.container {
         font-family: 'Ubuntu',sans-serif;
 
         @include mobile{
+            margin: 26px auto 20px;
             width:256px;
             height: 100px;
             font-size: 14px;
@@ -815,7 +821,10 @@ main.container {
     background-color: white;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
-
+    @include mobile{
+        width: 270px;
+        height: 305px;
+    }
     .login-header{
         color:$skblue;
         font-size: 48px;
