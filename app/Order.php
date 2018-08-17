@@ -12,7 +12,7 @@ class Order extends Model
     ];
 
     protected $hidden = [
-        'key',
+//        'key',
     ];
 
     public function scopeMine($query, $user_id)

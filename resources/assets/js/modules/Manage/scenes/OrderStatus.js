@@ -34,7 +34,13 @@ export default class OrderStatus extends Component {
                     order: response.data,
                 })
             })
-            .catch(console.log)
+            .catch(error => {
+                this.setState({
+                    isLoading: false,
+                    isSending: false,
+                    error: error.response.status,
+                })
+            })
     }
 
     handleTogglePaidStatus(e) {
@@ -74,7 +80,12 @@ export default class OrderStatus extends Component {
     }
 
     render() {
-        if (this.state.isLoading) return null
+        if (this.state.isLoading) {
+            return <h1>Loading...</h1>
+        }
+        if (this.state.error) {
+            return <h1>Error { this.state.error }</h1>
+        }
         const { order, isSending } = this.state
         // console.log(order)
         const paidStatusToggler = <button className="btn btn-primary" onClick={this.handleTogglePaidStatus} disabled={isSending}>
