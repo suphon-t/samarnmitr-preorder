@@ -8,6 +8,8 @@
         "invalid_credentials": "รหัสผ่านผิด"
     },
     "shop": {
+        "sets": "Sets",
+        "single_products": "Single products",
         "addToCart": "เพิ่มลงตะกร้า",
         "amount": "จำนวน",
         "buy_set_with_name": "ซื้อเซ็ต ${ name }",
@@ -15,9 +17,9 @@
         "set_price": "ราคาเซ็ต",
         "price_thb": "${ price } บาท",
         "cart": {
-            "total_amount": "รวมจำนวน",
+            "total_amount": "จำนวนรวม",
             "total_amount_value": "${ amount } ชิ้น",
-            "total_price": "รวมราคา",
+            "total_price": "ราคารวม",
             "total_price_value": "${ price } บาท",
             "confirm": "ยืนยัน",
             "remove": "ลบ"

@@ -61,8 +61,11 @@ class Cart extends Component {
         const buttonDisabled = totalAmount <= 0 || this.state.sending
         return (
             <div className="cart-card">
-                <h1 className="cart-title">Your Cart</h1>
-                <div className="cart-divider" />
+                <div className="cart-title strip">
+                    <div className="common-panel">
+                        <h1>Your Cart</h1>
+                    </div>
+                </div>
                 { totalAmount > 0 ? (
                     <React.Fragment>
                         <div className="cart-items-container">

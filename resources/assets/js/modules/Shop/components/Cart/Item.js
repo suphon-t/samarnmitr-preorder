@@ -2,6 +2,7 @@ import React from 'react'
 import { Translate } from 'react-localize-redux'
 
 import NumericUpDown from '../Product/NumericUpDown'
+import { getImage } from '../../shopUtils'
 
 export default ({ product, item, onAdd, onRemove }) => {
     const customizations = item.info.customizations[0].values
@@ -10,7 +11,9 @@ export default ({ product, item, onAdd, onRemove }) => {
             {({ translate }) => <React.Fragment>
                 <div className="cart-item">
                     <div className="col-md-auto">
-                        <div className="product-pic" />
+                        <div className="product-pic">
+                            <img className="fit-parent" src={getImage(product.id)} />
+                        </div>
                     </div>
                     <div className="col">
                         <h3 className="product-name">{ product.name }</h3>

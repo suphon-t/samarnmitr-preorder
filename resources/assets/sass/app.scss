@@ -125,6 +125,11 @@ main.container {
     @extend .divider;
 }
 
+.section-header {
+    font-size: 48px;
+    text-align: center;
+}
+
 .section-divider {
     @include make-col(12);
     @include media-breakpoint-up(md) {
@@ -159,7 +164,6 @@ main.container {
     @include border-radius($radius);
 
     background: #FFFFFF;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
     padding: 40px 40px 10px;
 }
 
@@ -227,7 +231,7 @@ main.container {
     @extend .justify-content-center;
 
     .set-card {
-        @include make-card(23px);
+        @include make-card(0);
 
         width: 300px;
         height: 360px;
@@ -255,7 +259,7 @@ main.container {
     @extend .justify-content-center;
 
     .product-card {
-        @include make-card(23px);
+        @include make-card(0);
 
         width: 250px;
         height: 300px;
@@ -287,7 +291,7 @@ main.container {
     padding: 42px;
 
     .cart-title {
-        font-size: 64px;
+        margin-bottom: 36px;
     }
 
     .cart-divider {
@@ -379,16 +383,23 @@ main.container {
     }
 
     .cart-summary {
-        @extend .row;
         @extend .justify-content-end;
+        @extend .strip;
 
-        margin-top: 18px;
+        height: initial !important;
+
+        display: flex;
+        margin-top: 36px;
+
+        color: white;
 
         table {
             @extend .col-md-4;
 
             @extend .table;
             @extend .table-borderless;
+
+            margin-bottom: 0;
 
             tr {
                 td, th {
@@ -560,6 +571,61 @@ main.container {
     }
 }
 
+.strip {
+    @extend .set-card-row;
+
+    width: 100%;
+    height: 50px;
+
+    @include mobile {
+        h1 {
+            margin: 0;
+            text-align: center;
+        }
+    }
+
+    @include desktop {
+        height: 100px;
+
+        h1 {
+            margin: 0 32px;
+        }
+    }
+
+    background: #243447;
+
+    h1 {
+        color: #ffffff;
+    }
+}
+
+.common-panel {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    @include mobile {
+        justify-content: center;
+    }
+
+    @include desktop {
+        display: inline-flex;
+    }
+
+    h1, h2 {
+        display: inline-block;
+    }
+
+    h1 {
+        font-size: 24px;
+
+        @include desktop {
+            font-size: 48px;
+        }
+    }
+}
+
 .set-detail-card {
     @include make-card(0);
 
@@ -585,51 +651,8 @@ main.container {
         }
     }
 
-    .strip {
-        @extend .set-card-row;
-
-        width: 100%;
-        height: 50px;
-
-        @include mobile {
-            h1 {
-                margin: 0;
-                text-align: center;
-            }
-        }
-
-        @include desktop {
-            height: 100px;
-
-            h1 {
-                margin: 0 32px;
-            }
-        }
-
-        background: #243447;
-
-        h1 {
-            color: #ffffff;
-        }
-    }
-
     .set-panel {
-        height: 100%;
-
-        display: flex;
-        align-items: center;
-
-        @include mobile {
-            justify-content: center;
-        }
-
-        @include desktop {
-            display: inline-flex;
-        }
-
-        h1, h2 {
-            display: inline-block;
-        }
+        @extend .common-panel
     }
 
     .right-panel {
@@ -809,4 +832,9 @@ main.container {
 
 .btn-responsive {
     width: 100%;
+}
+
+img.fit-parent {
+    width: 100%;
+    height: 100%;
 }
