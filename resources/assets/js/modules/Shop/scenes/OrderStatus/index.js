@@ -13,11 +13,12 @@ class OrderStatusPage extends Component {
   render(){
       return(
         <div>
-          <StatusCard value={this.state.value}/>
-            <button onClick={()=> {this.setState({
-              value:(this.state.value+1)%2
-            })
-            } }> {this.state.value} </button>
+            
+            <StatusCard value={this.state.value}/>
+                <button onClick={()=> {this.setState({
+                    value:(this.state.value+1)%2
+                    })
+                }}> {this.state.value} </button>
         </div>
       );
   }

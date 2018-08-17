@@ -36,21 +36,12 @@ class StatusCard extends Component{
   render(){
     const orderID = '001';
     var i=this.props.value;
-    const statusPlate=document.getElementById("statusPlate");
-    const printBtn=document.getElementById("printBtn");
+    const statusPlate=["order-not-paid","order-paid"];
     const status =[
       "กำลังตรวจสอบการชำระเงิน",
       "สำเร็จ"
     ];
     var currstatus=status[this.props.value];
-    if(i===0&&statusPlate){
-      statusPlate.classList.remove("order-not-paid","order-paid");
-      statusPlate.classList.add("order-not-paid");
-    }
-    else if(i===1&&statusPlate){
-      statusPlate.classList.remove("order-not-paid","order-paid");
-      statusPlate.classList.add("order-paid");
-    }
     return(
         <div className="order-status-card">
             <div className="order-id-container">
@@ -61,7 +52,7 @@ class StatusCard extends Component{
         </div>
         <div className="status-divider"/>
             สถานะการดำเนินการ
-        <div id="statusPlate" >
+        <div className={statusPlate[i]} >
             {currstatus}
         </div>
         <div className="order-status-footer">

@@ -8,7 +8,10 @@ class GetOrderPage extends Component {
     render() {
         const params = qs.parse(this.props.location.search)
         return (
-            <InvoiceCard params={params} />
+            <div className="get-order-page">
+                <div className="thank-you-art" > Insert art here  </div>
+                <InvoiceCard params={params} />
+            </div>
         );
     }
 
