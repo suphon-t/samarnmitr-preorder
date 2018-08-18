@@ -90,18 +90,9 @@ body {
                 height: 64px;
                 padding: 10px;
             }
-            margin-right: -10px;
 
             cursor: pointer;
         }
-    }
-
-    .navbar-cart-container {
-        @extend .navbar-button-container;
-    }
-
-    .navbar-login-container {
-        @extend .navbar-button-container;
     }
 }
 

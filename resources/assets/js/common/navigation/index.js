@@ -18,7 +18,7 @@ class Navigation extends Component {
         return (
             <nav className="navbar navbar-expand-md navbar-light navbar-main">
                 <div className="row justify-content-between" style={{ width: '100%' }}>
-                    <div className="navbar-login-container">
+                    <div className="navbar-button-container">
                       <img src={loginIcon} onClick={()=>history.push(routes.auth.login.get())}/>
                     </div>
                     <div className="col-auto navbar-brand-container">
@@ -26,7 +26,10 @@ class Navigation extends Component {
                             SAMARNMITR ’61 OFFICIAL SHOP
                         </Link>
                     </div>
-                    <div className="navbar-cart-container">
+                    <div className="navbar-button-container">
+                        <img src={hexagon} onClick={() => history.push(routes.web.home.get())} />
+                    </div>
+                    <div className="navbar-button-container">
                         <img src={shoppingCart} onClick={() => history.push(routes.shop.cart.get())} />
                     </div>
                 </div>
