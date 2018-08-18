@@ -19,18 +19,19 @@ class Navigation extends Component {
             <nav className="navbar navbar-expand-md navbar-light navbar-main">
                 <div className="row justify-content-between" style={{ width: '100%' }}>
                     <div className="navbar-button-container">
-                      <img src={loginIcon} onClick={()=>history.push(routes.auth.login.get())}/>
+                      <img src={loginIcon} className="nav-icon" onClick={()=>history.push(routes.auth.login.get())}/>
                     </div>
                     <div className="col-auto navbar-brand-container">
                         <Link className="col navbar-brand" to={routes.web.home.get()}>
+                            <img src={hexagon} className="brand-nav-icon" />
                             SAMARNMITR ’61 OFFICIAL SHOP
                         </Link>
                     </div>
-                    <div className="navbar-button-container">
-                        <img src={hexagon} onClick={() => history.push(routes.web.home.get())} />
+                    <div className="navbar-button-container hide-desktop">
+                        <img src={hexagon} className="nav-icon" onClick={() => history.push(routes.web.home.get())} />
                     </div>
                     <div className="navbar-button-container">
-                        <img src={shoppingCart} onClick={() => history.push(routes.shop.cart.get())} />
+                        <img src={shoppingCart} className="nav-icon" onClick={() => history.push(routes.shop.cart.get())} />
                     </div>
                 </div>
 

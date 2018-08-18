@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom'
 
 import { fetchProducts } from '../../store/actions'
 
-import Divider from '../../components/Divider'
 import ProductDetail from '../../components/Product/ProductDetail'
 import SetDetail from '../../components/Product/SetDetail'
 import RecommendedList from '../../components/Product/RecommendedList'
@@ -31,11 +30,10 @@ class Detail extends Component {
         }
         const DetailView = product['is_set'] ? SetDetail : ProductDetail
         return (
-            <div className="full-width">
+            <React.Fragment>
                 <DetailView product={product} />
-                <Divider />
                 <RecommendedList />
-            </div>
+            </React.Fragment>
         )
     }
 }

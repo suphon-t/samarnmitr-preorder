@@ -29,6 +29,21 @@ body {
     }
 }
 
+@mixin fluid-aspect($ratio: 1 1, $selector: "> :first-child") {
+    $selector: unquote($selector);
+
+    padding-bottom: percentage(nth($ratio, 2) / nth($ratio, 1));
+    position: relative;
+
+    #{$selector} {
+        left: 0;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
 .hide-mobile {
     @extend .d-none;
     @extend .d-md-block;
@@ -78,21 +93,32 @@ body {
 
     .navbar-button-container {
         @extend .col-auto;
-        @extend .col-md-1;
 
         padding: 0;
 
         text-align: center;
+    }
 
-        img {
-            height: 32px;
-            @include desktop {
-                height: 64px;
-                padding: 10px;
-            }
-
-            cursor: pointer;
+    .nav-icon {
+        height: 32px;
+        @include desktop {
+            height: 64px;
+            padding: 10px;
         }
+
+        cursor: pointer;
+    }
+
+    .brand-nav-icon {
+        height: 44px;
+        margin-right: 8px;
+    }
+
+    .navbar-brand {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
     }
 }
 
@@ -157,29 +183,41 @@ main.container {
 }
 
 .product-detail-card {
-    @include make-row();
+    @extend .col-12;
+
     @include make-card(0);
 
-    height: 728px;
+    padding: 20px;
 
-    padding: 50px;
+    @include desktop {
+        padding: 34px 50px 34px;
+    }
 
     .product-left-pane {
-        @include make-col(8);
+        @extend .col-12;
+        @extend .col-md-8;
 
-        padding: 16px;
+        @include desktop {
+            padding: 16px;
+        }
 
         .product-slide {
-            width: 100%;
-            height: 600px;
+            @include mobile {
+                @include fluid-aspect(1 1)
+            }
+
+            @include desktop {
+                @include fluid-aspect(1.25 1)
+            }
+
             @extend .pic-placeholder;
         }
     }
 
     .product-right-pane {
-        @include make-col(4);
+        @extend .col-12;
+        @extend .col-md-4;
 
-        padding-left: 16px;
         padding-bottom: 16px;
         display: flex;
         flex-direction: column;
@@ -195,23 +233,65 @@ main.container {
         height: 200px;
         @extend .pic-placeholder;
 
-        margin: 34px 0 23px 0;
+        margin-bottom: 16px;
+
+        @include desktop {
+            margin: 34px 0 23px 0;
+        }
     }
 
     .product-customization-label {
         padding-top: 0;
 
-        font-size: 24px;
+        font-size: 20px;
+
+        @include desktop {
+            font-size: 24px;
+        }
     }
 
     form {
         flex-grow: 1;
     }
+
+    .product-name-strip {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        background: rgba(255, 0, 0, 0.07);
+        border-bottom: solid 1px #EE4B81;
+
+        h1 {
+            color: black;
+        }
+    }
+    
+    .product-price {
+        @include mobile {
+            text-align: center;
+        }
+        
+        @include desktop {
+            text-align: right;
+        }
+    }
 }
 
 .recommended-list {
+    @extend .col-12;
+    @extend .hide-mobile;
+
+    margin-top: 48px;
+    padding: 0 62px;
+
     .title {
         font-size: 44px;
+    }
+
+    .section-divider {
+        width: 100%;
+        max-width: 100%;
+
+        margin-top: 0;
     }
 }
 
@@ -424,12 +504,18 @@ main.container {
 .product-option-btn {
     @extend .btn;
 
-    padding: 0.1rem 20px;
+    padding: 0.1rem 10px;
 
     background-color: #FFFFFF;
     border: solid 1px #C4C4C4;
     color: #000000;
-    font-size: 22px;
+    font-size: 18px;
+
+    @include desktop {
+        padding: 0.1rem 20px;
+        
+        font-size: 22px;
+    }
 
     &span {
         cursor: initial !important;
@@ -606,21 +692,6 @@ main.container {
     }
 
   }
-}
-
-@mixin fluid-aspect($ratio: 1 1, $selector: "> :first-child") {
-    $selector: unquote($selector);
-
-    padding-bottom: percentage(nth($ratio, 2) / nth($ratio, 1));
-    position: relative;
-
-    #{$selector} {
-        left: 0;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        width: 100%;
-    }
 }
 
 .strip {

@@ -8,10 +8,10 @@ export default withLocalize(({ translate, name, value, values, onChange }) => {
     if (!values) return null
     return (
         <div className="form-group row">
-            <label className="col-sm-4 col-form-label product-customization-label">
+            <label className="col-4 col-form-label product-customization-label">
                 { translate('shop.customizations.' + name + '.title') }
             </label>
-            <div className="col-sm-8">
+            <div className="col-8">
                 <div className="btn-group" role="group">
                     { values.map((each, i) => (
                         <button key={i} type="button" className={each.name === value ? active : normal} onClick={() => {
