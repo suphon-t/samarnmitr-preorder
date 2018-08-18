@@ -17,7 +17,7 @@ class StatusFooter extends Component {
         const qrCodeReq = 'https://chart.googleapis.com/chart?cht=qr&chs=512x512&chl=' +
             encodeURIComponent(qrCodeTarget)
         const qrCode = (
-            <div className="qr-pic hide-desktop">
+            <div className="qr-pic">
                 <img className="fit-parent" src={qrCodeReq} />
             </div>
         )
@@ -25,36 +25,27 @@ class StatusFooter extends Component {
         if(mode===0){
             return(
                 <React.Fragment>
-                    <div className="small-text">
-                        คณะกรรมการนักเรียนกำลังตรวจสอบรายการชำระเงินของท่าน<br/>
-                        กรุณาตรวจสอบสถานะการดำเนินการของท่านอีกครั้งในภายหลัง
-                        { qrCode }
+                    <div className="qr-detail ">
+                        <p className="hide-mobile">{ qrCode }</p>
+                        นำ QR Code นี้มาชำระเงินที่ห้องคณะกรรมการนักเรียน
+                        <p>ภายใน 48 ชั่วโมงหลังจากสั่งซื้อสินค้า</p>
+                        <p className="hide-desktop">{ qrCode }</p>
                     </div>
-                    <div className="col-auto">
-                        <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
-                    </div>
+                    <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
                 </React.Fragment>
             );
         }
         else{
             return(
                 <React.Fragment>
-                    <div className="qr-detail hide-desktop">
-                        โปรดแสดงหน้านี้เพื่อรับสินค้า<br/>
-                        ที่ห้องคณะกรรมการนักเรียน<br/>
-                        ในวันที่ 20-21 กันยายน พ.ศ. 2561
-                        { qrCode }
+                    <div className="qr-detail ">
+                        <p className="hide-mobile">{ qrCode }</p>
+                        นำ QR Code นี้มาแสดงเพื่อรับสินค้าที่ห้องคณะกรรมการนักเรียน
+                        <p>ในวันที่ 20 - 21 กันยายน 2561</p>
+                        <p className="hide-desktop">{ qrCode }</p>
                     </div>
-                    <div className="row">
-                        <div className="col-1"/>
-                        <div className="col hide-mobile">
-                            <button id="printBtn" > พิมพ์รายการสั่งซื้อ </button>
-                        </div>
-                        <div className="col">
-                            <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
-                        </div>
-                        <div className="col-1"/>
-                    </div>
+                    <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
+
                 </React.Fragment>
             );
         }
@@ -72,7 +63,8 @@ class StatusCard extends Component{
       "กำลังตรวจสอบการชำระเงิน",
       "สำเร็จ"
     ];
-    var currstatus=status[this.props.value];
+    i=1;
+    var currstatus=status[i];
     return(
         <div className="order-status-card">
             <div className="order-id-container container hide-mobile">

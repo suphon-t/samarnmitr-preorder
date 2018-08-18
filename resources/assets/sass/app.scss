@@ -264,12 +264,12 @@ main.container {
             color: black;
         }
     }
-    
+
     .product-price {
         @include mobile {
             text-align: center;
         }
-        
+
         @include desktop {
             text-align: right;
         }
@@ -513,7 +513,7 @@ main.container {
 
     @include desktop {
         padding: 0.1rem 20px;
-        
+
         font-size: 22px;
     }
 
@@ -529,15 +529,16 @@ main.container {
 .get-order-page{
     .get-order-card{
         padding-top: 5%;
-        height: 1472px;
+        height: auto;
         width: 1268px;
         background-color: white;
         text-align: center;
         font-size: 48px;
-        font-family: 'Ubuntu',sans-serif;
+        font-family: 'Ubuntu','Prompt',sans-serif;
+        margin-bottom: 10%;
         @include mobile{
             width: 270px;
-            height: 675px;
+            height: auto;
             font-size: 24px;
         }
 
@@ -552,13 +553,38 @@ main.container {
 
         .get-order-payment{
             width: 1041px;
-            height: 707px;
-            background-color: rgba(196, 196, 196, 0.33);
-            margin: 34px auto;
-            padding-top: 100px ;
+            height: auto;
+            margin: 0px auto 10px;
+            font-size: 30px;
+            color: black;
             @include mobile{
-                width: 230px;
-                height: 410px;
+                width: auto;
+                height: auto;
+                font-size: 15px;
+                margin: 0 10% 5%;
+            }
+            p{
+                font-size: 44px;
+                color:$skpink;
+                @include mobile{
+                    font-size: 18px;
+                    margin: 0 5% 5%;
+                }
+            }
+
+        }
+        button{
+            @extend .btn;
+            font-size: 48px;
+            border-radius: 10px;
+            background-color:$skpink;
+            color:white;
+            margin: 30px auto 63px;
+            width: 30%;
+            @include mobile{
+                width: 70%;
+                font-size: 18px;
+                margin: 3% auto 5%;
             }
         }
     }
@@ -570,7 +596,7 @@ main.container {
         text-align: center;
         margin: 0 auto 68px;
         font-size: 48px;
-        font-family: 'Ubuntu',sans-serif;
+        font-family: 'Ubuntu','Prompt',sans-serif;
 
         @include mobile{
             margin: 26px auto 20px;
@@ -584,12 +610,12 @@ main.container {
   padding-top: 5%;
   margin-bottom: 67px;
   width: 1024px;
-  height: 682px;
+  height: auto;
   background-color: white;
   text-align: center;
   align-items: center;
   font-size: 48px;
-  font-family: 'Prompt',sans-serif;
+  font-family: 'Ubuntu','Prompt',sans-serif;
 
   @include mobile{
       width: 270px;
@@ -637,7 +663,7 @@ main.container {
         color: black;
         font-size: 40px;
         border-radius: 15px ;
-        margin:0 10% 50px;
+        margin:0 10% ;
         padding-top: 5px;
         @include mobile{
             height: 40px;
@@ -649,28 +675,25 @@ main.container {
   .order-paid{
     @extend .order-not-paid;
     background-color: rgba(0, 255, 26, 0.15);
-    margin:0 10% 10%;
+
   }
   .order-status-footer{
 
     font-size: 24px;
 
-    .small-text{
-        margin: 0 10% 5%;
-        @include mobile{
-            font-size: 13px;
-        }
-    }
     .qr-detail{
-        margin: 0 12% 5%;
+        margin: 0 10% ;
         @include mobile{
             font-size: 13px;
+            margin: 0 20% ;
+        }
+        p{
+            color:$skpink;
         }
     }
     .qr-pic{
-        height: 200px;
-        margin-top: 3%;
         background-color: #C4C4C4;
+        @include fluid-aspect(1 1);
     }
     button{
       @extend .btn;
@@ -679,7 +702,7 @@ main.container {
       height: 67px;
       border-radius: 10px;
       font-size: 32px;
-      padding: 0 0 ;
+      margin: 20px auto 50px ;
       background-color: #EE4B81;
       text-align: center;
       align-content: center;
@@ -687,7 +710,7 @@ main.container {
           font-size: 13px;
           width: 171px;
           height: 34px;
-          margin-bottom: 20px;
+           margin: 0 auto 20px ;
       }
     }
 
