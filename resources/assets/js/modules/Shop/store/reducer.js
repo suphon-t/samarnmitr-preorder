@@ -8,7 +8,10 @@ import {
     FETCH_PRODUCTS_SUCCESS,
     FETCH_PRODUCTS_FAILURE,
     ADD_ITEM,
-    REMOVE_ITEM, FETCH_ORDER, FETCH_ORDER_SUCCESS,
+    REMOVE_ITEM,
+    FETCH_ORDER,
+    FETCH_ORDER_SUCCESS,
+    CLEAR_CART,
 } from './action-types'
 
 const initialState = {
@@ -98,6 +101,13 @@ export default (state = initialState, action) => {
                 return state
             }
         }
+        case CLEAR_CART:
+            return {
+                ...state,
+                cart: {
+                    items: [],
+                },
+            }
         case FETCH_ORDER:
             if (action.payload.initial) {
                 return {

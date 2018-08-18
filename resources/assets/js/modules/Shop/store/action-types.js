@@ -7,6 +7,7 @@ export const REMOVE_ITEM = 'REMOVE_ITEM'
 export const MAKE_ORDER = 'MAKE_ORDER'
 export const FETCH_ORDER = 'FETCH_ORDER'
 export const FETCH_ORDER_SUCCESS = 'FETCH_ORDER_SUCCESS'
+export const CLEAR_CART = 'CLEAR_CART'
 
 export default {
     FETCH_PRODUCTS,
@@ -17,4 +18,5 @@ export default {
     MAKE_ORDER,
     FETCH_ORDER,
     FETCH_ORDER_SUCCESS,
+    CLEAR_CART,
 }

@@ -490,6 +490,19 @@ main.container {
                 }
             }
         }
+
+        .empty-cart-message {
+            margin: 80px 0;
+
+            font-size: 36px;
+            text-align: center;
+
+            @include desktop {
+                margin: 160px 0;
+
+                font-size: 64px;
+            }
+        }
     }
 
     .cart-summary {
@@ -507,7 +520,7 @@ main.container {
         table {
             @extend .col-auto;
 
-            width: 390px;
+            width: 400px;
 
             @extend .table;
             @extend .table-borderless;
@@ -519,7 +532,12 @@ main.container {
                     font-size: 36px;
                 }
 
+                th {
+                    white-space: nowrap;
+                }
+
                 td {
+                    width: 100%;
                     text-align: right;
                 }
             }
@@ -858,6 +876,7 @@ main.container {
 }
 
 .set-detail-card {
+    @extend .col;
     @include make-card(0);
 
     padding: 20px;

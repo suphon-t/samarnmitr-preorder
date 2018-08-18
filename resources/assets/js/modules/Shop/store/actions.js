@@ -5,7 +5,9 @@ import {
     ADD_ITEM,
     REMOVE_ITEM,
     MAKE_ORDER,
-    FETCH_ORDER, FETCH_ORDER_SUCCESS,
+    FETCH_ORDER,
+    FETCH_ORDER_SUCCESS,
+    CLEAR_CART,
 } from './action-types'
 
 import * as api from '../api'
@@ -49,6 +51,11 @@ export const removeItem = (info, amount = 1) => ({
         info,
         amount,
     },
+})
+
+export const clearCart = (info, amount = 1) => ({
+    type: CLEAR_CART,
+    payload: {},
 })
 
 export const makeOrder = contents => {

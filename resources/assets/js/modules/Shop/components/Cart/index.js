@@ -7,7 +7,7 @@ import routes from '../../../../routes/routes'
 import { makeOrder } from '../../api'
 
 import Item from './Item'
-import { addItem, removeItem } from '../../store/actions'
+import { addItem, removeItem, clearCart } from '../../store/actions'
 import { findItem } from '../../shopUtils'
 
 class Cart extends Component {
@@ -36,6 +36,7 @@ class Cart extends Component {
             .then(result => {
                 const { user_id, password } = result.data
                 history.push(routes.shop.getOrder.get({ orderId: user_id, key: password }))
+                this.props.clearCart()
             })
             .catch(err => {
                 console.log(err.response)
@@ -66,42 +67,41 @@ class Cart extends Component {
                         <h1>Your Cart</h1>
                     </div>
                 </div>
-                { totalAmount > 0 ? (
-                    <React.Fragment>
-                        <div className="cart-items-container">
-                            { entries.map((entry, i) => {
-                                const { item, product } = entry
-                                return <Item key={i} product={product} item={item}
-                                             onAdd={this.props.addItem} onRemove={this.props.removeItem} />
-                            }) }
-                        </div>
-                        <div className="cart-summary">
-                            <table className="hide-mobile">
-                                <tbody>
-                                <tr>
-                                    <th>{ translate('shop.cart.total_amount') }</th>
-                                    <td>{ translate('shop.cart.total_amount_value', { amount: totalAmount }) }</td>
-                                </tr>
-                                <tr>
-                                    <th>{ translate('shop.cart.total_price') }</th>
-                                    <td>{ translate('shop.cart.total_price_value', { price: totalPrice }) }</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div className="col hide-desktop">
-                                <h1 className="summary-label">{ translate('shop.cart.total_amount') }</h1>
-                                <h1 className="summary-value">{ translate('shop.cart.total_amount_value',
-                                    { amount: totalAmount }) }</h1>
-                                <h1 className="summary-label">{ translate('shop.cart.total_price') }</h1>
-                                <h1 className="summary-value">{ translate('shop.cart.total_price_value',
-                                    { price: totalPrice }) }</h1>
-                                <button className="confirm-button" disabled={buttonDisabled} onClick={this.handleOrderClick}>
-                                    { translate('shop.cart.confirm') }
-                                </button>
-                            </div>
-                        </div>
-                    </React.Fragment>
-                ) : null}
+                <div className="cart-items-container">
+                    { totalAmount <= 0 ? (
+                        <h1 className="empty-cart-message">Your cart is empty</h1>
+                    ) : null }
+                    { entries.map((entry, i) => {
+                        const { item, product } = entry
+                        return <Item key={i} product={product} item={item} index={i}
+                                     onAdd={this.props.addItem} onRemove={this.props.removeItem} />
+                    }) }
+                </div>
+                <div className="cart-summary">
+                    <table className="hide-mobile">
+                        <tbody>
+                        <tr>
+                            <th>{ translate('shop.cart.total_amount') }</th>
+                            <td>{ translate('shop.cart.total_amount_value', { amount: "" + totalAmount }) }</td>
+                        </tr>
+                        <tr>
+                            <th>{ translate('shop.cart.total_price') }</th>
+                            <td>{ translate('shop.cart.total_price_value', { price: "" + totalPrice }) }</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div className="col hide-desktop">
+                        <h1 className="summary-label">{ translate('shop.cart.total_amount') }</h1>
+                        <h1 className="summary-value">{ translate('shop.cart.total_amount_value',
+                            { amount: "" + totalAmount }) }</h1>
+                        <h1 className="summary-label">{ translate('shop.cart.total_price') }</h1>
+                        <h1 className="summary-value">{ translate('shop.cart.total_price_value',
+                            { price: "" + totalPrice }) }</h1>
+                        <button className="confirm-button" disabled={buttonDisabled} onClick={this.handleOrderClick}>
+                            { translate('shop.cart.confirm') }
+                        </button>
+                    </div>
+                </div>
 
                 <div className="cart-footer hide-mobile">
 
@@ -123,6 +123,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     addItem,
     removeItem,
+    clearCart,
 }
 
 export default withRouter(withLocalize(connect(mapStateToProps, mapDispatchToProps)(Cart)))
