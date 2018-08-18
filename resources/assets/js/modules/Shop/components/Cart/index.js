@@ -62,7 +62,7 @@ class Cart extends Component {
         return (
             <div className="cart-card">
                 <div className="cart-title strip">
-                    <div className="common-panel">
+                    <div className="cart-panel">
                         <h1>Your Cart</h1>
                     </div>
                 </div>
@@ -76,7 +76,7 @@ class Cart extends Component {
                             }) }
                         </div>
                         <div className="cart-summary">
-                            <table>
+                            <table className="hide-mobile">
                                 <tbody>
                                 <tr>
                                     <th>{ translate('shop.cart.total_amount') }</th>
@@ -88,11 +88,22 @@ class Cart extends Component {
                                 </tr>
                                 </tbody>
                             </table>
+                            <div className="col">
+                                <h1 className="summary-label hide-desktop">{ translate('shop.cart.total_amount') }</h1>
+                                <h1 className="summary-value hide-desktop">{ translate('shop.cart.total_amount_value',
+                                    { amount: totalAmount }) }</h1>
+                                <h1 className="summary-label hide-desktop">{ translate('shop.cart.total_price') }</h1>
+                                <h1 className="summary-value hide-desktop">{ translate('shop.cart.total_price_value',
+                                    { price: totalPrice }) }</h1>
+                                <button className="confirm-button" disabled={buttonDisabled} onClick={this.handleOrderClick}>
+                                    { translate('shop.cart.confirm') }
+                                </button>
+                            </div>
                         </div>
                     </React.Fragment>
                 ) : null}
 
-                <div className="cart-footer">
+                <div className="cart-footer hide-mobile">
 
                     <button disabled={buttonDisabled} onClick={this.handleOrderClick}>
                       { translate('shop.cart.confirm') }
