@@ -55,7 +55,7 @@ export default ({ product, item, onAdd, onRemove }) => {
                     </div>
                 </div>
                 { product.is_set ? product.contents.map((content, i) => {
-                    let className = 'cart-item small'
+                    let className = 'cart-item small hide-mobile'
                     if (!i) {
                         className += ' first'
                     }
