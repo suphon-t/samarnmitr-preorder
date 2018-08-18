@@ -13,6 +13,8 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import '~react-responsive-carousel/lib/styles/carousel.css';
+
 body {
     background: #E8F9FF;
 }
@@ -202,6 +204,7 @@ main.container {
         }
 
         .product-slide {
+            /*
             @include mobile {
                 @include fluid-aspect(1 1)
             }
@@ -211,6 +214,11 @@ main.container {
             }
 
             @extend .pic-placeholder;
+            */
+
+            .carousel .slide {
+                background: transparent;
+            }
         }
     }
 

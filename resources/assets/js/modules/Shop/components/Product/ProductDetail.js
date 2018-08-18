@@ -8,6 +8,8 @@ import { addItem } from '../../store/actions'
 import Customizer from './Customizer'
 import NumericUpDown from './NumericUpDown'
 import routes from '../../../../routes/routes'
+import { getSlideImage } from '../../shopUtils'
+import { Carousel } from 'react-responsive-carousel'
 
 class ProductDetail extends Component {
 
@@ -53,17 +55,25 @@ class ProductDetail extends Component {
     }
 
     render() {
-
         const { translate } = this.props
         const product = this.props.product.contents[0]
         const customizationsUnfinished = product.customizations
             .find(customization => this.state.customizations[customization.name] === undefined)
-
         return (
             <div className="product-detail-card">
                 <div className="row">
                     <div className="product-left-pane">
-                        <div className="product-slide" />
+                        <div className="product-slide">
+                            {/*<img src={getSlideImage(product.id, 0)} />*/}
+                            <Carousel showArrows={true} showThumbs={false} showStatus={false}
+                                      showIndicators={false} infiniteLoop={true} autoPlay>
+                                { Array(product.slider_count).fill(0).map((_, i) => (
+                                    <div key={i}>
+                                        <img src={getSlideImage(product.id, i)} />
+                                    </div>
+                                )) }
+                            </Carousel>
+                        </div>
                     </div>
                     <div className="product-right-pane">
                         <h1 className="product-title hide-mobile">{ product.name }</h1>
