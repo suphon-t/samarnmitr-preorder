@@ -55,7 +55,7 @@ class ManageController extends Controller
 
     private function findOrder($data) {
         return Order::where([
-            'id' => $data['id'],
+            'user_id' => $data['id'],
             'key' => $data['key'],
         ])->with('reception')->with('reception.sender')->firstOrFail();
     }
