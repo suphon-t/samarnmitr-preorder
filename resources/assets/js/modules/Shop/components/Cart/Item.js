@@ -5,7 +5,8 @@ import NumericUpDown from '../Product/NumericUpDown'
 import { getImage } from '../../shopUtils'
 
 export default ({ product, item, onAdd, onRemove }) => {
-    const customizations = item.info.customizations[0].values
+    const allCustoms = item.info.customizations
+    const customizations = allCustoms[0].values
     return (
         <Translate>
             {({ translate }) => <div className="cart-item-background">
@@ -62,10 +63,10 @@ export default ({ product, item, onAdd, onRemove }) => {
                         <div key={i} className={className}>
                             <div className="col">
                                 <h3 className="product-name">{ content.name }</h3>
-                                { Object.keys(item.info.customizations[i].values).map((name, i) => (
+                                { Object.keys(allCustoms[i].values).map(name => (
                                     <span key={i} className="product-customization">
                                         { translate('shop.customizations.' + name + '.title') + ': ' }
-                                        { translate('shop.customizations.' + name + '.values.' + customizations[name]) }
+                                        { translate('shop.customizations.' + name + '.values.' + allCustoms[i].values[name]) }
                                     </span>
                                 )) }
                             </div>
