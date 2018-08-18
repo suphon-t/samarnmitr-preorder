@@ -1122,3 +1122,9 @@ img.fit-parent {
 
     padding: 20px;
 }
+
+.outer-container {
+    @include mobile {
+        margin: 20px;
+    }
+}
