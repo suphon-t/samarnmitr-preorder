@@ -433,6 +433,10 @@ main.container {
                     @include desktop {
                         font-size: 36px;
                     }
+
+                    @include mobile {
+                        text-align: center;
+                    }
                 }
 
                 &.product-customization {
