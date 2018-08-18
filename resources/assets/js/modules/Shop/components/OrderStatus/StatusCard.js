@@ -63,7 +63,7 @@ class StatusCard extends Component{
       "กำลังตรวจสอบการชำระเงิน",
       "สำเร็จ"
     ];
-    i=1;
+    //i=0;
     var currstatus=status[i];
     return(
         <div className="order-status-card">

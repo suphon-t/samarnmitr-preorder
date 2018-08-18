@@ -663,7 +663,7 @@ main.container {
         color: black;
         font-size: 40px;
         border-radius: 15px ;
-        margin:0 10% ;
+        margin:0 10% 20px;
         padding-top: 5px;
         @include mobile{
             height: 40px;
@@ -692,8 +692,15 @@ main.container {
         }
     }
     .qr-pic{
+        @include desktop{
+            height: 250px;
+            width: 250px;
+        }
         background-color: #C4C4C4;
-        @include fluid-aspect(1 1);
+        margin: 0 auto;
+        @include mobile{
+            @include fluid-aspect(1 1);
+        }
     }
     button{
       @extend .btn;
