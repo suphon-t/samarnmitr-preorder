@@ -13,7 +13,7 @@ class StatusFooter extends Component {
         const mode=this.props.value;
         const { id, key } = this.props.order
 
-        const qrCodeTarget = 'http://192.168.10.228:3000/manage/orderStatus/?id=' + id + '&key=' + key
+        const qrCodeTarget = window.location.origin + '/manage/orderStatus/?id=' + id + '&key=' + key
         const qrCodeReq = 'https://chart.googleapis.com/chart?cht=qr&chs=512x512&chl=' +
             encodeURIComponent(qrCodeTarget)
         const qrCode = (
