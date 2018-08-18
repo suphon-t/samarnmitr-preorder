@@ -106,7 +106,7 @@ export default class OrderStatus extends Component {
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>{ order.id }</th>
+                                    <th>{ order.user_id }</th>
                                 </tr>
                             </thead>
                             <tbody>

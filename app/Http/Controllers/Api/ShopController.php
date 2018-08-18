@@ -24,6 +24,7 @@ class ShopController extends Controller
 
     public function makeOrder(Request $request) {
         $data = $request->all();
+        /*
         $validator = Validator::make($data, [
             'email' => 'required|email|unique:users,email',
         ]);
@@ -31,6 +32,7 @@ class ShopController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => 'invalid_email'], 400);
         }
+        */
 
         $cart = ['items' => []];
         $totalPrice = 0;
@@ -129,7 +131,7 @@ class ShopController extends Controller
     {
         return User::create([
             'name' => 'Customer',
-            'email' => $email,
+            'email' => str_random(10) . '@' . str_random(10) . '.com',
             'password' => bcrypt($password),
         ]);
     }

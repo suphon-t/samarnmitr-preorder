@@ -32,7 +32,7 @@ class Cart extends Component {
         this.setState({ sending: true })
         const { history } = this.props
         const { cart } = this.props
-        makeOrder({ email: 'paphonb@gmail.com', cart })
+        makeOrder({ email: 'test@example.com', cart })
             .then(result => {
                 const { user_id, password } = result.data
                 history.push(routes.shop.getOrder.get({ orderId: user_id, key: password }))
@@ -88,12 +88,12 @@ class Cart extends Component {
                                 </tr>
                                 </tbody>
                             </table>
-                            <div className="col">
-                                <h1 className="summary-label hide-desktop">{ translate('shop.cart.total_amount') }</h1>
-                                <h1 className="summary-value hide-desktop">{ translate('shop.cart.total_amount_value',
+                            <div className="col hide-desktop">
+                                <h1 className="summary-label">{ translate('shop.cart.total_amount') }</h1>
+                                <h1 className="summary-value">{ translate('shop.cart.total_amount_value',
                                     { amount: totalAmount }) }</h1>
-                                <h1 className="summary-label hide-desktop">{ translate('shop.cart.total_price') }</h1>
-                                <h1 className="summary-value hide-desktop">{ translate('shop.cart.total_price_value',
+                                <h1 className="summary-label">{ translate('shop.cart.total_price') }</h1>
+                                <h1 className="summary-value">{ translate('shop.cart.total_price_value',
                                     { price: totalPrice }) }</h1>
                                 <button className="confirm-button" disabled={buttonDisabled} onClick={this.handleOrderClick}>
                                     { translate('shop.cart.confirm') }

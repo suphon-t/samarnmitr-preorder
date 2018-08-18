@@ -19,7 +19,8 @@ class MyOrder extends Component {
     }
 
     render() {
-        const { isLoading, chargeStatus, id, key } = this.props.order
+        const { id } = this.props.user
+        const { isLoading, chargeStatus, key } = this.props.order
         if (isLoading) {
             return (<p>Loading...</p>)
         } else {
@@ -35,6 +36,7 @@ class MyOrder extends Component {
 
 const mapStateToProps = state => ({
     order: state.shop.order,
+    user: state.user,
 })
 
 const mapDispatchToProps = {

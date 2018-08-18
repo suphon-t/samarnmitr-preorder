@@ -50,6 +50,7 @@ function checkAuth(state) {
 
 function logout(state) {
     localStorage.removeItem('access_token')
+    window.location.reload()
 
     return {
         ...state, isAuthenticated: false

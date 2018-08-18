@@ -507,7 +507,7 @@ main.container {
         table {
             @extend .col-auto;
 
-            width: 375px;
+            width: 390px;
 
             @extend .table;
             @extend .table-borderless;
@@ -548,6 +548,7 @@ main.container {
         @extend .justify-content-center;
 
         margin: 36px 0;
+        text-align: center;
 
         button {
             @extend .btn;
@@ -762,7 +763,7 @@ main.container {
         margin: 0 10% ;
         @include mobile{
             font-size: 13px;
-            margin: 0 20% ;
+            margin: 0 30px;
         }
         p{
             color:$skpink;
@@ -1050,6 +1051,10 @@ main.container {
         @include mobile{
             font-size: 16px;
             margin: 0 10% ;
+
+            input, button {
+                width: 100%;
+            }
         }
     }
     button{

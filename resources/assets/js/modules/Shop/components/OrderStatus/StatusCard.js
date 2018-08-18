@@ -60,7 +60,7 @@ class StatusCard extends Component{
     var i=this.props.value;
     const statusPlate=["order-not-paid","order-paid"];
     const status =[
-      "กำลังตรวจสอบการชำระเงิน",
+      "รอชำระเงิน",
       "สำเร็จ"
     ];
     //i=0;
