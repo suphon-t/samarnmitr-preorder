@@ -1242,4 +1242,8 @@ img.fit-parent {
 
 .sponsor-container {
     margin: 85px 0 94px;
+
+    @include mobile {
+        display: none;
+    }
 }

@@ -20,7 +20,7 @@ export default class Footer extends Component {
                 <h1 className="section-header hide-desktop">
                     <img src={sponsors} />
                 </h1>
-                <div className="row justify-content-center sponsor-container hide-mobile">
+                <div className="row justify-content-center sponsor-container">
                     <div className="col-auto sponsors">
                         <img src={sponsor1} />
                     </div>
