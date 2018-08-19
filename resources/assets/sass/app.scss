@@ -284,6 +284,12 @@ main.container {
             text-align: right;
         }
     }
+
+    @include desktop {
+        .custom-select {
+            width: initial;
+        }
+    }
 }
 
 .recommended-list {

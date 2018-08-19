@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 import { addItem } from '../../store/actions'
 
-import Customizer from './Customizer'
+import DropdownCustomizer from './DropdownCustomizer'
 import NumericUpDown from './NumericUpDown'
 import routes from '../../../../routes/routes'
 import { getSlideImage } from '../../shopUtils'
@@ -17,7 +17,12 @@ class ProductDetail extends Component {
         super(props)
         this.state = {
             amount: 1,
-            customizations: {},
+            customizations: this.props.product.contents[0].customizations.reduce((acc, curr) => {
+                return {
+                    ...acc,
+                    [curr.name]: curr.default.name,
+                }
+            }, {}),
         }
         this.handleCustomizationChange = this.handleCustomizationChange.bind(this)
         this.handleAmountChange = this.handleAmountChange.bind(this)
@@ -31,6 +36,10 @@ class ProductDetail extends Component {
                 [name]: value,
             },
         })
+    }
+
+    getChangeHandler(name) {
+        return e => this.handleCustomizationChange(name, e.target.value)
     }
 
     handleAmountChange(amount) {
@@ -85,10 +94,20 @@ class ProductDetail extends Component {
                         </div>
                         <div className="product-info" />
                         <form>
-                            { product.customizations.map((customization, i) => (
-                                <Customizer key={i} name={customization.name} value={this.state.customizations[customization.name]}
-                                            values={customization.values} onChange={this.handleCustomizationChange} />
-                            )) }
+                            { product.customizations.map((customization, j) => {
+                                return (
+                                    <div key={j} className="form-group row">
+                                        <label className="col-4 col-form-label product-customization-label">
+                                            { translate('shop.customizations.' + customization.name + '.title') }
+                                        </label>
+                                        <div className="col-8">
+                                            <DropdownCustomizer key={j} customization={customization} className="form-control-lg"
+                                                                value={this.state.customizations[customization.name]}
+                                                                onChange={this.getChangeHandler(customization.name)} />
+                                        </div>
+                                    </div>
+                                )
+                            }) }
                             <div className="form-group row">
                                 <label className="col-4 col-form-label product-customization-label">
                                     { translate('shop.amount') }
