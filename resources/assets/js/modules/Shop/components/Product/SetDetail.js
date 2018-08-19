@@ -124,6 +124,7 @@ class SetDetail extends Component {
                         <h1>{ translate('shop.buy_set_with_name', { name: product.name }) }</h1>
                     </div>
                     <div className="right-panel">
+                        <h1>{ translate('shop.price_thb', { price: product.price }) }</h1>
                         <button className="btn btn-lg btn-danger"
                                 onClick={this.addToCart}>{ translate('shop.addToCart') }</button>
                     </div>
