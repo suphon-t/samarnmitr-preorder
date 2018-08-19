@@ -9,6 +9,9 @@ import Sets from '../../components/Sets'
 import ProductList from '../../components/Product/ProductList'
 import CategorizedProductList from '../../components/Product/CategorizedProductList'
 
+import setsDesktop from '../../../../../img/sets_desktop.svg'
+import singleProductsDesktop from '../../../../../img/single_products_desktop.svg'
+
 class Home extends Component {
 
     componentWillMount() {
@@ -24,10 +27,14 @@ class Home extends Component {
                     {matches =>
                         matches ? (
                             <React.Fragment>
-                                <h1 className="section-header">{ translate('shop.sets') }</h1>
+                                <h1 className="section-header">
+                                    <img src={setsDesktop} />
+                                </h1>
                                 <Sets sets={sets} />
                                 <div className="sets-products-divider" />
-                                <h1 className="section-header">{ translate('shop.single_products') }</h1>
+                                <h1 className="section-header">
+                                    <img src={singleProductsDesktop} />
+                                </h1>
                                 <ProductList products={products} />
                             </React.Fragment>
                         ) : (

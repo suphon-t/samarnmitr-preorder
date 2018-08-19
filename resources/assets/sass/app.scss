@@ -17,7 +17,7 @@
 @import '~react-responsive-carousel/lib/styles/carousel.css';
 
 body {
-    background: #E8F9FF;
+    background: #415164;
     font-family: "DB Heavent", "Helvetica", sans-serif;
 }
 
@@ -147,6 +147,10 @@ main.container {
 .section-header {
     font-size: 48px;
     text-align: center;
+
+    img {
+        max-width: 100%;
+    }
 }
 
 .section-divider {
@@ -163,6 +167,8 @@ main.container {
     @extend .section-divider;
 
     margin: 30px auto 40px;
+
+    border-color: #EE4B81;
 }
 
 .pic-placeholder {
@@ -1223,4 +1229,17 @@ img.fit-parent {
     @include mobile {
         margin: 20px;
     }
+}
+
+.footer {
+    padding-bottom: 70px;
+    text-align: center;
+
+    @include desktop {
+        margin-top: 100px;
+    }
+}
+
+.sponsor-container {
+    margin: 85px 0 94px;
 }

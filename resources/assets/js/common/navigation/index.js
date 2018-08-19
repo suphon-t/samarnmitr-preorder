@@ -10,6 +10,7 @@ import UserMenu from './UserMenu'
 import shoppingCart from '../../../img/shopping_cart.svg'
 import loginIcon from '../../../img/login_icon.svg'
 import hexagon from '../../../img/hexagon.svg'
+import logoMobile from '../../../img/logo_mobile.svg'
 
 class Navigation extends Component {
 
@@ -28,7 +29,7 @@ class Navigation extends Component {
                         </Link>
                     </div>
                     <div className="navbar-button-container hide-desktop">
-                        <img src={hexagon} className="nav-icon" onClick={() => history.push(routes.web.home.get())} />
+                        <img src={logoMobile} className="nav-icon" onClick={() => history.push(routes.web.home.get())} />
                     </div>
                     <div className="navbar-button-container">
                         <img src={shoppingCart} className="nav-icon" onClick={() => history.push(routes.shop.cart.get())} />
