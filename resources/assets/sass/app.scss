@@ -49,12 +49,15 @@ body {
 }
 
 .hide-mobile {
-    @extend .d-none;
-    @extend .d-md-block;
+    @include mobile {
+        display: none;
+    }
 }
 
 .hide-desktop {
-    @extend .d-md-none;
+    @include desktop {
+        display: none;
+    }
 }
 
 .navbar-main {
