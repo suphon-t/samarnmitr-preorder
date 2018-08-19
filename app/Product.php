@@ -24,6 +24,7 @@ class Product extends Model
         return static::with('contents')
             ->with('contents.customizations')
             ->with('contents.customizations.default')
-            ->with('contents.customizations.values');
+            ->with('contents.customizations.values')
+            ->where('visible', true);
     }
 }
