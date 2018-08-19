@@ -22,12 +22,12 @@ class Navigation extends Component {
                     <div className="navbar-button-container">
                       <img src={loginIcon} className="nav-icon" onClick={()=>history.push(routes.auth.login.get())}/>
                     </div>
-                    <div className="col-auto navbar-brand-container">
+                    <div className="col-auto navbar-brand-container logo-desktop">
                         <Link className="col navbar-brand" to={routes.web.home.get()}>
                             <img src={logoDesktop} className="brand-nav-icon" />
                         </Link>
                     </div>
-                    <div className="navbar-button-container hide-desktop">
+                    <div className="navbar-button-container logo-mobile">
                         <img src={logoMobile} className="nav-icon" onClick={() => history.push(routes.web.home.get())} />
                     </div>
                     <div className="navbar-button-container">

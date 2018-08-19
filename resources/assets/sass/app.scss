@@ -124,6 +124,20 @@ body {
         align-items: center;
         margin: 0;
     }
+
+    .logo-desktop {
+        display: none;
+
+        @media (min-width: 1000px) {
+            display: block;
+        }
+    }
+
+    .logo-mobile {
+        @media (min-width: 1000px) {
+            display: none;
+        }
+    }
 }
 
 main.container {
