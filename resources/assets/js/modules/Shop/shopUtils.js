@@ -23,6 +23,8 @@ export const replace = (collection, match, newItem) =>
 
 export const getImage = id => "/images/products/" + id + "/thumbnail.jpg"
 export const getSlideImage = (id, position) => "/images/products/" + id + "/slide" + position + ".jpg"
+export const getSlideImageMobile = (id, position) => "/images/products/" + id + "/ms" + position + ".jpg"
+export const getSlideImageRetina = (id, position) => "/images/products/" + id + "/slide" + position + "-2x.jpg"
 
 export const shuffle = arr => {
     const a = [...arr]

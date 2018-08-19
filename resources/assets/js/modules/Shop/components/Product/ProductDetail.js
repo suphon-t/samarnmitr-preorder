@@ -8,8 +8,7 @@ import { addItem } from '../../store/actions'
 import DropdownCustomizer from './DropdownCustomizer'
 import NumericUpDown from './NumericUpDown'
 import routes from '../../../../routes/routes'
-import { getSlideImage } from '../../shopUtils'
-import { Carousel } from 'react-responsive-carousel'
+import ProductSlide from './ProductSlide'
 
 class ProductDetail extends Component {
 
@@ -73,15 +72,7 @@ class ProductDetail extends Component {
                 <div className="row">
                     <div className="product-left-pane">
                         <div className="product-slide">
-                            {/*<img src={getSlideImage(product.id, 0)} />*/}
-                            <Carousel showArrows={true} showThumbs={false} showStatus={false}
-                                      showIndicators={false} infiniteLoop={true} autoPlay>
-                                { Array(product.slider_count).fill(0).map((_, i) => (
-                                    <div key={i}>
-                                        <img src={getSlideImage(product.id, i)} />
-                                    </div>
-                                )) }
-                            </Carousel>
+                            <ProductSlide product={product} />
                         </div>
                     </div>
                     <div className="product-right-pane">

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Media from 'react-media'
+import MediaQuery from 'react-responsive'
 import { connect } from 'react-redux'
 import { withLocalize } from 'react-localize-redux'
 
@@ -30,13 +30,13 @@ class Home extends Component {
     }
 
     render() {
-        const { translate, products, sets, categories } = this.props
+        const {  products, sets, categories } = this.props
         if (!products) return this.getCover()
         return (
             <React.Fragment>
                 { this.getCover() }
                 <div className="col-sm-12">
-                    <Media query="(min-width: 768px)">
+                    <MediaQuery minDeviceWidth={768}>
                         {matches =>
                             matches ? (
                                 <React.Fragment>
@@ -54,7 +54,7 @@ class Home extends Component {
                                 <CategorizedProductList sets={sets} products={products} categories={categories} />
                             )
                         }
-                    </Media>
+                    </MediaQuery>
                 </div>
             </React.Fragment>
         )

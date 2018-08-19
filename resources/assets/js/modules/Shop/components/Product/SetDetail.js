@@ -8,6 +8,7 @@ import { addItem } from '../../store/actions'
 import DropdownCustomizer from './DropdownCustomizer'
 import routes from '../../../../routes/routes'
 import { getImage } from '../../shopUtils'
+import ProductSlide from './ProductSlide'
 
 class SetDetail extends Component {
 
@@ -113,7 +114,9 @@ class SetDetail extends Component {
                         <h1>{ product.name }</h1>
                     </div>
                 </div>
-                <div className="set-image-container" />
+                <div className="set-image-container">
+                    <ProductSlide product={product} hasMobile hasRetina />
+                </div>
                 <div className="strip hide-desktop">
                     <div className="set-panel">
                         <h1>{ product.name }</h1>
