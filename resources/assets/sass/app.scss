@@ -1057,7 +1057,6 @@ main.container {
 
         height: 100%;
         float: right;
-        padding: 0 26px;
 
         display: flex;
         align-items: center;
@@ -1156,7 +1155,7 @@ main.container {
             font-size: 18px;
 
             @include desktop {
-                font-size: 36px;
+                font-size: 22px;
             }
         }
     }
@@ -1175,6 +1174,17 @@ main.container {
 
         .set-price-title {
             font-size: 18px;
+        }
+    }
+
+    .strip {
+
+        @include desktop {
+            padding: 0 32px;
+
+            h1 {
+                margin: 0 24px 0 0;
+            }
         }
     }
 }

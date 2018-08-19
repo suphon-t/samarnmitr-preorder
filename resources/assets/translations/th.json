@@ -16,6 +16,7 @@
         "customize_bundle": "Customize your bundle",
         "set_price": "ราคาเซ็ต",
         "price_thb": "${ price } บาท",
+        "set_price_thb": "ราคาเซ็ต ${ price } บาท",
         "cart": {
             "amount_text": "จำนวน: ${ amount }",
             "total_amount": "จำนวนรวม",
