@@ -9,8 +9,8 @@ import UserMenu from './UserMenu'
 
 import shoppingCart from '../../../img/shopping_cart.svg'
 import loginIcon from '../../../img/login_icon.svg'
-import hexagon from '../../../img/hexagon.svg'
 import logoMobile from '../../../img/logo_mobile.svg'
+import logoDesktop from '../../../img/logo_desktop.svg'
 
 class Navigation extends Component {
 
@@ -24,8 +24,7 @@ class Navigation extends Component {
                     </div>
                     <div className="col-auto navbar-brand-container">
                         <Link className="col navbar-brand" to={routes.web.home.get()}>
-                            <img src={hexagon} className="brand-nav-icon" />
-                            SAMARNMITR ’61 OFFICIAL SHOP
+                            <img src={logoDesktop} className="brand-nav-icon" />
                         </Link>
                     </div>
                     <div className="navbar-button-container hide-desktop">
