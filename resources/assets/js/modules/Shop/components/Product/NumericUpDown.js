@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ label, value, min = 1, max = 1, onChange = null, onUp = null, onDown = null }) => {
+export default ({ label, value, min = 1, max = 99999, onChange = null, onUp = null, onDown = null }) => {
     const increaseHandler = () => {
         if (onUp) {
             onUp()

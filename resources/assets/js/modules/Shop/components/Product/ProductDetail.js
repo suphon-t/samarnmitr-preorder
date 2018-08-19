@@ -113,7 +113,7 @@ class ProductDetail extends Component {
                                     { translate('shop.amount') }
                                 </label>
                                 <div className="col-8">
-                                    <NumericUpDown value={this.state.amount} max={3} onChange={this.handleAmountChange} />
+                                    <NumericUpDown value={this.state.amount} onChange={this.handleAmountChange} />
                                 </div>
                             </div>
                         </form>
