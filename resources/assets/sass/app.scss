@@ -306,6 +306,7 @@ main.container {
     padding: 0 62px;
 
     .title {
+        color: white;
         font-size: 44px;
     }
 
@@ -1232,11 +1233,18 @@ img.fit-parent {
 }
 
 .footer {
-    padding-bottom: 70px;
+    padding-bottom: 40px;
     text-align: center;
 
+    margin-top: 40px;
+
     @include desktop {
+        padding-bottom: 70px;
         margin-top: 100px;
+    }
+
+    .kornor-mobile {
+        margin-top: 40px;
     }
 }
 
@@ -1246,4 +1254,31 @@ img.fit-parent {
     @include mobile {
         display: none;
     }
+}
+
+.cover {
+    position: absolute;
+    width: 100%;
+}
+
+.cover-mobile {
+    @extend .cover;
+    @extend .hide-desktop;
+
+    top: 44px;
+}
+
+.cover-desktop {
+    @extend .cover;
+    @extend .hide-mobile;
+
+    top: 64px;
+}
+
+.product-category-select {
+    margin-top: calc(100vw * 0.5);
+}
+
+.home-top {
+    margin-top: calc(100vw * 0.3);
 }

@@ -11,6 +11,8 @@ import CategorizedProductList from '../../components/Product/CategorizedProductL
 
 import setsDesktop from '../../../../../img/sets_desktop.svg'
 import singleProductsDesktop from '../../../../../img/single_products_desktop.svg'
+import coverDesktop from '../../../../../img/cover_desktop.png'
+import coverMobile from '../../../../../img/cover_mobile.png'
 
 class Home extends Component {
 
@@ -18,31 +20,43 @@ class Home extends Component {
         this.props.fetchProducts()
     }
 
+    getCover() {
+        return (
+            <React.Fragment>
+                <img className="cover-mobile" src={coverMobile} />
+                <img className="cover-desktop" src={coverDesktop} />
+            </React.Fragment>
+        )
+    }
+
     render() {
         const { translate, products, sets, categories } = this.props
-        if (!products) return null
+        if (!products) return this.getCover()
         return (
-            <div className="col-sm-12">
-                <Media query="(min-width: 768px)">
-                    {matches =>
-                        matches ? (
-                            <React.Fragment>
-                                <h1 className="section-header">
-                                    <img src={setsDesktop} />
-                                </h1>
-                                <Sets sets={sets} />
-                                <div className="sets-products-divider" />
-                                <h1 className="section-header">
-                                    <img src={singleProductsDesktop} />
-                                </h1>
-                                <ProductList products={products} />
-                            </React.Fragment>
-                        ) : (
-                            <CategorizedProductList sets={sets} products={products} categories={categories} />
-                        )
-                    }
-                </Media>
-            </div>
+            <React.Fragment>
+                { this.getCover() }
+                <div className="col-sm-12">
+                    <Media query="(min-width: 768px)">
+                        {matches =>
+                            matches ? (
+                                <React.Fragment>
+                                    <h1 className="section-header home-top">
+                                        <img src={setsDesktop} />
+                                    </h1>
+                                    <Sets sets={sets} />
+                                    <div className="sets-products-divider" />
+                                    <h1 className="section-header">
+                                        <img src={singleProductsDesktop} />
+                                    </h1>
+                                    <ProductList products={products} />
+                                </React.Fragment>
+                            ) : (
+                                <CategorizedProductList sets={sets} products={products} categories={categories} />
+                            )
+                        }
+                    </Media>
+                </div>
+            </React.Fragment>
         )
     }
 }

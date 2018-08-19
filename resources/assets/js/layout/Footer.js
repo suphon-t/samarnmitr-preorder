@@ -7,6 +7,7 @@ import sponsor4 from '../../img/sponsor4.svg'
 import sponsors from '../../img/sponsors.svg'
 
 import kornor from '../../img/kornor.svg'
+import kornorMobile from '../../img/kornor-mobile.svg'
 import poweredByDesktop from '../../img/powered_by_desktop.svg'
 
 export default class Footer extends Component {
@@ -34,7 +35,8 @@ export default class Footer extends Component {
                         <img src={sponsor4} />
                     </div>
                 </div>
-                <img src={kornor} />
+                <img className="hide-mobile" src={kornor} />
+                <img className="kornor-mobile hide-desktop" src={kornorMobile} />
             </div>
         )
     }
