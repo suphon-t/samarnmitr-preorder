@@ -1,15 +1,11 @@
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-@import url('https://fonts.googleapis.com/css?family=Kelly+Slab');
-@import url('https://fonts.googleapis.com/css?family=Prompt');
-@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import 'fonts';
 
 // Variables
 @import 'variables';
 @import 'colors';
 @import 'credit-card-form';
-@import 'fonts';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -72,7 +68,6 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
     .navbar-brand {
-        font-family: 'Kelly Slab', sans-serif;
         color: #EE4B81;
         font-size: 30px;
         margin-left: 5px;
@@ -698,7 +693,6 @@ main.container {
         background-color: white;
         text-align: center;
         font-size: 48px;
-        font-family: 'Ubuntu','Prompt',sans-serif;
         margin-bottom: 10%;
 
         @include mobile {
@@ -767,7 +761,6 @@ main.container {
         text-align: center;
         margin: 0 auto 68px;
         font-size: 48px;
-        font-family: 'Ubuntu','Prompt',sans-serif;
 
         @include mobile {
             margin: 26px auto 20px;
@@ -791,7 +784,6 @@ main.container {
     .order-status-text {
         text-align: center;
         font-size: 48px;
-        font-family: 'Ubuntu','Prompt',sans-serif;
 
         @include mobile {
             font-size: 18px;
@@ -800,7 +792,6 @@ main.container {
 
     .order-id-container {
         font-size: 36px;
-        font-family: 'Ubuntu', sans-serif;
 
         @include mobile {
             font-size:18px;
@@ -1183,7 +1174,6 @@ main.container {
     height: 682px;
     background-color: white;
     text-align: center;
-    font-family: 'Ubuntu', sans-serif;
     margin: 0 auto 5%;
     @include mobile{
         margin: 10% auto;
