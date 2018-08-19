@@ -14,7 +14,7 @@ class AddIdentificationColumn extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('identification')->default('');
+            $table->string('identification')->nullable();
         });
     }
 
