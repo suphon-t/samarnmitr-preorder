@@ -115,6 +115,10 @@ export default class OrderStatus extends Component {
                                     <td>{ order.total_price }</td>
                                 </tr>
                                 <tr>
+                                    <td>Identification</td>
+                                    <td>{ order.identification }</td>
+                                </tr>
+                                <tr>
                                     <td>Paid</td>
                                     <td>
                                         { order.chargeStatus ? 'Yes' : 'No' }

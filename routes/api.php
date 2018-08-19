@@ -22,7 +22,8 @@ Route::group(["prefix" => "shop"], function() {
 
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('myOrder', 'ShopController@myOrder')->name('shop.order.my');
-        Route::post('myOrder/charge', 'ShopController@chargeMyOrder')->name('shop.order.my.charge');
+        Route::put('myOrder', 'ShopController@editMyOrder')->name('shop.order.my.edit');
+        // Route::post('myOrder/charge', 'ShopController@chargeMyOrder')->name('shop.order.my.charge');
     });
 });
 

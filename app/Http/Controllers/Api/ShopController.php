@@ -101,6 +101,14 @@ class ShopController extends Controller
         return $order;
     }
 
+    public function editMyOrder(Request $request) {
+        $data = $request->all();
+        $order = $this->getMyOrder($request);
+        $order['identification'] = $data['identification'];
+        $order->save();
+        return $order;
+    }
+
     public function chargeMyOrder(Request $request) {
         $data = $request->all();
         $validator = Validator::make($data, [

@@ -50,13 +50,13 @@ body {
 
 .hide-mobile {
     @include mobile {
-        display: none;
+        display: none !important;
     }
 }
 
 .hide-desktop {
     @include desktop {
-        display: none;
+        display: none !important;
     }
 }
 
@@ -828,19 +828,31 @@ main.container {
         }
     }
 
+    .with-margin {
+        margin: 0 10px 20px;
+
+        @include desktop {
+            margin: 0 20px 28px;
+        }
+
+        @include media-breakpoint-up(lg) {
+            margin: 0 10% 28px;
+        }
+    }
+
     .order-not-paid {
+        @extend .with-margin;
+
         height: 80px;
         background-color: rgba(255, 0, 0, 0.1);
         color: black;
         font-size: 40px;
         border-radius: 15px;
-        margin:0 10% 20px;
         padding-top: 5px;
 
         @include mobile {
             height: 40px;
             font-size:18px;
-            margin:0 20px 28px;
             border-radius: 7px;
         }
     }
@@ -848,6 +860,34 @@ main.container {
     .order-paid {
         @extend .order-not-paid;
         background-color: rgba(0, 255, 26, 0.15);
+    }
+
+    .identification-row {
+        @extend .with-margin;
+
+        text-align: center;
+
+        .id-label-line2 {
+            @include mobile {
+                font-size: 16px;
+            }
+        }
+
+        .identification-input-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        @include mobile {
+            .id-field {
+                width: 120px;
+                margin-right: 10px;
+            }
+
+            .id-button {
+                width: 77px;
+            }
+        }
     }
 
     .order-status-footer {
@@ -878,10 +918,6 @@ main.container {
             }
 
             margin: 0 auto;
-
-            img {
-                background-color: #C4C4C4;
-            }
         }
 
         button {
