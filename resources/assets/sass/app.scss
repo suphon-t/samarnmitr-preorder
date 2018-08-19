@@ -246,13 +246,20 @@ main.container {
 
     .product-info {
         width: 100%;
-        height: 200px;
+        min-height: 200px;
+        height: auto;
         @extend .pic-placeholder;
 
         margin-bottom: 16px;
 
+        font-size:22px ;
+        padding: 0 5%;
+
         @include desktop {
+
             margin: 34px 0 23px 0;
+            font-size:32px ;
+            padding: 0 5%;
         }
     }
 

@@ -92,7 +92,7 @@ class ProductDetail extends Component {
                                 <h1>{ product.name }</h1>
                             </div>
                         </div>
-                        <div className="product-info" />
+                        <div className="product-info" > {product.description} </div>
                         <form>
                             { product.customizations.map((customization, j) => {
                                 return (
