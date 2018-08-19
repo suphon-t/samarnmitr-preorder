@@ -17,6 +17,7 @@
         "set_price": "ราคาเซ็ต",
         "price_thb": "${ price } บาท",
         "cart": {
+            "amount_text": "จำนวน: ${ amount }",
             "total_amount": "จำนวนรวม",
             "total_amount_value": "${ amount } ชิ้น",
             "total_price": "ราคารวม",

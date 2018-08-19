@@ -386,137 +386,6 @@ main.container {
         margin: 0 0 40px 0;
     }
 
-    .cart-items-container {
-        @extend .full-width;
-
-        .cart-item-background {
-            margin-bottom: 1px;
-            background: rgba(255, 0, 0, 0.07);
-        }
-
-        .cart-item {
-            @include make-row();
-            @extend .align-items-center;
-
-            height: 70px;
-            padding: 5px;
-
-            @include desktop {
-                height: 100px;
-                padding: 10px;
-            }
-
-            .product-pic {
-                @extend .pic-placeholder;
-
-                width: 60px;
-                height: 60px;
-
-                @include desktop {
-                    width: 80px;
-                    height: 80px;
-                }
-            }
-
-            .row.nested {
-                height: 100%;
-                align-items: center;
-            }
-
-            .col.nested {
-                height: 100%;
-                padding-left: 0;
-            }
-
-            .product-name, .product-customization {
-                margin: 0;
-
-                @include desktop {
-                    padding-left: 12px;
-                }
-
-                &.product-name {
-                    font-size: 18px;
-
-                    @include desktop {
-                        font-size: 36px;
-                    }
-
-                    @include mobile {
-                        text-align: center;
-                    }
-                }
-
-                &.product-customization {
-                    line-height: 1.2em;
-                }
-            }
-
-            @include mobile {
-                .product-option-btn {
-                    padding: 0 10px;
-                    font-size: 16px;
-                }
-            }
-
-            .cart-item-label {
-                margin: 0;
-
-                font-size: 36px;
-            }
-
-            .cart-delete {
-                @extend .cart-item-label;
-
-                background: transparent;
-                border: none;
-                cursor: pointer;
-                outline: none;
-
-                color: $skpink;
-            }
-
-            .cart-delete-mobile {
-                margin-left: 8px;
-                margin-right: 3px;
-            }
-
-            &.small {
-                height: auto;
-                margin-left: 99px;
-
-                padding: 0 5px 10px;
-
-                .product-name {
-                    display: inline;
-
-                    font-size: 24px;
-                }
-
-                span {
-                    font-size: 0.9rem;
-                }
-
-                &.first {
-                    margin-top: -20px;
-                }
-            }
-        }
-
-        .empty-cart-message {
-            margin: 80px 0;
-
-            font-size: 36px;
-            text-align: center;
-
-            @include desktop {
-                margin: 160px 0;
-
-                font-size: 64px;
-            }
-        }
-    }
-
     .cart-summary {
         @extend .justify-content-center;
         @extend .justify-content-md-end;
@@ -603,6 +472,146 @@ main.container {
     }
 }
 
+.cart-items-container {
+    @extend .full-width;
+
+    .cart-item-background {
+        margin-bottom: 1px;
+        background: rgba(255, 0, 0, 0.07);
+    }
+
+    .cart-item {
+        @include make-row();
+        @extend .align-items-center;
+
+        height: 70px;
+        padding: 5px;
+
+        @include desktop {
+            height: 100px;
+            padding: 10px;
+        }
+
+        .product-pic {
+            @extend .pic-placeholder;
+
+            width: 60px;
+            height: 60px;
+
+            @include desktop {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        .row.nested {
+            height: 100%;
+            align-items: center;
+        }
+
+        .col.nested {
+            height: 100%;
+            padding-left: 0;
+        }
+
+        .product-name, .product-customization {
+            margin: 0;
+
+            @include desktop {
+                padding-left: 12px;
+            }
+
+            &.product-name {
+                font-size: 18px;
+
+                @include desktop {
+                    font-size: 36px;
+                }
+
+                @include mobile {
+                    text-align: center;
+                }
+            }
+
+            &.product-customization {
+                line-height: 1.2em;
+            }
+        }
+
+        @include mobile {
+            .product-option-btn {
+                padding: 0 10px;
+                font-size: 16px;
+            }
+        }
+
+        .cart-item-label {
+            margin: 0;
+
+            font-size: 36px;
+        }
+
+        .cart-delete {
+            @extend .cart-item-label;
+
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+
+            color: $skpink;
+        }
+
+        .cart-delete-mobile {
+            margin-left: 8px;
+            margin-right: 3px;
+        }
+
+        &.small {
+            height: auto;
+            margin-left: 99px;
+
+            padding: 0 5px 10px;
+
+            .product-name {
+                display: inline;
+
+                font-size: 24px;
+            }
+
+            span {
+                font-size: 0.9rem;
+            }
+
+            &.first {
+                margin-top: -20px;
+            }
+        }
+
+        .amount-text {
+            font-size: 16px;
+
+            @include desktop {
+                margin-right: 32px;
+                font-size: 36px;
+            }
+        }
+    }
+
+    .empty-cart-message {
+        margin: 80px 0;
+
+        font-size: 36px;
+        text-align: center;
+
+        @include desktop {
+            margin: 160px 0;
+
+            font-size: 64px;
+        }
+    }
+}
+
 .product-option-btn {
     @extend .btn;
 
@@ -634,8 +643,8 @@ main.container {
     }
 }
 
-.get-order-page{
-    .get-order-card{
+.get-order-page {
+    .get-order-card {
         padding-top: 5%;
         height: auto;
         width: 1268px;
@@ -644,52 +653,59 @@ main.container {
         font-size: 48px;
         font-family: 'Ubuntu','Prompt',sans-serif;
         margin-bottom: 10%;
-        @include mobile{
+
+        @include mobile {
             width: 270px;
             height: auto;
             font-size: 24px;
         }
 
-        .get-order-userdata{
-            @include mobile{
+        .get-order-userdata {
+            @include mobile {
                 height: 40px;
                 margin: 5% 20px ;
             }
+
             background-color: rgba(255, 0, 0, 0.1);
             margin: 5% 226px 5%;
         }
 
-        .get-order-payment{
+        .get-order-payment {
             width: 1041px;
             height: auto;
-            margin: 0px auto 10px;
+            margin: 0 auto 10px;
             font-size: 30px;
             color: black;
-            @include mobile{
+
+            @include mobile {
                 width: auto;
                 height: auto;
                 font-size: 15px;
                 margin: 0 10% 5%;
             }
-            p{
+
+            p {
                 font-size: 44px;
-                color:$skpink;
-                @include mobile{
+                color: $skpink;
+
+                @include mobile {
                     font-size: 18px;
                     margin: 0 5% 5%;
                 }
             }
 
         }
-        button{
+
+        button {
             @extend .btn;
             font-size: 48px;
             border-radius: 10px;
-            background-color:$skpink;
+            background-color: $skpink;
             color:white;
             margin: 30px auto 63px;
             width: 30%;
-            @include mobile{
+
+            @include mobile {
                 width: 70%;
                 font-size: 18px;
                 margin: 3% auto 5%;
@@ -697,7 +713,7 @@ main.container {
         }
     }
 
-    .thank-you-art{
+    .thank-you-art {
         width: 1024px;
         height: 300px;
         background-color: rgba(196, 196, 196, 0.33);
@@ -706,7 +722,7 @@ main.container {
         font-size: 48px;
         font-family: 'Ubuntu','Prompt',sans-serif;
 
-        @include mobile{
+        @include mobile {
             margin: 26px auto 20px;
             width:256px;
             height: 100px;
@@ -714,122 +730,156 @@ main.container {
         }
     }
 }
-.order-status-card{
-  padding-top: 5%;
-  margin-bottom: 67px;
-  width: 1024px;
-  height: auto;
-  background-color: white;
-  text-align: center;
-  align-items: center;
-  font-size: 48px;
-  font-family: 'Ubuntu','Prompt',sans-serif;
 
-  @include mobile{
-      width: 270px;
-      height:auto;
-      font-size: 18px;
-      margin: 31px auto;
-  }
+.order-status-card {
+    @extend .col-12;
 
-  .order-id-container{
+    padding-top: 5%;
+    margin-bottom: 67px;
+    max-width: 1024px;
+    height: auto;
+    background-color: white;
+    align-items: center;
 
-    margin:0 10%;
-    font-size: 36px;
-    font-family: 'Ubuntu', sans-serif;
+    .order-status-text {
+        text-align: center;
+        font-size: 48px;
+        font-family: 'Ubuntu','Prompt',sans-serif;
 
-    @include mobile{
-        font-size:18px;
-        margin: 0 35px;
-    }
-
-        .order-id{
-          height: 60px;
-          background-color: #243447;
-          color: #EE4B81;
-          border-radius: 15px ;
-          @include mobile{
-              height: 30px;
-              border-radius: 7px;
-          }
+        @include mobile {
+            font-size: 18px;
         }
     }
 
-    .status-divider{
+    .order-id-container {
+        font-size: 36px;
+        font-family: 'Ubuntu', sans-serif;
+
+        @include mobile {
+            font-size:18px;
+            margin: 0 35px;
+        }
+
+        .order-id {
+            height: 60px;
+            background-color: #243447;
+            color: #EE4B81;
+            border-radius: 15px;
+
+            @include mobile {
+                height: 30px;
+                border-radius: 7px;
+            }
+        }
+    }
+
+    .status-divider {
         @extend .divider;
-        margin: 22px 82px 83px;
-        @include mobile{
-            margin: 17px 23px 23px;
+        margin: 32px 82px 33px;
+
+        @include mobile {
+            margin: 17px 23px 18px;
         }
     }
 
-
-    .order-not-paid{
-        border-radius: 15px ;
+    .order-not-paid {
         height: 80px;
         background-color: rgba(255, 0, 0, 0.1);
         color: black;
         font-size: 40px;
-        border-radius: 15px ;
+        border-radius: 15px;
         margin:0 10% 20px;
         padding-top: 5px;
-        @include mobile{
+
+        @include mobile {
             height: 40px;
             font-size:18px;
             margin:0 20px 28px;
             border-radius: 7px;
         }
     }
-  .order-paid{
-    @extend .order-not-paid;
-    background-color: rgba(0, 255, 26, 0.15);
 
-  }
-  .order-status-footer{
-
-    font-size: 24px;
-
-    .qr-detail{
-        margin: 0 10% ;
-        @include mobile{
-            font-size: 13px;
-            margin: 0 30px;
-        }
-        p{
-            color:$skpink;
-        }
-    }
-    .qr-pic{
-        @include desktop{
-            height: 250px;
-            width: 250px;
-        }
-        background-color: #C4C4C4;
-        margin: 0 auto;
-        @include mobile{
-            @include fluid-aspect(1 1);
-        }
-    }
-    button{
-      @extend .btn;
-      color: white;
-      width: 377px;
-      height: 67px;
-      border-radius: 10px;
-      font-size: 32px;
-      margin: 20px auto 50px ;
-      background-color: #EE4B81;
-      text-align: center;
-      align-content: center;
-      @include mobile{
-          font-size: 13px;
-          width: 171px;
-          height: 34px;
-           margin: 0 auto 20px ;
-      }
+    .order-paid {
+        @extend .order-not-paid;
+        background-color: rgba(0, 255, 26, 0.15);
     }
 
-  }
+    .order-status-footer {
+
+        font-size: 24px;
+
+        .qr-detail {
+            margin: 0 10%;
+
+            @include mobile {
+                font-size: 13px;
+                margin: 0 30px;
+            }
+
+            p {
+                color:$skpink;
+            }
+        }
+
+        .qr-pic {
+            @include desktop {
+                height: 250px;
+                width: 250px;
+            }
+
+            @include mobile {
+                @include fluid-aspect(1 1);
+            }
+
+            margin: 0 auto;
+
+            img {
+                background-color: #C4C4C4;
+            }
+        }
+
+        button {
+            @extend .btn;
+            color: white;
+            width: 377px;
+            height: 67px;
+            border-radius: 10px;
+            font-size: 32px;
+            margin: 20px auto 50px;
+            background-color: #EE4B81;
+            text-align: center;
+            align-content: center;
+
+            @include mobile {
+                font-size: 13px;
+                width: 171px;
+                height: 34px;
+                margin: 0 auto 20px;
+            }
+        }
+    }
+
+    .cart-container {
+        margin: 0 82px 40px;
+
+        .cart-items-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+
+            @include desktop {
+                font-size: 36px;
+                margin-bottom: 17px;
+            }
+        }
+
+        @include mobile {
+            margin: 0 23px 26px;
+
+            .amount-text {
+                text-align: center;
+            }
+        }
+    }
 }
 
 .strip {

@@ -4,7 +4,7 @@ import { withLocalize } from 'react-localize-redux'
 import NumericUpDown from '../Product/NumericUpDown'
 import { getImage } from '../../shopUtils'
 
-export default withLocalize(({ product, item, onAdd, onRemove, translate }) => {
+export default withLocalize(({ product, item, onAdd, onRemove, translate, readOnly = false }) => {
     const allCustoms = item.info.customizations
     const customizations = allCustoms[0].values
     const customizationLabels = product.is_set ? [] : Object.keys(customizations).map(name => {
@@ -33,23 +33,30 @@ export default withLocalize(({ product, item, onAdd, onRemove, translate }) => {
                                 </p>
                             )) }
                         </div>
-                        <div className="col col-md-auto">
-                            <div className="row nested justify-content-end">
-                                <div className="col-auto hide-mobile">
-                                    <h3 className="cart-item-label">{ translate('shop.amount') }</h3>
+                        { readOnly ? (
+                                <div className="col col-md-auto amount-text">
+                                    { translate('shop.cart.amount_text', { amount: item.amount }) }
                                 </div>
-                                <div className="col-auto">
-                                    <NumericUpDown value={item.amount} onUp={() => onAdd(item.info)} onDown={() => onRemove(item.info)} />
-                                    <button className="product-option-btn pink cart-delete-mobile hide-desktop"
-                                            onClick={() => onRemove(item.info, item.amount)}>X</button>
+                            ) : (
+                                <div className="col col-md-auto">
+                                    <div className="row nested justify-content-end">
+                                        <div className="col-auto hide-mobile">
+                                            <h3 className="cart-item-label">{ translate('shop.amount') }</h3>
+                                        </div>
+                                        <div className="col-auto">
+                                            <NumericUpDown value={item.amount} onUp={() => onAdd(item.info)} onDown={() => onRemove(item.info)} />
+                                            <button className="product-option-btn pink cart-delete-mobile hide-desktop"
+                                                    onClick={() => onRemove(item.info, item.amount)}>X</button>
+                                        </div>
+                                        <div className="col-auto hide-mobile">
+                                            <button className="cart-delete" onClick={() => onRemove(item.info, item.amount)}>
+                                                { translate('shop.cart.remove') }
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="col-auto hide-mobile">
-                                    <button className="cart-delete" onClick={() => onRemove(item.info, item.amount)}>
-                                        { translate('shop.cart.remove') }
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                            )
+                        }
                     </div>
                 </div>
             </div>

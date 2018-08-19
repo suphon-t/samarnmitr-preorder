@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchOrder } from '../../store/actions'
+import { fetchOrder, fetchProducts } from '../../store/actions'
 import StatusCard from '../../components/OrderStatus/StatusCard'
 
 class MyOrder extends Component {
@@ -16,31 +16,33 @@ class MyOrder extends Component {
 
     componentWillMount() {
         this.props.fetchOrder()
+        this.props.fetchProducts()
     }
 
     render() {
-        const { id } = this.props.user
-        const { isLoading, chargeStatus, key } = this.props.order
-        if (isLoading) {
+        const { products, sets, order, user } = this.props
+        const { id } = user
+        const { isLoading, chargeStatus, key } = order
+        if (isLoading || this.props.isLoading || !key) {
             return (<p>Loading...</p>)
         } else {
-            return (
-                <div className="order-card">
-                    <StatusCard id={id} value={chargeStatus ? 1 : 0} order={{id, key}} />
-                </div>
-            )
+            return <StatusCard id={id} value={chargeStatus ? 1 : 0} order={{ ...order, id }}
+                        products={products} sets={sets} />
         }
     }
-
 }
 
 const mapStateToProps = state => ({
+    isLoading: state.shop.isLoading,
+    products: state.shop.products,
+    sets: state.shop.sets,
     order: state.shop.order,
     user: state.user,
 })
 
 const mapDispatchToProps = {
-    fetchOrder
+    fetchOrder,
+    fetchProducts,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyOrder)

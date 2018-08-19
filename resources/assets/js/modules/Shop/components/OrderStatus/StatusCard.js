@@ -2,6 +2,8 @@ import React,{ Component} from 'react';
 import { withRouter } from 'react-router-dom'
 
 import routes from '../../../../routes/routes'
+import Item from '../Cart/Item'
+import {findItem} from "../../shopUtils";
 
 class StatusFooter extends Component {
 
@@ -10,7 +12,7 @@ class StatusFooter extends Component {
     }
 
     render(){
-        const mode=this.props.value;
+        const mode = this.props.value;
         const { id, key } = this.props.order
 
         const qrCodeTarget = window.location.origin + '/manage/orderStatus/?id=' + id + '&key=' + key
@@ -22,32 +24,31 @@ class StatusFooter extends Component {
             </div>
         )
 
-        if(mode===0){
-            return(
+        if (mode === 0) {
+            return (
                 <React.Fragment>
                     <div className="qr-detail ">
-                        <p className="hide-mobile">{ qrCode }</p>
+                        <div className="hide-mobile">{ qrCode }</div>
                         นำ QR Code นี้มาชำระเงินที่ห้องคณะกรรมการนักเรียน
                         <p>ภายใน 48 ชั่วโมงหลังจากสั่งซื้อสินค้า</p>
-                        <p className="hide-desktop">{ qrCode }</p>
+                        <div className="hide-desktop">{ qrCode }</div>
                     </div>
                     <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
                 </React.Fragment>
-            );
-        }
-        else{
-            return(
+            )
+        } else {
+            return (
                 <React.Fragment>
                     <div className="qr-detail ">
-                        <p className="hide-mobile">{ qrCode }</p>
+                        <div className="hide-mobile">{ qrCode }</div>
                         นำ QR Code นี้มาแสดงเพื่อรับสินค้าที่ห้องคณะกรรมการนักเรียน
                         <p>ในวันที่ 20 - 21 กันยายน 2561</p>
-                        <p className="hide-desktop">{ qrCode }</p>
+                        <div className="hide-desktop">{ qrCode }</div>
                     </div>
                     <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
 
                 </React.Fragment>
-            );
+            )
         }
     }
 
@@ -55,44 +56,58 @@ class StatusFooter extends Component {
 
 class StatusCard extends Component{
 
-  render(){
-    const orderID = this.props.id;
-    var i=this.props.value;
-    const statusPlate=["order-not-paid","order-paid"];
-    const status =[
-      "รอชำระเงิน",
-      "สำเร็จ"
-    ];
-    //i=0;
-    var currstatus=status[i];
-    return(
-        <div className="order-status-card">
-            <div className="order-id-container container hide-mobile">
-                <div className="row">
-                    <div className="col-3">Order ID</div>
-                    <div className="col-6 order-id"> {orderID}</div>
+    render() {
+        const orderID = this.props.id
+        const statusPlate = ['order-not-paid', 'order-paid']
+        const status = [
+            'รอชำระเงิน',
+            'สำเร็จ'
+        ]
+        const { products, sets, value } = this.props
+        const entries = this.props.order.cartContents.map(item => ({
+            item: item,
+            product: findItem(item.info.id, products, sets),
+        }))
+        return(
+            <div className="order-status-card">
+                <div className="order-id-container order-status-text hide-mobile">
+                    <div className="row justify-content-center">
+                        <div className="col-auto">Order ID</div>
+                        <div className="col-6 order-id">
+                            { orderID }
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className="order-id-container hide-desktop">
+                <div className="order-id-container order-status-text hide-desktop">
                     Order ID
-                    <div className="order-id"> {orderID}</div>
-            </div>
-            <div className="status-divider"/>
-                สถานะการดำเนินการ
-            <div className={statusPlate[i]} >
-                {currstatus}
-            </div>
-            <div className="order-status-footer">
-                <StatusFooter history={this.props.history} value={i} order={this.props.order} />
+                    <div className="order-id">{ orderID }</div>
+                </div>
+                <div className="status-divider"/>
+                <div className="cart-container">
+                    <h3 className="cart-items-title">รายการสินค้า</h3>
+                    <div className="cart-items-container">
+                        { entries.map((entry, i) => {
+                            const { item, product } = entry
+                            return <Item key={i} product={product} item={item} index={i}
+                                         onAdd={() => {}} onRemove={() => {}} readOnly />
+                        }) }
+                    </div>
+                </div>
+                <p className="order-status-text">
+                    สถานะการดำเนินการ
+                </p>
+                <div className={ statusPlate[value] + ' order-status-text' } >
+                    { status[value] }
+                </div>
+                <div className="order-status-footer order-status-text">
+                    <StatusFooter history={this.props.history} value={value} order={this.props.order} />
+                </div>
+
             </div>
 
-        </div>
-
-    );
-  }
-
+        );
+    }
 
 }
-
 
 export default withRouter(StatusCard)
