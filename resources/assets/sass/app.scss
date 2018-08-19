@@ -334,7 +334,7 @@ main.container {
         @include make-card(0);
 
         width: 300px;
-        height: 360px;
+        height: 340px;
 
         margin: 50px 50px;
 
@@ -350,8 +350,8 @@ main.container {
 
         .set-pic {
             width: 220px;
-            height: 240px;
-            margin-bottom: 17px;
+            height: 220px;
+            margin-bottom: 15px;
 
             @extend .pic-placeholder
         }
