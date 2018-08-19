@@ -21,5 +21,5 @@ export const findItem = (id, ...sources) => {
 export const replace = (collection, match, newItem) =>
     collection.map(item => item === match ? newItem : item)
 
-export const getImage = id => "/images/products/" + id + "/thumbnail.png"
+export const getImage = id => "/images/products/" + id + "/thumbnail.jpg"
 export const getSlideImage = (id, position) => "/images/products/" + id + "/slide" + position + ".jpg"
