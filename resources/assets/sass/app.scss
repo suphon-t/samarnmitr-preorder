@@ -308,7 +308,7 @@ main.container {
     @extend .hide-mobile;
 
     margin-top: 48px;
-    padding: 0 62px;
+    padding: 0 34px;
 
     .title {
         color: white;
@@ -320,6 +320,7 @@ main.container {
         max-width: 100%;
 
         margin-top: 0;
+        margin-bottom: 8px;
     }
 }
 

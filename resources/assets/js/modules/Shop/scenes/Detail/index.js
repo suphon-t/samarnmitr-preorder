@@ -8,11 +8,18 @@ import ProductDetail from '../../components/Product/ProductDetail'
 import SetDetail from '../../components/Product/SetDetail'
 import RecommendedList from '../../components/Product/RecommendedList'
 import routes from '../../../../routes/routes'
-import { findItem } from '../../shopUtils'
+import { findItem, shuffle } from '../../shopUtils'
 
 const redirectHome = () => (<Redirect to={routes.web.home.get()} />)
 
 class Detail extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.recommendations = null
+        this.product = null
+    }
 
     componentWillMount() {
         this.props.fetchProducts()
@@ -29,10 +36,12 @@ class Detail extends Component {
             return redirectHome()
         }
         const DetailView = product['is_set'] ? SetDetail : ProductDetail
+        this.recommendations = this.recommendations && this.product === product
+            ? this.recommendations : shuffle([...sets, ...products].filter(it => it.id !== product.id)).slice(0, 4)
         return (
             <React.Fragment>
                 <DetailView product={product} />
-                <RecommendedList />
+                <RecommendedList recommendations={this.recommendations} />
             </React.Fragment>
         )
     }

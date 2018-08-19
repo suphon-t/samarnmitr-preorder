@@ -1,3 +1,3 @@
 import React from 'react'
 
-export default () => (<div className="section-divider" />)
+export default ({ className = '' }) => (<div className={'section-divider ' + className} />)
