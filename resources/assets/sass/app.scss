@@ -9,6 +9,7 @@
 @import 'variables';
 @import 'colors';
 @import 'credit-card-form';
+@import 'fonts';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -17,6 +18,7 @@
 
 body {
     background: #E8F9FF;
+    font-family: "DB Heavent", "Helvetica", sans-serif;
 }
 
 @mixin mobile {
@@ -370,7 +372,7 @@ main.container {
         .product-pic {
             width: 190px;
             height: 190px;
-            margin-bottom: 20px;
+            margin-bottom: 17px;
 
             @include mobile {
                 width: 210px;

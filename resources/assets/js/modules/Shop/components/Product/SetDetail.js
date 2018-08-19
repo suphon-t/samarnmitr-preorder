@@ -7,7 +7,7 @@ import { addItem } from '../../store/actions'
 
 import DropdownCustomizer from './DropdownCustomizer'
 import routes from '../../../../routes/routes'
-import { findItemFromList } from '../../shopUtils'
+import { getImage } from '../../shopUtils'
 
 class SetDetail extends Component {
 
@@ -84,7 +84,9 @@ class SetDetail extends Component {
             <div key={i} className="product-preview-container">
                 <div className="product-preview">
                     <div className="product-info-container">
-                        <div className="product-pic" />
+                        <div className="product-pic">
+                            <img className="fit-parent" src={getImage(content.id)} />
+                        </div>
                         <div className="set-panel justify-content-between">
                             <h2 className="product-name">{ content.name }</h2>
                             <form className="form-inline">
@@ -113,7 +115,6 @@ class SetDetail extends Component {
                 </div>
                 <div className="set-image-container" />
                 <div className="strip hide-desktop">
-
                     <div className="set-panel">
                         <h1>{ product.name }</h1>
                     </div>
