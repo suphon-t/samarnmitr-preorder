@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Category;
 use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
 use App\Order;
@@ -19,6 +20,7 @@ class ShopController extends Controller
         return [
             'products' => Product::buildQuery()->where('is_set', false)->get(),
             'sets' => Product::buildQuery()->where('is_set', true)->get(),
+            'categories' => Category::all(),
         ];
     }
 

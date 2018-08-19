@@ -37,6 +37,7 @@ export default (state = initialState, action) => {
                 isLoading: false,
                 products: action.payload.products,
                 sets: action.payload.sets,
+                categories: action.payload.categories,
             }
         case FETCH_PRODUCTS_FAILURE:
             return {

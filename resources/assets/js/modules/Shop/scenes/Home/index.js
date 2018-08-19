@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Media from 'react-media'
 import { connect } from 'react-redux'
 import { withLocalize } from 'react-localize-redux'
 
@@ -6,6 +7,7 @@ import { fetchProducts } from '../../store/actions'
 
 import Sets from '../../components/Sets'
 import ProductList from '../../components/Product/ProductList'
+import CategorizedProductList from '../../components/Product/CategorizedProductList'
 
 class Home extends Component {
 
@@ -14,17 +16,25 @@ class Home extends Component {
     }
 
     render() {
-        const { translate } = this.props
-        if (!this.props.products) {
-            return null
-        }
+        const { translate, products, sets, categories } = this.props
+        if (!products) return null
         return (
             <div className="col-sm-12">
-                <h1 className="section-header">{ translate('shop.sets') }</h1>
-                <Sets sets={this.props.sets} />
-                <div className="sets-products-divider" />
-                <h1 className="section-header">{ translate('shop.single_products') }</h1>
-                <ProductList products={this.props.products} />
+                <Media query="(min-width: 768px)">
+                    {matches =>
+                        matches ? (
+                            <React.Fragment>
+                                <h1 className="section-header">{ translate('shop.sets') }</h1>
+                                <Sets sets={sets} />
+                                <div className="sets-products-divider" />
+                                <h1 className="section-header">{ translate('shop.single_products') }</h1>
+                                <ProductList products={products} />
+                            </React.Fragment>
+                        ) : (
+                            <CategorizedProductList sets={sets} products={products} categories={categories} />
+                        )
+                    }
+                </Media>
             </div>
         )
     }
@@ -34,6 +44,7 @@ const mapStateToProps = state => ({
     isLoading: state.shop.isLoading,
     products: state.shop.products,
     sets: state.shop.sets,
+    categories: state.shop.categories,
 })
 
 const mapDispatchToProps = {
