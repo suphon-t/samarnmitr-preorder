@@ -45,6 +45,7 @@ class CreateAdmin extends Command
             'name' => $name,
             'email' => str_random(10) . '@' . str_random(10) . '.com',
             'password' => bcrypt($password),
+            'admin' => 1,
         ]);
         $this->info("id: {$user->id}");
         return true;
