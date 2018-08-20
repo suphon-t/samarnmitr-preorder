@@ -11,8 +11,8 @@ import CategorizedProductList from '../../components/Product/CategorizedProductL
 
 import setsDesktop from '../../../../../img/sets_desktop.svg'
 import singleProductsDesktop from '../../../../../img/single_products_desktop.svg'
-import coverDesktop from '../../../../../img/cover_desktop.png'
-import coverMobile from '../../../../../img/cover_mobile.png'
+
+import Cover from '../../components/Cover'
 
 class Home extends Component {
 
@@ -20,21 +20,12 @@ class Home extends Component {
         this.props.fetchProducts()
     }
 
-    getCover() {
-        return (
-            <React.Fragment>
-                <img className="cover-mobile" src={coverMobile} />
-                <img className="cover-desktop" src={coverDesktop} />
-            </React.Fragment>
-        )
-    }
-
     render() {
         const {  products, sets, categories } = this.props
-        if (!products) return this.getCover()
+        if (!products) return <Cover />
         return (
             <React.Fragment>
-                { this.getCover() }
+                <Cover />
                 <div className="col-sm-12">
                     <MediaQuery minDeviceWidth={768}>
                         {matches =>
