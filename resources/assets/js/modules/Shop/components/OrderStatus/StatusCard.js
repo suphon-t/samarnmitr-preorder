@@ -39,7 +39,7 @@ class StatusFooter extends Component {
                             หากต้องการชำระด้วยเงินสดนำ QR Code นี้มาชำระเงินที่ห้องคณะกรรมการนักเรียน<br/>
                             <div className="skpink">ภายใน 48 ชั่วโมงหลังจากสั่งซื้อสินค้า</div>
                         </div>
-                        <div className="hide-desktop">
+                        <div className="hide-desktop" style={{ marginTop: 32 }}>
                             หากต้องการชำระด้วยเงินสด<br/>นำ QR Code นี้มาชำระเงินที่<br/>ห้องคณะกรรมการนักเรียน
                             <div className="skpink">ภายใน 48 ชั่วโมงหลังจากสั่งซื้อสินค้า</div>
                             { qrCode }
