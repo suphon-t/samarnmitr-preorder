@@ -24,9 +24,13 @@ export default class CategorizedProductList extends Component {
         // noinspection EqualityComparisonWithCoercionJS
         return (
             <React.Fragment>
-                <select className="custom-select product-category-select" value={this.state.currentCategory} onChange={this.handleCategoryChange}>
-                    { categories.map((category, i) => <option key={i} value={category.id}>{ category.name }</option>)}
-                </select>
+                <div className="row justify-content-center no-gutters">
+                    <div className="col-auto">
+                        <select className="custom-select product-category-select" value={this.state.currentCategory} onChange={this.handleCategoryChange}>
+                            { categories.map((category, i) => <option key={i} value={category.id}>{ category.name }</option>)}
+                        </select>
+                    </div>
+                </div>
                 <ProductList products={allProducts.filter(product => product.category_id == this.state.currentCategory)} />
             </React.Fragment>
         )
