@@ -24,7 +24,7 @@ export default ({ product, hasMobile = false, hasRetina = false }) => (
                         <Carousel showArrows={true} showThumbs={false} showStatus={false}
                                   showIndicators={false} infiniteLoop={true} autoPlay>
                             { Array(product.slider_count).fill(0).map((_, i) => (
-                                <div key={i}>
+                                <div key={product.id + '.' + i}>
                                     <img src={getImage(product.id, i, isDesktop, isRetina, hasMobile, hasRetina)} />
                                 </div>
                             )) }
