@@ -7,7 +7,8 @@ import Layout from '../layout'
 import routes from './routes'
 import PrivateRoute from './private'
 import PublicRoute from './public'
-import RoutePath from "./RoutePath";
+import RoutePath from './RoutePath'
+import ScrollToTop from './ScrollToTop'
 
 function flattenRoutes(routes) {
     return [...Object.values(routes).reduce((acc, item) => {
@@ -25,17 +26,19 @@ export default class Routes extends Component {
     render() {
         return (
             <Router>
-                <Layout>
-                    <Switch>
-                        { allRoutes.map((route, i) => {
-                            if (route.auth) {
-                                return (<PrivateRoute key={i} {...route} />)
-                            } else {
-                                return (<PublicRoute key={i} {...route} />)
-                            }
-                        }) }
-                    </Switch>
-                </Layout>
+                <ScrollToTop>
+                    <Layout>
+                        <Switch>
+                            { allRoutes.map((route, i) => {
+                                if (route.auth) {
+                                    return (<PrivateRoute key={i} {...route} />)
+                                } else {
+                                    return (<PublicRoute key={i} {...route} />)
+                                }
+                            }) }
+                        </Switch>
+                    </Layout>
+                </ScrollToTop>
             </Router>
         )
     }
