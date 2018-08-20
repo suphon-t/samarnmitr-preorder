@@ -8,7 +8,7 @@ import Cart from '../../components/Cart'
 class CartPage extends Component {
 
     componentWillMount() {
-        this.props.fetchProducts()
+        // this.props.fetchProducts()
     }
 
     render() {

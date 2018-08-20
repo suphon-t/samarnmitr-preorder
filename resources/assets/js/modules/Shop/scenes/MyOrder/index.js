@@ -16,7 +16,7 @@ class MyOrder extends Component {
 
     componentWillMount() {
         this.props.fetchOrder()
-        this.props.fetchProducts()
+        // this.props.fetchProducts()
     }
 
     render() {

@@ -17,7 +17,7 @@ import Cover from '../../components/Cover'
 class Home extends Component {
 
     componentWillMount() {
-        this.props.fetchProducts()
+        // this.props.fetchProducts()
     }
 
     render() {

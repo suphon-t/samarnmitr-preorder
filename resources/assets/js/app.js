@@ -22,8 +22,10 @@ import config from './config'
 import Routes from './routes'
 import store from './store'
 import { authCheck } from './modules/Auth/store/actions'
+import { fetchProducts } from './modules/Shop/store/actions'
 
 store.dispatch(authCheck())
+store.dispatch(fetchProducts())
 
 Omise.setPublicKey(config.omisePublicKey)
 
