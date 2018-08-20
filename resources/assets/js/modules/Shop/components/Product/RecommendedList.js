@@ -10,7 +10,7 @@ export default ({ recommendations }) => (
             <Divider className="recommendation-divider" />
         </div>
         <div className="products-container hide-mobile">
-            { recommendations.map((product, i) => <Product key={i} product={product} />) }
+            { recommendations.map(product => <Product key={product.id} product={product} />) }
         </div>
     </React.Fragment>
 )
