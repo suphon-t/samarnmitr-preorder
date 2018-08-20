@@ -72,7 +72,7 @@ class ProductDetail extends Component {
                 <div className="row">
                     <div className="product-left-pane">
                         <div className="product-slide">
-                            <ProductSlide product={product} />
+                            <ProductSlide product={product} hasRetina />
                         </div>
                     </div>
                     <div className="product-right-pane">
