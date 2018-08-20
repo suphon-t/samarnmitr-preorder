@@ -910,6 +910,7 @@ main.container {
     .order-status-footer {
 
         font-size: 24px;
+        text-align: center;
 
         .qr-detail {
             margin: 0 10%;
@@ -918,8 +919,13 @@ main.container {
                 font-size: 13px;
                 margin: 0 30px;
             }
-
-            p {
+            .big-text{
+                font-size: 40px;
+                @include mobile{
+                    font-size: 21px;
+                }
+            }
+            .skpink {
                 color:$skpink;
             }
         }
@@ -953,7 +959,7 @@ main.container {
                 font-size: 13px;
                 width: 171px;
                 height: 34px;
-                margin: 0 auto 20px;
+                margin: 20px auto 20px;
             }
         }
     }

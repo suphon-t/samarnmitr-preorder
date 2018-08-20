@@ -29,10 +29,21 @@ class StatusFooter extends Component {
             return (
                 <React.Fragment>
                     <div className="qr-detail ">
-                        <div className="hide-mobile">{ qrCode }</div>
-                        นำ QR Code นี้มาชำระเงินที่ห้องคณะกรรมการนักเรียน
-                        <p>ภายใน 48 ชั่วโมงหลังจากสั่งซื้อสินค้า</p>
-                        <div className="hide-desktop">{ qrCode }</div>
+                        หากต้องการชำระด้วยการโอน ให้โอนเงินไปที่บัญชี<br/>
+                        <div className="big-text">ธนาคารกสิกรไทย เลขที่บัญชี 043-1-84846-5<br/></div>
+                        นายเอกพงษ์ หุมแพง และ นายกษิดิศ สุริยอัมพร และ นายชยธร โอตรวรรณะ<br/>
+                        <div className="skpink" >ภายใน 48 ชั่วโมงหลังจากสั่งซื้อสินค้า</div>
+                        และส่งหลักฐานการโอนเงินพร้อมข้อมูลการสั่งซื้อมาที่<br/>
+                        <a href="https://goo.gl/forms/KFhvIdFiCS1PMKpm2">"https://goo.gl/forms/KFhvIdFiCS1PMKpm2" </a>
+                        <div className="hide-mobile">{ qrCode }
+                            หากต้องการชำระด้วยเงินสดนำ QR Code นี้มาชำระเงินที่ห้องคณะกรรมการนักเรียน<br/>
+                            <div className="skpink">ภายใน 48 ชั่วโมงหลังจากสั่งซื้อสินค้า</div>
+                        </div>
+                        <div className="hide-desktop">
+                            หากต้องการชำระด้วยเงินสด<br/>นำ QR Code นี้มาชำระเงินที่<br/>ห้องคณะกรรมการนักเรียน
+                            <div className="skpink">ภายใน 48 ชั่วโมงหลังจากสั่งซื้อสินค้า</div>
+                            { qrCode }
+                        </div>
                     </div>
                     <button id="printBtn" onClick={() => this.doLogout()} > ออกจากระบบ </button>
                 </React.Fragment>

@@ -26,7 +26,7 @@ class MyOrder extends Component {
         if (isLoading || this.props.isLoading || !key) {
             return (<p>Loading...</p>)
         } else {
-            return <StatusCard id={id} value={chargeStatus ? 1 : 0} order={{ ...order, id }}
+            return <StatusCard id={id} value={chargeStatus ? 0 : 0} order={{ ...order, id }}
                         products={products} sets={sets} />
         }
     }
