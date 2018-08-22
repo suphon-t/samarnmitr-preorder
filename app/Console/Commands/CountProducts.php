@@ -13,7 +13,7 @@ class CountProducts extends Command
      *
      * @var string
      */
-    protected $signature = 'products:count';
+    protected $signature = 'products:count {paid=false}';
 
     /**
      * The console command description.
@@ -39,6 +39,7 @@ class CountProducts extends Command
      */
     public function handle()
     {
+        $total_price = 0;
         $productCounts = [];
         $this->info('Loading products...');
         $products = Product::all();
@@ -46,10 +47,16 @@ class CountProducts extends Command
             $productCounts[$product->id] = 0;
         }
         $this->info('Loading orders...');
-        $orders = Order::all();
-        $this->info('Counting...');
+        if ($this->argument('paid') == 'true') {
+            $orders = Order::whereNotNull('local_charge_id')->get();
+        } else {
+            $orders = Order::all();
+        }
+        $count = sizeof($orders);
+        $this->info("Counting {$count} orders...");
         foreach ($orders as $order) {
             $contents = json_decode($order['cart_contents']);
+            $total_price += $order['total_price'];
             foreach ($contents as $content) {
                 $id = $content->info->id;
                 $amount = $content->amount;
@@ -60,6 +67,7 @@ class CountProducts extends Command
         foreach ($products as $product) {
             $this->info($product->name . ": " . $productCounts[$product->id]);
         }
+        $this->info("\nTotal price: {$total_price}");
         return true;
     }
 }
