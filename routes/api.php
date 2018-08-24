@@ -18,7 +18,7 @@ Route::prefix('auth')
 
 Route::group(["prefix" => "shop"], function() {
     Route::get('products', 'ShopController@allProducts')->name('shop.product.index');
-    Route::put('orders', 'ShopController@makeOrder')->name('shop.order.make');
+    // Route::put('orders', 'ShopController@makeOrder')->name('shop.order.make');
 
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('myOrder', 'ShopController@myOrder')->name('shop.order.my');

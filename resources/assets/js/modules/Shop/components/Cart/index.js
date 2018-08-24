@@ -59,7 +59,7 @@ class Cart extends Component {
                 totalPrice: acc.totalPrice + item.amount * product.price,
             }
         }, { totalAmount: 0, totalPrice: 0 })
-        const buttonDisabled = totalAmount <= 0 || this.state.sending
+        const buttonDisabled = true // totalAmount <= 0 || this.state.sending
         return (
             <div className="cart-card">
                 <div className="cart-title strip">
