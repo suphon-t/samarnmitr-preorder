@@ -24,7 +24,7 @@ class Cart extends Component {
 
     handleOrderClick() {
         if (confirm("เลือกสินค้าเรียบร้อยแล้วใช่หรือไม่?")) {
-            this.makeOrder()
+            //this.makeOrder()
         }
     }
 
