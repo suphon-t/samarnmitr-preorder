@@ -97,7 +97,7 @@ class Cart extends Component {
                         <h1 className="summary-label">{ translate('shop.cart.total_price') }</h1>
                         <h1 className="summary-value">{ translate('shop.cart.total_price_value',
                             { price: "" + totalPrice }) }</h1>
-                        <button className="confirm-button" disabled={buttonDisabled} onClick={this.handleOrderClick}>
+                        <button className="confirm-button" disabled={buttonDisabled} /*onClick={this.handleOrderClick}*/>
                             { translate('shop.cart.confirm') }
                         </button>
                     </div>
@@ -105,7 +105,7 @@ class Cart extends Component {
 
                 <div className="cart-footer hide-mobile">
 
-                    <button disabled={buttonDisabled} onClick={this.handleOrderClick}>
+                    <button disabled={buttonDisabled} /*onClick={this.handleOrderClick}*/>
                       { translate('shop.cart.confirm') }
                     </button>
                 </div>
