@@ -40,11 +40,21 @@ class CountProducts extends Command
     public function handle()
     {
         $total_price = 0;
+        $productMap = [];
         $productCounts = [];
         $this->info('Loading products...');
-        $products = Product::all();
+        $products = Product::with('customizations')->with('customizations.values')->get();
         foreach ($products as $product) {
-            $productCounts[$product->id] = 0;
+            $productMap[$product->id] = $product;
+            if (sizeof($product->customizations) > 0) {
+                $template = [];
+                foreach ($product->customizations[0]->values as $value) {
+                    $template[$value->name] = 0;
+                }
+                $productCounts[$product->id] = $template;
+            } else {
+                $productCounts[$product->id] = 0;
+            }
         }
         $this->info('Loading orders...');
         if ($this->argument('paid') == 'true') {
@@ -57,15 +67,40 @@ class CountProducts extends Command
         foreach ($orders as $order) {
             $contents = json_decode($order['cart_contents']);
             $total_price += $order['total_price'];
-            foreach ($contents as $content) {
-                $id = $content->info->id;
-                $amount = $content->amount;
-                $productCounts[$id] += $amount;
+            foreach ($contents as $item) {
+                $id = $item->info->id;
+                $amount = $item->amount;
+                $product = $productMap[$id];
+                if ($product->is_set) {
+                    $productCounts[$id] += $amount;
+                }
+                $customizationMap = [];
+                foreach ($item->info->customizations as $customization) {
+                    $customizationMap[$customization->pivotId] = $customization;
+                }
+                foreach ($product->contents as $content) {
+                    $cId = $content->id;
+                    if (sizeof($content->customizations) > 0) {
+                        $customization = $customizationMap[$content->pivot->id];
+                        $name = $content->customizations[0]->name;
+                        $value = $customization->values->$name;
+                        $productCounts[$content->id][$value] += $amount;
+                    } else {
+                        $productCounts[$cId] += $amount;
+                    }
+                }
             }
         }
         $this->info("Done counting.\n");
         foreach ($products as $product) {
-            $this->info($product->name . ": " . $productCounts[$product->id]);
+            if (sizeof($product->customizations) > 0) {
+                $this->info($product->name . ": ");
+                foreach ($product->customizations[0]->values as $value) {
+                    $this->info(" - " . $value->name . ": " . $productCounts[$product->id][$value->name]);
+                }
+            } else {
+                $this->info($product->name . ": " . $productCounts[$product->id]);
+            }
         }
         $this->info("\nTotal price: {$total_price}");
         return true;
