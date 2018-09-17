@@ -104,10 +104,11 @@ class StatusCard extends Component{
     render() {
         const { isSending, identification } = this.state
         const orderID = this.props.id
-        const statusPlate = ['order-not-paid', 'order-paid']
+        const statusPlate = ['order-not-paid', 'order-paid', 'order-paid']
         const status = [
             'รอชำระเงิน',
-            'สำเร็จ'
+            'สำเร็จ',
+            'รับของแล้ว',
         ]
         const { products, sets, value } = this.props
         const entries = this.props.order.cartContents.map(item => ({

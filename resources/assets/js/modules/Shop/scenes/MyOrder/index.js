@@ -22,11 +22,12 @@ class MyOrder extends Component {
     render() {
         const { products, sets, order, user } = this.props
         const { id } = user
-        const { isLoading, chargeStatus, key } = order
+        const { isLoading, chargeStatus, key, reception_id } = order
+        const received = reception_id !== null
         if (isLoading || this.props.isLoading || !key) {
             return (<p>Loading...</p>)
         } else {
-            return <StatusCard id={id} value={chargeStatus ? 1 : 0} order={{ ...order, id }}
+            return <StatusCard id={id} value={received ? 2 : chargeStatus ? 1 : 0} order={{ ...order, id }}
                         products={products} sets={sets} />
         }
     }
