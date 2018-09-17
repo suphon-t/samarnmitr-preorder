@@ -4,7 +4,7 @@ import { withLocalize } from 'react-localize-redux'
 import NumericUpDown from '../Product/NumericUpDown'
 import { getImage } from '../../shopUtils'
 
-export default withLocalize(({ product, item, onAdd, onRemove, translate, readOnly = false }) => {
+export default withLocalize(({ product, item, onAdd, onRemove, translate, readOnly = false, forceContents = false }) => {
     const allCustoms = item.info.customizations
     const customizations = allCustoms[0].values
     const customizationLabels = product.is_set ? [] : Object.keys(customizations).map(name => {
@@ -61,7 +61,10 @@ export default withLocalize(({ product, item, onAdd, onRemove, translate, readOn
                 </div>
             </div>
             { product.is_set ? product.contents.map((content, i) => {
-                let className = 'cart-item small hide-mobile'
+                let className = 'cart-item small'
+                if (!forceContents) {
+                    className += ' hide-mobile'
+                }
                 if (!i) {
                     className += ' first'
                 }

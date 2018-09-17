@@ -2,8 +2,12 @@ import React, { Component } from 'react'
 import qs from 'query-string'
 
 import { loadOrderStatus, editOrder } from '../api'
+import {findItem} from "../../Shop/shopUtils";
+import {connect} from "react-redux";
+import {fetchProducts} from "../../Shop/store/actions";
+import Item from '../../Shop/components/Cart/Item'
 
-export default class OrderStatus extends Component {
+class OrderStatus extends Component {
 
     constructor(props) {
         super(props)
@@ -26,12 +30,17 @@ export default class OrderStatus extends Component {
     }
 
     reloadStatus() {
+        const parseContents = order => {
+            order.cartContents = JSON.parse(order['cart_contents'])
+            return order
+        }
+
         loadOrderStatus(this.state.id, this.state.key)
             .then(response => {
                 this.setState({
                     isLoading: false,
                     isSending: false,
-                    order: response.data,
+                    order: parseContents(response.data),
                 })
             })
             .catch(error => {
@@ -94,6 +103,12 @@ export default class OrderStatus extends Component {
         const receivedStatusToggler = <button className="btn btn-primary" onClick={this.handleToggleReceivedStatus} disabled={isSending}>
             { order.reception ? 'set as not received' : 'set as received' }
             </button>
+        const { products, sets, value } = this.props
+        const entries = order.cartContents.map(item => ({
+            item: item,
+            product: findItem(item.info.id, products, sets),
+        }))
+        console.log(entries)
         return (
             <div className="col-12">
                 <div className="manage-card">
@@ -140,12 +155,6 @@ export default class OrderStatus extends Component {
                                         <td>{ order.chargeStatus.payee.name }</td>
                                     </tr>
                                 </React.Fragment> : null }
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="table-responsive">
-                        <table className="table">
-                            <tbody>
                                 <tr>
                                     <td>Received</td>
                                     <td>
@@ -166,8 +175,35 @@ export default class OrderStatus extends Component {
                             </tbody>
                         </table>
                     </div>
+                    { this.state.isProductsLoading ? null : (
+                        <div>
+                            <div className="status-divider"/>
+                            <div className="cart-container">
+                                <h3 className="cart-items-title">รายการสินค้า</h3>
+                                <div className="cart-items-container">
+                                    { entries.map((entry, i) => {
+                                        const { item, product } = entry
+                                        return <Item key={i} product={product} item={item} index={i} forceContents
+                                                     onAdd={() => {}} onRemove={() => {}} readOnly />
+                                    }) }
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         )
     }
 }
+
+const mapStateToProps = state => ({
+    isProductsLoading: state.shop.isLoading,
+    products: state.shop.products,
+    sets: state.shop.sets,
+})
+
+const mapDispatchToProps = {
+    fetchProducts,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderStatus)

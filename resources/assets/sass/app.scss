@@ -636,7 +636,14 @@ main.container {
 
         &.small {
             height: auto;
-            margin-left: 99px;
+
+            @include desktop {
+                margin-left: 99px;
+
+                &.first {
+                    margin-top: -20px;
+                }
+            }
 
             padding: 0 5px 10px;
 
@@ -644,14 +651,15 @@ main.container {
                 display: inline;
 
                 font-size: 24px;
+
+                @include mobile {
+                    font-size: 20px;
+                    margin-right: 4px;
+                }
             }
 
             span {
                 font-size: 0.9rem;
-            }
-
-            &.first {
-                margin-top: -20px;
             }
         }
 
