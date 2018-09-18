@@ -32,32 +32,35 @@ class ExportProducts extends Command
         parent::__construct();
     }
 
-    public function countOrder($order, $countTemplate, $productMap, $products) {
-        $output = "," . $order->id . ",,";
+    public function countOrder($order, $countTemplate, $productMap, $products, $includeUnpaid) {
+        $output = "," . $order->id . ",";
         $productCounts = json_decode(json_encode($countTemplate), true);
         $contents = json_decode($order['cart_contents']);
         $total_price = $order['total_price'];
-        $output .= $total_price . ",";
-        foreach ($contents as $item) {
-            $id = $item->info->id;
-            $amount = $item->amount;
-            $product = $productMap[$id];
-            if ($product->is_set) {
-                $productCounts[$id] += $amount;
-            }
-            $customizationMap = [];
-            foreach ($item->info->customizations as $customization) {
-                $customizationMap[$customization->pivotId] = $customization;
-            }
-            foreach ($product->contents as $content) {
-                $cId = $content->id;
-                if (sizeof($content->customizations) > 0) {
-                    $customization = $customizationMap[$content->pivot->id];
-                    $name = $content->customizations[0]->name;
-                    $value = $customization->values->$name;
-                    $productCounts[$content->id][$value] += $amount;
-                } else {
-                    $productCounts[$cId] += $amount;
+        $output .= $total_price . ",,";
+        $paid = $order['local_charge_id'] != null;
+        if ($paid || $includeUnpaid) {
+            foreach ($contents as $item) {
+                $id = $item->info->id;
+                $amount = $item->amount;
+                $product = $productMap[$id];
+                if ($product->is_set) {
+                    $productCounts[$id] += $amount;
+                }
+                $customizationMap = [];
+                foreach ($item->info->customizations as $customization) {
+                    $customizationMap[$customization->pivotId] = $customization;
+                }
+                foreach ($product->contents as $content) {
+                    $cId = $content->id;
+                    if (sizeof($content->customizations) > 0) {
+                        $customization = $customizationMap[$content->pivot->id];
+                        $name = $content->customizations[0]->name;
+                        $value = $customization->values->$name;
+                        $productCounts[$content->id][$value] += $amount;
+                    } else {
+                        $productCounts[$cId] += $amount;
+                    }
                 }
             }
         }
@@ -75,6 +78,9 @@ class ExportProducts extends Command
                 }
             }
             $output .= ",";
+        }
+        if (!$paid) {
+            $output .= "ยังไม่จ่าย";
         }
         return $output;
     }
@@ -101,12 +107,8 @@ class ExportProducts extends Command
                 $productCounts[$product->id] = 0;
             }
         }
-        if ($this->argument('excludeUnpaid') == 'false') {
-            $orders = Order::all();
-        } else {
-            $orders = Order::whereNotNull('local_charge_id')->get();
-        }
-        $count = sizeof($orders);
+        $includeUnpaid = $this->argument('excludeUnpaid') == 'false';
+        $orders = Order::all();
         $header = "QC,Order,Price,ID,";
         foreach ($products as $product) {
             if ($product->is_set) continue;
@@ -115,7 +117,7 @@ class ExportProducts extends Command
         $header .= "หมายเหตุ,";
         $this->info($header);
         foreach ($orders as $order) {
-            $this->info($this->countOrder($order, $productCounts, $productMap, $products));
+            $this->info($this->countOrder($order, $productCounts, $productMap, $products, $includeUnpaid));
         }
         return true;
     }
