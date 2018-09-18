@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ManageController extends Controller
 {
+    public function orders() {
+        return Order::get(['user_id', 'key', 'identification', 'total_price', 'local_charge_id']);
+    }
+
     public function orderStatus(Request $request) {
         $data = $request->all();
         $order = $this->findOrder($data);

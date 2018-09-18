@@ -28,6 +28,7 @@ Route::group(["prefix" => "shop"], function() {
 });
 
 Route::group(['prefix' => 'manage', 'middleware' => ['auth:api', 'can:manage']], function() {
+    Route::get('orders', 'ManageController@orders')->name('manage.orders');
     Route::post('orderStatus', 'ManageController@orderStatus')->name('manage.order_status');
     Route::post('editOrder', 'ManageController@editOrder')->name('manage.edit_order_status');
 });
