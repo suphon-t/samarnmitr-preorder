@@ -33,7 +33,7 @@ class ExportProducts extends Command
     }
 
     public function countOrder($order, $countTemplate, $productMap, $products, $includeUnpaid) {
-        $output = "," . $order->id . ",";
+        $output = "," . $order['user_id'] . ",";
         $productCounts = json_decode(json_encode($countTemplate), true);
         $contents = json_decode($order['cart_contents']);
         $total_price = $order['total_price'];
