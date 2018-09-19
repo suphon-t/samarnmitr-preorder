@@ -175,7 +175,7 @@ class OrderStatus extends Component {
                             </tbody>
                         </table>
                     </div>
-                    { this.state.isProductsLoading ? null : (
+                    { this.props.isProductsLoading ? null : (
                         <div>
                             <div className="status-divider"/>
                             <div className="cart-container">

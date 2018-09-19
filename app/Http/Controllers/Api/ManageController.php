@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class ManageController extends Controller
 {
     public function orders() {
-        return Order::get(['user_id', 'key', 'identification', 'total_price', 'local_charge_id']);
+        return Order::get(['user_id', 'key', 'identification', 'total_price', 'local_charge_id', 'cart_contents']);
     }
 
     public function orderStatus(Request $request) {

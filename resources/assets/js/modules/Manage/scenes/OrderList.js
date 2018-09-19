@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import { fetchOrders } from '../api'
 import routes from '../../../routes/routes'
+import { findItem } from '../../Shop/shopUtils'
+import Item from '../../Shop/components/Cart/Item'
 
 class OrderList extends Component {
 
@@ -16,14 +18,15 @@ class OrderList extends Component {
             filteredOrders: [],
             paidOnly: false,
             query: '',
+            expandAll: false,
         }
 
+        this.handleExpandAllChange = this.handleExpandAllChange.bind(this)
         this.handlePaidOnlyChange = this.handlePaidOnlyChange.bind(this)
         this.handleQueryChange = this.handleQueryChange.bind(this)
     }
 
     filterOrders(orders, query, paidOnly) {
-        console.log(paidOnly)
         if (!query) {
             if (paidOnly) {
                 return orders.filter(order => order.local_charge_id !== null)
@@ -43,6 +46,11 @@ class OrderList extends Component {
         })
     }
 
+    handleExpandAllChange(e) {
+        this.setState({
+            expandAll: e.target.checked,
+        })
+    }
 
     handleQueryChange(e) {
         this.setState({
@@ -63,7 +71,7 @@ class OrderList extends Component {
     }
 
     render() {
-        const { isLoading, filteredOrders, paidOnly, query } = this.state
+        const { isLoading, filteredOrders, paidOnly, query, expandAll } = this.state
         if (isLoading) {
             return <h1>Loading...</h1>
         }
@@ -72,9 +80,42 @@ class OrderList extends Component {
                 <input className="form-control" placeholder="Search..." value={query} onChange={this.handleQueryChange} />
                 <input type="checkbox" id="paidCheck" checked={paidOnly} onChange={this.handlePaidOnlyChange} />
                 <label htmlFor="paidCheck">แสดงเฉพาะจ่ายแล้ว</label>
+                <input type="checkbox" id="expandCheck" checked={expandAll} onChange={this.handleExpandAllChange} />
+                <label htmlFor="expandCheck">แสดงรายละเอียดทั้งหมด</label>
             </div>
         )
-        const table = (
+        const { products, sets } = this.props
+        const table = expandAll ? filteredOrders.map(order => {
+            const cartContents = JSON.parse(order['cart_contents'])
+            const entries = cartContents.map(item => ({
+                item: item,
+                product: findItem(item.info.id, products, sets),
+            }))
+            return <div className="order-list-item" key={order.user_id}>
+                { this.props.isProductsLoading ? null : (
+                    <div>
+                        <div className="status-divider"/>
+                        <div className="cart-container">
+                            <h3 className="cart-items-title">
+                                <Link to={routes.manage.orderStatus.get({
+                                    orderId: order.user_id,
+                                    key: order.key,
+                                })}>
+                                    Order { order.user_id }, Price: { order.total_price }, Identification: { order.identification }
+                                </Link>
+                            </h3>
+                            <div className="cart-items-container">
+                                { entries.map((entry, i) => {
+                                    const { item, product } = entry
+                                    return <Item key={i} product={product} item={item} index={i} forceContents
+                                                 onAdd={() => {}} onRemove={() => {}} readOnly />
+                                }) }
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        }) : (
             <table className="table table-striped">
                 <thead>
                 <tr>
@@ -111,7 +152,10 @@ class OrderList extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.user
+    user: state.user,
+    isProductsLoading: state.shop.isLoading,
+    products: state.shop.products,
+    sets: state.shop.sets,
 })
 
 export default connect(mapStateToProps)(OrderList)
